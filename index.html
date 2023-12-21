@@ -7,23 +7,27 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ysabeau:wght@300&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
     </head>
 
     <body>
-        <header>
-            <h1><a href="index.html">Main page</a></h1>
-            <h1><a href="page_2.html">Header 2</a></h1>
-            <h1><a href="page_3.html">Header 3</a></h1>
-            <h1><a href="page_4.html">Header 4</a></h1>
-            <h1><a href="page_5.html">Header 5</a></h1>
-        </header>
-        <main>
-            <div class="photos">
-                <div class="image_1"><img src="images/Index/forrest.jpg"></div>
-                <div class="image_2"><img src="images/Index/clouds.jpg"></div>
-                <div class="image_3"><img src="images/Index/underwater.jpg"></div>
+        <div id="game" class="game">
+            <div id="stats">
+                <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
+                <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
+                <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
             </div>
-        </main>
+            <div id="controls">
+                <button id="button1">Go to store</button>
+                <button id="button2">Go to cave</button>
+                <button id="button3">Fight dragon</button>
+            </div>
+            <div id="monsterStats">
+                <span class="stat">Monster Name: <strong><span></span></strong></span>
+                <span class="stat">Health: <strong><span></span></strong></span>
+            </div>
+            <div id="text">Welcome to Dragon Repeller. You must defeat the dragon that is preventing people from leaving the town. You are in the town square. Where do you want to go? Use the buttons above.</div>
+        </div>
     </body>
 
 </html>
