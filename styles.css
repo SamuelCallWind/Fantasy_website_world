@@ -1,36 +1,84 @@
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 98vw;
-  height: 97vh;
-  background-color: #0a0a23;
+    width: 98vw;
+    height: 98vh;
+    background-color: rgb(20, 20, 20);
+}
+.gameWindow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 700px;
+    min-width: 700px;
 }
 
-.game {
-  width: 80%;
-  height: 60%;
-  background-color: rgb(129, 116, 105);
-  border-radius: 20px;
+.gameDisplay {
+    position: relative;
+    height: 50%;
+    width: 80%;
+    background-image: url(./images/seaView.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(171, 115, 75);
+    border-radius: 10px;
+    border: solid rgb(99, 64, 31) 5px;
 }
-#text {
-  padding: 10px;
-  background-color: #0a0a23;
-  color: white;
-}
-
-#controls, #stats, #monsterStats {
-  border: solid 1px #0a0a23;
-  color: #0a0a23;
-  padding: 5px;
-}
-#monsterStats {
-  display: none;
-  background-color: #c70d0d;
-  padding: 5px;
-  color: #ffffff;
+.text, .action {
+    width: 80%;
+    height: 15%;
+    background-color: rgb(229, 229, 230);
+    border-radius: 10px;
+    border: solid rgb(37, 62, 98) 5px;
 }
 
-.stat {
-  padding-right: 10px;
+.action {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
+    height: 5%;
+    gap: 2%;
+    border-radius: 5px;
+    border: solid black 3px;
+    background-color: rgb(255, 255, 255);
+}
+.action > button {
+    margin: 2% 2%;
+}
+.status {
+    height: 30%;
+    width: 20%;
+    background: linear-gradient(rgb(212, 162, 34), rgb(30, 87, 128));
+    border: solid gray 3px;
+    border-radius: 10px;
+    padding: 5px;
+
+}
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.actionsContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.actionsContainer > div {
+    text-align: center;
+    width: 20%;
+    background: linear-gradient(360deg, rgb(124, 119, 119) 10%, rgb(72, 156, 72) 30%);
+    margin: 5px;
+    border-radius: 5px;
+    border: solid black 3px;
+}
+.actionsContainer > .exit {
+    background: linear-gradient(360deg, rgb(124, 119, 119) 10%, rgb(27, 145, 204) 30%);
+}
+.building {
+    cursor: pointer;
 }

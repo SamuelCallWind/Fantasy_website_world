@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-
-<html>
-    <head>
-        <title>First page</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ysabeau:wght@300&display=swap" rel="stylesheet">
-        <meta charset="utf-8">
-    </head>
-
-    <body>
-        <div id="game" class="game">
-            <div id="stats">
-                <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
-                <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
-                <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rpg_game - main page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="gameWindow" id="gameWindow">
+        <div class="gameDisplay">
+            <div class="status flexColumn">
+                <span class="health">Health: <span healthText><strong>100</strong></span> </span>
+                <span class="gold" id="gold">Gold: <span id="goldText"><strong>75</strong></span>
+                <span class="xp" id="xp">Experience: <span id="xpText"><strong>0</strong></span>
+                <span></span>
+                <span></span>
             </div>
-            <div id="controls">
-                <button id="button1">Go to store</button>
-                <button id="button2">Go to cave</button>
-                <button id="button3">Fight dragon</button>
+            <div class="actionsContainer">
+                <div class="action1 action" id="church">Church</div>
+                <div class="action2 action" id="blacksmith">Blacksmith</div>
+                <div class="action3 action" id="fountain">Fountain</div>
+                <div class="action4 action" id="cave">Exit city</div>
             </div>
-            <div id="monsterStats">
-                <span class="stat">Monster Name: <strong><span></span></strong></span>
-                <span class="stat">Health: <strong><span></span></strong></span>
-            </div>
-            <div id="text">Welcome to Dragon Repeller. You must defeat the dragon that is preventing people from leaving the town. You are in the town square. Where do you want to go? Use the buttons above.</div>
         </div>
-    </body>
+        <div class="text flexColumn center">Welcome to the Game!</div>
+        <div class="action">
+            <button class="action1">Attack</button>
+            <button class="action2">Special</button>
+            <button class="action3">Dodge</button>
+            <button class="action4">Inventory</button>
+            <button class="action5">Run</button>
+        </div>
+    </div>
 
+    <script src="main.js"></script>
+</body>
 </html>
