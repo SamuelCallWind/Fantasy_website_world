@@ -1,45 +1,61 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const action1 = document.querySelector('.action1');
-    const action2 = document.querySelector('.action2');
-    const action3 = document.querySelector('.action3');
-    const action4 = document.querySelector('.action4');
+    const movement1 = document.querySelector('.movement1');
+    const movement2 = document.querySelector('.movement2');
+    const movement3 = document.querySelector('.movement3');
+    const movement4 = document.querySelector('.movement4');
 
+    movement1.addEventListener('click', function() {
+        goChurch();
+    });
 
     const locations = [
         {
             name: "Town Square",
-            "action names": ["Church", "Blacksmith", "Fountain", "Exit City"],
-            "action functions": [goChurch, goBlackSmith, goFountain, exitCity],
+            "movement names": ["Church", "Blacksmith", "Fountain", "Exit City"],
+            "movement functions": [goChurch, goBlackSmith, goFountain, exitCity],
             text: "You are in the town square of the city, you look around and see some buildings"
         },
         {
             name: "Church",
-            "action names": ["Buy Potion", "Get poison resistance", "Exit church"],
-            "action functions": [buyPotion, getPoisonResistance, goCity],
+            "movement names": ["Buy Potion", "Get poison resistance", "Exit church"],
+            "movement functions": [buyPotion, getPoisonResistance, goCity],
             text: "You enetered the church, there is a calm ambiance and a few monks are chanting. One of them walk towards you"
         }
     ];
 
 
     function changeActions(locationNumber) {
-        const actions = locations[locationNumber]["action names"];
-        const displayedActions = Array.from(document.querySelectorAll('.action'));
+        const newMovement = locations[locationNumber]["movement names"];
+        const displayedMovement = Array.from(document.querySelectorAll('.movement'));
 
-        while (displayedActions.length > actions.length) {
-            let lastElement = displayedActions.pop();
-            if (lastElement) {
-                document.querySelector('.actionsContainer').removeChild(lastElement);
-            }
+        if (newMovement.length < displayedMovement.length) {
+            const lastElement = displayedMovement.pop();
+            lastElement.parentElement.removeChild(lastElement);
+
+            changeActions(locationNumber);
+            return;
+        } else if (newMovement.length > displayedMovement.length) {
+            newDiv = document.createElement('div');
+            newDiv.classList.add('movement');
+            
+            document.querySelector('.movementContainer').appendChild(newDiv);
+            changeActions(locationNumber);
+            return;
         }
-    }
 
-    goCity();
+        for (let i = 0; i < newMovement.length; i++) {
+            displayedMovement[i].innerText = newMovement[i];
+            console.log(displayedMovement[i].innerText);
+        }
+
+
+    }
 
     function goCity() {
-        changeActions(1);
+        changeActions(0);
     }
     function goChurch() {
-        changeActions(2);
+        changeActions(1);
     }
     function goBlackSmith() {
 
