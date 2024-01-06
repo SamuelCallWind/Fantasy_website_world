@@ -9,17 +9,22 @@
 <body>
     <div class="gameWindow" id="gameWindow">
         <div class="gameDisplay">
-            <div class="status">
-                <span class="health">Health: <span healthText><strong>100</strong></span> </span>
-                <span class="gold" id="gold">Gold: <span id="goldText"><strong>75</strong></span></span>
-                <span class="xp" id="xp">Experience: <span id="xpText"><strong>0</strong></span></span>
+            <div class="status flexColumn">
+                <div class="containerHealthGoldXp flexColumn">
+                    <span class="health" id="health">Health: <span id="healthText"><strong>100</strong></span> </span>
+                    <span class="gold" id="gold">Gold: <span id="goldText"><strong>75</strong></span></span>
+                    <span class="xp" id="xp">Experience: <span id="xpText"><strong>0</strong></span></span>
+                </div>
                 <div class="flexColumn">
+                    <p class="weaponsTitle smallerText">Weapons</p>
+
                     <div class="weaponContainer">
                         <div class="squareWeapon squareWeapon1"></div>
                         <div class="squareWeapon squareWeapon2"></div>
                         <div class="squareWeapon squareWeapon3"></div>
                         <div class="squareWeapon squareWeapon4"></div>
                     </div>
+                    <p class="armorsTitle smallerText">Armors</p>
                     <div class="armorContainer">
                         <div class="squareArmor squareArmor1"></div>
                         <div class="squareArmor squareArmor2"></div>

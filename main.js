@@ -1,8 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     const health = 100;
-    const healthText = document.querySelector
+    const healthText = document.getElementById('healthText');
     const gold = 75;
-    const experience = 0;
+    const goldText = document.getElementById('goldText');
+    const xp = 0;
+    const xpText = document.getElementById('xpText');
+    const weapons = 0;
+    const weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
+    const armor = 0;
+    const armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
+
+
     const movement1 = document.querySelector('.movement1');
     const movement2 = document.querySelector('.movement2');
     const movement3 = document.querySelector('.movement3');
@@ -92,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function buyWeapon() {
-
     }
     function buyArmor() {
 
