@@ -9,12 +9,24 @@
 <body>
     <div class="gameWindow" id="gameWindow">
         <div class="gameDisplay">
-            <div class="status flexColumn">
+            <div class="status">
                 <span class="health">Health: <span healthText><strong>100</strong></span> </span>
-                <span class="gold" id="gold">Gold: <span id="goldText"><strong>75</strong></span>
-                <span class="xp" id="xp">Experience: <span id="xpText"><strong>0</strong></span>
-                <span></span>
-                <span></span>
+                <span class="gold" id="gold">Gold: <span id="goldText"><strong>75</strong></span></span>
+                <span class="xp" id="xp">Experience: <span id="xpText"><strong>0</strong></span></span>
+                <div class="flexColumn">
+                    <div class="weaponContainer">
+                        <div class="squareWeapon squareWeapon1"></div>
+                        <div class="squareWeapon squareWeapon2"></div>
+                        <div class="squareWeapon squareWeapon3"></div>
+                        <div class="squareWeapon squareWeapon4"></div>
+                    </div>
+                    <div class="armorContainer">
+                        <div class="squareArmor squareArmor1"></div>
+                        <div class="squareArmor squareArmor2"></div>
+                        <div class="squareArmor squareArmor3"></div>
+                        <div class="squareArmor squareArmor4"></div>
+                    </div>
+                </div>
             </div>
             <div class="movementContainer">
                 <div class="movement1 movement" id="movement1">Church</div>
@@ -23,7 +35,9 @@
                 <div class="movement4 movement" id="movement4">Exit city</div>
             </div>
         </div>
-        <div class="text flexColumn center">Welcome to the Game!</div>
+        <div class="textDisplayContainer flexColumn center">
+            <p class="textDisplayed">Welcome to the Game!</p>
+        </div>
         <div class="action">
             <button class="attack">Attack</button>
             <button class="special">Special</button>

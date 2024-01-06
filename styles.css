@@ -25,12 +25,22 @@ body {
     border-radius: 10px;
     border: solid rgb(99, 64, 31) 5px;
 }
-.text, .action {
+.textDisplayContainer, .action {
     width: 80%;
     height: 15%;
     background-color: rgb(229, 229, 230);
     border-radius: 10px;
     border: solid rgb(37, 62, 98) 5px;
+}
+.textDisplayed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    text-align: center;
+
+}
+.textDisplayed > p {
 }
 
 .action {
@@ -47,12 +57,27 @@ body {
     margin: 2% 2%;
 }
 .status {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(25px, 1fr));
     height: 30%;
     width: 20%;
     background: linear-gradient(rgb(212, 162, 34), rgb(30, 87, 128));
     border: solid gray 3px;
     border-radius: 10px;
     padding: 5px;
+
+}
+.weaponContainer, .armorContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+    gap: 2px;
+    margin: 2px;
+
+}
+.squareArmor, .squareWeapon {
+    min-height: 10px;
+    background-color: blue;
+    border: solid black 2px;
 
 }
 .flexColumn {
