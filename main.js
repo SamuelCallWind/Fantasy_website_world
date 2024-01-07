@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let poisonResistance = false;
     let textDisplayed = document.querySelector('.textDisplayed');
 
+    const monk = {
+        happiness: 0,
+        anger: 0
+    }
+
+
+
     const movement1 = document.querySelector('.movement1');
     const movement2 = document.querySelector('.movement2');
     const movement3 = document.querySelector('.movement3');
@@ -113,7 +120,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     function enchantWeapon() {
-
+        if (weapons === 0) {
+            textDisplayed.innerHTML = "You don't have any weapon, therefore you cannot enchant it"
+        } else {
+            if (gold > 50) {
+                gold -= 50;
+                goldText.innerText = gold;
+                textDisplayed.innerText = "The monk called the other ones in the church.\nThey all gave their hands on your weapon and made an incantation.\nYour Weapon now has an aura around it";
+            } else {
+                textDisplayed.innerText = "You don't have enough money to purchase the Enchantment"
+            }
+        }
     }
 
     function buyWeapon() {
