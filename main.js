@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const health = 100;
-    const healthText = document.getElementById('healthText');
-    const gold = 75;
-    const goldText = document.getElementById('goldText');
-    const xp = 0;
-    const xpText = document.getElementById('xpText');
-    const weapons = 0;
-    const weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
-    const armor = 0;
-    const armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
-
+    let health = 100;
+    let healthText = document.getElementById('healthText');
+    let gold = 75;
+    let goldText = document.getElementById('goldText');
+    let xp = 0;
+    let xpText = document.getElementById('xpText');
+    let weapons = 0;
+    let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
+    let armor = 0;
+    let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
+    let poisonResistance = false;
+    let textDisplayed = document.querySelector('.textDisplayed');
 
     const movement1 = document.querySelector('.movement1');
     const movement2 = document.querySelector('.movement2');
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
             name: "Church",
-            "movement names": ["Buy Potion", "Get poison resistance", "Enchant weapon", "Exit"],
+            "movement names": ["Buy Potion \n (+10 health)", "Get poison resistance", "Enchant weapon", "Exit"],
             "movement functions": [buyPotion, getPoisonResistance, enchantWeapon, goCity],
             text: "You enetered the church, there is a calm ambiance and a few monks are chanting. One of them walk towards you..."
         },
@@ -65,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
             container.appendChild(newDiv);
         }
 
-        document.querySelector('.textDisplayed').innerText = textToDisplay;
+        textDisplayed.innerText = textToDisplay;
     }
 
     function goCity() {
@@ -90,10 +91,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function buyPotion() {
-        const currentGold = document.querySelector('gold')
+        if (gold >= 10) {
+            gold -= 10;
+            goldText.innerText = gold;
+            health += 10;
+            healthText.innerText = health;
+            textDisplayed.innerText = "You drank the potion and feel a bit better. You gained 10 health";
+        } else {
+            textDisplayed.innerText = "You don't have enough gold to buy more health"
+        }
     }
     function getPoisonResistance() {
-
+        if (gold >= 30) {
+            gold -= 30;
+            goldText.innerText = gold;
+            textDisplayed.innerText = "The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou now are protected against poisons";
+            poisonResistance = true;
+            console.log(poisonResistance);
+        } else {
+            textDisplayed.innerText = "You don't have enough gold to buy more health"
+        }
     }
     function enchantWeapon() {
 
