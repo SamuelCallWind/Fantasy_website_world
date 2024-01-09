@@ -136,6 +136,10 @@ body {
     display: flex;
     flex-direction: column;
 }
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
 .center {
     align-items: center;
     justify-content: center;
@@ -143,6 +147,16 @@ body {
 .smallerText {
     font-size: 0.5rem;
 }
+.spaceEvenly {
+    justify-content: space-evenly;
+}
+.gridAutoCol50 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 100px));
+    grid-template-rows: 1fr 1fr;
+    gap: 2%;
+}
+
 
 .actionsContainer {
     position: relative;
@@ -151,15 +165,25 @@ body {
 }
 .movementContainer {
     position: relative;
-    margin-top: 30%;
+    margin-top: 25%;
+    height: 50%;
+    border: solid red 5px;
 }
-.movementContainer > div {
+.movementContainer > .movement {
     text-align: center;
     width: 20%;
     background: linear-gradient(360deg, rgb(124, 119, 119) 10%, rgb(72, 156, 72) 30%);
     margin: 5px;
     border-radius: 5px;
     border: solid black 3px;
+}
+.weaponBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 150px;
+    background-color: white;
 }
 
 .building {

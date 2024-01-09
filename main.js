@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function () {
     let health = 100;
     let healthText = document.getElementById('healthText');
@@ -5,9 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
     let goldText = document.getElementById('goldText');
     let xp = 0;
     let xpText = document.getElementById('xpText');
-    let weapons = 0;
+    let weapons = [
+        {sword: 0}, {hammer: 0}, {claw: 0}, {weapon4: 0},
+    ];
     let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
-    let armor = 0;
+    let armor = {
+        armor1: 0,
+        armor2: 0,
+        armor3: 0,
+        armor4: 0
+    };
     let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
     let poisonResistance = false;
     let textDisplayed = document.querySelector('.textDisplayed');
@@ -16,8 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
         happiness: 0,
         anger: 0
     }
-
-
 
     const movement1 = document.querySelector('.movement1');
     const movement2 = document.querySelector('.movement2');
@@ -47,8 +54,20 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             name: "Blacksmith",
             "movement names": ["Buy Weapon", "Buy Armor", "Exit"],
-            "movement functions": [buyWeapon, buyArmor, goCity],
+            "movement functions": [showWeaponBlacksmith, buyArmor, goCity],
             text: "You enter the forge where the blacksmith is working. He looks at you and say: \n \"Do you need something?\""
+        },
+        {
+            name: "Buy Weapon",
+            "movement names": ["Sword", "Hammer", "Claw", "weapon 4"],
+            "movement functions": [],
+            text: "The blacksmith turns and show you all his current weapon stock\n\"Choose what you need\" he said."
+        },
+        {
+            name: "Buy Armor",
+            "movement names": ["armor 1", "armor 2", "armor 3", "armor 4"],
+            "movement functions": [],
+            text: "The blacksmith turns and show you all his current weapon stock\n\"Choose what you need\" he said."
         }
     ];
 
@@ -67,7 +86,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (let i = 0; i < newMovement.length; i++) {
             const newDiv = document.createElement('div');
-            newDiv.classList.add('movement');
+            const containerMovement = document.querySelector('.movementContainer');
+
+            if (locationNumber === 3) {
+                newDiv.classList.add('weaponBox');
+                newDiv.addEventListener('click', (event) => {
+                    let selectedWeapon = event.target.innerText;
+
+                } )
+                containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
+
+            } else if (locationNumber === 4) {
+                newDiv.classList.add('armorBox');
+                containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
+            } else {
+                newDiv.classList.add('movement');
+            }
             newDiv.addEventListener('click', movementFunctions[i]);
             newDiv.innerText = newMovement[i];
             container.appendChild(newDiv);
@@ -84,6 +118,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function goBlackSmith() {
         changeActions(2);
+    }
+    function showWeaponBlacksmith() {
+        changeActions(3);
+    }
+    function buyArmor() {
+        changeActions(4);
     }
     function goFountain() {
 
@@ -133,11 +173,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function buyWeapon() {
-    }
-    function buyArmor() {
 
+    function buySword(swordLevel) {
+        weapons[swordLevel]
     }
+
 
 
 })
