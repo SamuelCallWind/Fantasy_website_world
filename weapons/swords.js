@@ -1,24 +1,24 @@
-const swords = [
+const Swords = [
     {
         name: "Basic Sword",
-        cost: 50,
+        price: 50,
         damage: 10
     },
     {
         name: "Enhanced Sword",
-        cost: 300,
+        price: 300,
         damage: 30
     },
     {
         name: "Strong Sword",
-        cost: 750,
+        price: 750,
         damage: 50
     },
     {
         name: "Flame Sword",
-        cost: 2000,
+        price: 2000,
         damage: 100
     }
 ];
 
-export default swords;
+export default Swords;

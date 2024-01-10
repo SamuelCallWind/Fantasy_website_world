@@ -1,3 +1,7 @@
+import Claws from "./weapons/claws.js";
+import Hammers from "./weapons/hammer.js";
+import Spears from "./weapons/spear.js";
+import Swords from "./weapons/swords.js";
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -7,9 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let goldText = document.getElementById('goldText');
     let xp = 0;
     let xpText = document.getElementById('xpText');
-    let weapons = [
-        {sword: 0}, {hammer: 0}, {claw: 0}, {weapon4: 0},
-    ];
+    let currentLocation = document.querySelector('.currentLocation');
+    let weapons = {
+        sword: 0, hammer: 0, claws: 0, spear: 0,
+    };
     let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
     let armor = {
         armor1: 0,
@@ -21,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let poisonResistance = false;
     let textDisplayed = document.querySelector('.textDisplayed');
 
+
     const monk = {
+        bought: 0,
         happiness: 0,
         anger: 0
     }
@@ -59,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
             name: "Buy Weapon",
-            "movement names": ["Sword", "Hammer", "Claw", "weapon 4"],
+            "movement names": ["sword", "hammer", "claws", "spear"],
             "movement functions": [],
             text: "The blacksmith turns and show you all his current weapon stock\n\"Choose what you need\" he said."
         },
@@ -71,8 +78,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
 
+    const weaponArts = {
+
+    }
 
     function changeActions(locationNumber) {
+        currentLocation.innerText = locations[locationNumber].name;
         const newMovement = locations[locationNumber]["movement names"];
         const movementFunctions = locations[locationNumber]["movement functions"];
         const displayedMovement = Array.from(document.querySelectorAll('.movement'));
@@ -90,9 +101,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (locationNumber === 3) {
                 newDiv.classList.add('weaponBox');
+                const price = 
+
                 newDiv.addEventListener('click', (event) => {
                     let selectedWeapon = event.target.innerText;
-
+                    buyWeapon(selectedWeapon, weapons[selectedWeapon])
                 } )
                 containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
 
@@ -111,10 +124,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function goCity() {
-        changeActions(0);
+        if (currentLocation.innerText === 'Church') {
+            changeActions(0);
+            if (monk.bought === 0) {
+                nothingBoughtFromMonk();
+            }
+        } else {
+            changeActions(0);
+        }
     }
     function goChurch() {
         changeActions(1);
+        if (monk.anger >= 2) {
+            textDisplayed.innerText = 'The monks are looking at you strangely.\n It seems like they don\'t want to see you wandering around in their place.\n Especially when you don\'t buy anything.'
+        }
     }
     function goBlackSmith() {
         changeActions(2);
@@ -134,7 +157,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-
+    function boughtFromMonk() {
+        monk.happiness += 1;
+        monk.anger = 0;
+    }
+    function nothingBoughtFromMonk() {
+        monk.happiness = 0;
+        monk.anger += 1;
+        if (monk.anger >= 3) {
+            textDisplayed.innerText = 'The monks push you out of the church and you miss one step.\n You sprained your ankle and lost 5 health points'
+            health -= 5;
+            healthText.innerText = health;
+        }
+    }
 
 
     function buyPotion() {
@@ -154,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
             goldText.innerText = gold;
             textDisplayed.innerText = "The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou now are protected against poisons";
             poisonResistance = true;
-            console.log(poisonResistance);
+            boughtFromMonk();
         } else {
             textDisplayed.innerText = "You don't have enough gold to buy more health"
         }
@@ -167,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 gold -= 50;
                 goldText.innerText = gold;
                 textDisplayed.innerText = "The monk called the other ones in the church.\nThey all gave their hands on your weapon and made an incantation.\nYour Weapon now has an aura around it";
+                boughtFromMonk();
             } else {
                 textDisplayed.innerText = "You don't have enough money to purchase the Enchantment"
             }
@@ -174,9 +210,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    function buySword(swordLevel) {
-        weapons[swordLevel]
+    function buyWeapon(weaponType, weaponLevel) {
+        const price = 0;
+
+        if (weaponType === 'sword') {
+            const price = Swords[weaponLevel].price;
+        } else if (weaponType === 'hammer') {
+            const price = Hammers[weaponLevel].price;
+        } else if (weaponType === 'claws') {
+            const price = Claws[weaponLevel].price;
+        } else if (weaponType === 'spear') {
+            const price = Spears[weaponLevel].price;
+        }
+
     }
+
 
 
 

@@ -1,0 +1,29 @@
+{
+  "name": "fantasy_website_world",
+  "version": "1.0.0",
+  "description": "A 2D RPG game made with HTML, CSS & Javascript ",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SamuelCallWind/Fantasy_website_world.git"
+  },
+  "type":"module",
+  "keywords": [
+    "RPG",
+    "2D",
+    "Game",
+    "Javascript",
+    "Fun",
+    "Medieval",
+    "light"
+  ],
+  "author": "Sam Call-Wind",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamuelCallWind/Fantasy_website_world/issues"
+  },
+  "homepage": "https://github.com/SamuelCallWind/Fantasy_website_world#readme"
+}

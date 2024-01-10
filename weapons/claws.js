@@ -1,22 +1,22 @@
 const Claws = [
     {
-        name: "Basic Sword",
-        cost: 50,
+        name: "Basic Claws",
+        price: 50,
         damage: 10
     },
     {
-        name: "Enhanced Sword",
-        cost: 300,
+        name: "Enhanced Claws",
+        price: 300,
         damage: 30
     },
     {
-        name: "Strong Sword",
-        cost: 750,
+        name: "Strong Claws",
+        price: 750,
         damage: 50
     },
     {
-        name: "Flame Sword",
-        cost: 2000,
+        name: "Magic Claws",
+        price: 2000,
         damage: 100
     }
 ];
