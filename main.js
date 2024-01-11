@@ -32,6 +32,11 @@ document.addEventListener('DOMContentLoaded', function () {
         happiness: 0,
         anger: 0
     }
+    const blacksmith = {
+        bought: 0,
+        happiness: 0,
+        anger: 0
+    }
 
     const movement1 = document.querySelector('.movement1');
     const movement2 = document.querySelector('.movement2');
@@ -62,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
             name: "Blacksmith",
             "movement names": ["Buy Weapon", "Buy Armor", "Exit"],
             "movement functions": [showWeaponBlacksmith, buyArmor, goCity],
-            text: "You enter the forge where the blacksmith is working. He looks at you and say: \n \"Do you need something?\""
+            text: "You enter the forge where the blacksmith is working. He looks at you and says: \n \"Do you need something?\""
         },
         {
             name: "Buy Weapon",
@@ -101,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (locationNumber === 3) {
                 newDiv.classList.add('weaponBox');
-                const price = 
+                
 
                 newDiv.addEventListener('click', (event) => {
                     let selectedWeapon = event.target.innerText;
@@ -129,6 +134,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (monk.bought === 0) {
                 nothingBoughtFromMonk();
             }
+        } else if (currentLocation.innerText === 'Blacksmith'){
+            changeActions(0);
+            if (blacksmith.bought === 0) {
+                nothingBoughtFromBlacksmith();
+            }
         } else {
             changeActions(0);
         }
@@ -141,6 +151,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function goBlackSmith() {
         changeActions(2);
+        if (blacksmith.anger === 2) {
+            textDisplayed.innerText = 'The blacksmith starts to look at you angrily.';
+        } else if (blacksmith.anger > 2) {
+            textDisplayed.innerText = 'The blacksmith is grabbing a spear! It\'s becoming serious. You better buy something to calm him a bit.';
+        }
     }
     function showWeaponBlacksmith() {
         changeActions(3);
@@ -169,6 +184,24 @@ document.addEventListener('DOMContentLoaded', function () {
             health -= 5;
             healthText.innerText = health;
         }
+    }
+    function boughtFromBlacksmith() {
+        blacksmith.happiness += 1;
+        blacksmith.anger = 0;
+    }
+    function nothingBoughtFromBlacksmith() {
+        blacksmith.happiness = 0;
+        blacksmith.anger += 1;
+        if (blacksmith.anger === 3) {
+            textDisplayed.innerText = 'The blacksmith throws his hammer to your shoulder and hurt you.\nYou run outside to not get another hit.'
+            health -= 5;
+            healthText.innerText = health;
+        } else if (blacksmith.anger > 3) {
+            textDisplayed.innerText = 'The blacksmith throws the spear at your leg and you now have a big cut.\nYou ran off as you could.'
+            health -= 40;
+            healthText.innerText = health;
+        }
+
     }
 
 

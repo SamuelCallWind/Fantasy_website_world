@@ -46,6 +46,7 @@ table {
     top: 0;
     left: 0;
     color: white;
+    display: none;
 }
 
 /* * {
