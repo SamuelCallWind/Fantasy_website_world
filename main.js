@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 newDiv.addEventListener('click', (event) => {
                     let selectedWeapon = event.target.innerText;
                     buyWeapon(selectedWeapon, weapons[selectedWeapon])
-                } )
+                })
                 containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
 
             } else if (locationNumber === 4) {
