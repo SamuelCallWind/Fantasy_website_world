@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             name: "Blacksmith",
             "movement names": ["Buy Weapon", "Buy Armor", "Exit"],
-            "movement functions": [showWeaponBlacksmith, buyArmor, goCity],
+            "movement functions": [buyWeaponBlacksmith, buyArmor, goCity],
             text: "You enter the forge where the blacksmith is working. He looks at you and says: \n \"Do you need something?\""
         },
         {
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
                 // adding the pictures once if the last box was added:
                 if ( i === newMovement.length - 1) {
-                    displayWeaponImagesInForge();
+                    displayWeaponImagesInForge(weapons.sword, weapons.hammer, weapons.claws, weapons.spear);
                 }
 
             } else if (locationNumber === 4) {
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
             textDisplayed.innerText = 'The blacksmith is grabbing a spear! It\'s becoming serious. You better buy something to calm him a bit.';
         }
     }
-    function showWeaponBlacksmith() {
+    function buyWeaponBlacksmith() {
         changeActions(3);
     }
     function buyArmor() {
