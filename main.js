@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 newDiv.classList.add('movement');
             }
+            addClassOfMovement(i, newDiv, locationNumber);
             newDiv.addEventListener('click', movementFunctions[i]);
             newDiv.innerText = newMovement[i];
             container.appendChild(newDiv);
@@ -129,6 +130,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         textDisplayed.innerText = textToDisplay;
     }
+
+
+    function addClassOfMovement(movementNumber, newDivToAssignClasses, locationNumber) {
+        const listClasses = locations[locationNumber]["movement names"][movementNumber].toLowerCase().split(' ');
+        listClasses.map(item => {
+            if (item.length > 1) {
+                newDivToAssignClasses.classList.add(item);
+            }
+        })
+    }
+
 
     function goCity() {
         if (currentLocation.innerText === 'Church') {
