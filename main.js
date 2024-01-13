@@ -103,7 +103,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const containerMovement = document.querySelector('.movementContainer');
 
             if (locationNumber === 3) {
-                newDiv.classList.add('weaponBox');
+                if (i === newMovement.length - 1) {
+                    newDiv.classList.add('exit', 'movement');
+                } else {
+                    newDiv.classList.add('weaponBox');
+                }
                 newDiv.addEventListener('click', (event) => {
                     let selectedWeapon = event.target.innerText;
                     buyWeapon(selectedWeapon, weapons[selectedWeapon])
@@ -166,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const armorDisplayed = Array.from(document.querySelectorAll('.armorBoxes'));
     if (weaponDisplayed.length > 1) {
         weaponDisplayed.map(element => document.querySelector('.movementContainer').removeChild(element));
+        document.querySelector('.movementContainer').removeChild(document.querySelector('.exit'))
     }
         changeActions(2);
         if (blacksmith.anger === 2) {
