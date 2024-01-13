@@ -3,6 +3,7 @@ import displayWeaponImagesInForge from "./weapons/displayWeaponImages.js";
 import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spear.js";
 import Swords from "./weapons/swords.js";
+import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -72,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
             name: "Buy Weapon",
-            "movement names": ["sword", "hammer", "claws", "spear"],
-            "movement functions": [],
+            "movement names": ["sword", "hammer", "claws", "spear", "Exit"],
+            "movement functions": [buySword, buyHammer, buyClaws, buySpear, goBlackSmith],
             text: "The blacksmith turns and show you all his current weapon stock\n\"Choose what you need\" he said."
         },
         {
@@ -83,10 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
             text: "The blacksmith turns and show you all his current weapon stock\n\"Choose what you need\" he said."
         }
     ];
-
-    const weaponArts = {
-
-    }
 
     function changeActions(locationNumber) {
         currentLocation.innerText = locations[locationNumber].name;
@@ -107,14 +104,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (locationNumber === 3) {
                 newDiv.classList.add('weaponBox');
-                
-
                 newDiv.addEventListener('click', (event) => {
                     let selectedWeapon = event.target.innerText;
                     buyWeapon(selectedWeapon, weapons[selectedWeapon])
                 })
-                displayWeaponImagesInForge();
                 containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
+                // adding the pictures once if the last box was added:
+                if ( i === newMovement.length - 1) {
+                    displayWeaponImagesInForge();
+                }
 
             } else if (locationNumber === 4) {
                 newDiv.classList.add('armorBox');
@@ -127,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
             newDiv.innerText = newMovement[i];
             container.appendChild(newDiv);
         }
-
+        
         textDisplayed.innerText = textToDisplay;
     }
 
@@ -164,6 +162,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     function goBlackSmith() {
+        const weaponDisplayed = Array.from(document.querySelectorAll('.weaponBox'));
+        const armorDisplayed = Array.from(document.querySelectorAll('.armorBoxes'));
+    if (weaponDisplayed.length > 1) {
+        weaponDisplayed.map(element => document.querySelector('.movementContainer').removeChild(element));
+    }
         changeActions(2);
         if (blacksmith.anger === 2) {
             textDisplayed.innerText = 'The blacksmith starts to look at you angrily.';

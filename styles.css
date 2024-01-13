@@ -94,8 +94,6 @@ body {
     text-align: center;
 
 }
-.textDisplayed > p {
-}
 
 .action {
     display: none;
@@ -111,6 +109,7 @@ body {
     margin: 2% 2%;
 }
 .status {
+    display: none;
     z-index: 1;
     position: absolute;
     top: -10%;
@@ -190,6 +189,9 @@ body {
     height: 100%;
     max-width: 150px;
     background-color: white;
+    color: transparent;
+    font-size: 0;
+    border: brown solid 5px;
 }
 
 .building {
@@ -215,4 +217,19 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
+}
+.buy.weapon, .buy.armor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    height: 50px;
+}
+.buy.armor {
+    left: 60%;
+}
+.weaponDisplayedBlacksmith {
+    width: 100%;
 }

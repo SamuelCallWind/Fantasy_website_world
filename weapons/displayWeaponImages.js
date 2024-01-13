@@ -6,13 +6,14 @@ function displayWeaponImagesInForge(sword, hammer, claws, spear) {
     const sourceClaws = ['../images/weapons/claws/basic_claws.png', '../images/weapons/claws/enhanced_claws.png', '../images/weapons/claws/golden_claws.png', '../images/weapons/claws/pair_dragon_claws.png'];
     const sourceSpear = ['../images/weapons/spears/wooden_spear.png', '../images/weapons/spears/enhanced_spear.png', '../images/weapons/spears/crystal_spear.png', '../images/weapons/spears/magic_spear.png'];
     
-    const gameDisplay = document.querySelector('.gameDisplay');
+    const listBoxes = Array.from(document.querySelectorAll('.weaponBox'));
     
 
     for (let i = 0; i < sourceSwords.length; i++) {
-        let test = document.createElement('img');
-        test.src = sourceSwords[i];
-        gameDisplay.append(test);
+        const sourcePicture = document.createElement('img');
+        sourcePicture.classList.add('weaponDisplayedBlacksmith')
+        sourcePicture.src = sourceSwords[i];
+        listBoxes[i].appendChild(sourcePicture);
     }
 }
 
