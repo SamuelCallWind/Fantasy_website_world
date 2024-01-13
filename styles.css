@@ -201,3 +201,18 @@ body {
     top: 40%;
     right: 15%;
 }
+.blacksmith {
+    position: absolute;
+    top: 62%;
+    left: 10%;
+}
+.statue {
+    position: absolute;
+    bottom: 20%;
+    right: 11%;
+}
+.exit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
