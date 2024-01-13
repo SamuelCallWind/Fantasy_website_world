@@ -1,4 +1,5 @@
 import Claws from "./weapons/claws.js";
+import displayWeaponImagesInForge from "./weapons/displayWeaponImages.js";
 import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spear.js";
 import Swords from "./weapons/swords.js";
@@ -112,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     let selectedWeapon = event.target.innerText;
                     buyWeapon(selectedWeapon, weapons[selectedWeapon])
                 })
+                displayWeaponImagesInForge();
                 containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
 
             } else if (locationNumber === 4) {
