@@ -196,13 +196,19 @@ document.addEventListener('DOMContentLoaded', function () {
     function checkHealth() {
         if (health <= 0) {
             looseGame();
+            health = 0;
+            healthText.innerText = 0;
         }
     }
     function looseGame() {
+        const movements = Array.from(document.querySelector('.movementContainer').children);
+        movements.forEach(element => {
+            console.log(element)
+            element.remove();
+            
+        }); 
+
         const gameDisplay = document.querySelector('.gameDisplay');
-        while (gameDisplay.firstChild) {
-            gameDisplay.removeChild(gameDisplay.firstChild);
-        }
         gameDisplay.style.backgroundImage = 'none';
         const playAgainContainer = document.createElement('div');
         const playAgainButton = document.createElement('button');
@@ -214,9 +220,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         playAgainContainer.appendChild(playAgainButton);
         gameDisplay.appendChild(playAgainContainer)
-    }
-    function restartGame() {
-
     }
 
     function boughtFromMonk() {
@@ -292,7 +295,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
     function buyWeapon(weaponType, weaponLevel) {
         const price = 0;
 
@@ -310,5 +312,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+    function restartGame() {
+        health = 100;
+        healthText.innerText = 100
+        gold = 75;
+        goldText.innerText = 75
+        xp = 0;
+        xpText.innerText = 0
+        weapons.sword = 0;
+        weapons.hammer = 0, 
+        weapons.claws = 0, 
+        weapons.spear = 0,
+        armor.armor1 = 0;
+        armor.armor2 = 0;
+        armor.armor3 = 0;
+        armor.armor4 = 0;
+
+        poisonResistance = false;
+
+        monk.anger = 0;
+        monk.bought = 0;
+        monk.happiness = 0;
+        blacksmith.anger = 0;
+        blacksmith.bought = 0;
+        blacksmith.happiness = 0;
+        armorBoxes.map(box => {
+            while (box.firstChild) {
+                box.removeChild(box.firstChild)
+            }
+        });
+        weaponsBoxes.map(box => {
+            while (box.firstChild) {
+                box.removeChild(box.firstChild)
+            }
+        });
+        document.querySelector('.gameDisplay').style.backgroundImage = 'url(./images/landscapes/town_square.png)'
+        goCity();
+    }
 
 })
