@@ -199,12 +199,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     function looseGame() {
+        const gameDisplay = document.querySelector('.gameDisplay');
+        while (gameDisplay.firstChild) {
+            gameDisplay.removeChild(gameDisplay.firstChild);
+        }
+        gameDisplay.style.backgroundImage = 'none';
         const playAgainContainer = document.createElement('div');
         const playAgainButton = document.createElement('button');
-        playAgainContainer.classList.add('playAgain');
+        playAgainContainer.classList.add('playAgainContainer');
+        playAgainContainer.innerText = 'You died';
         playAgainButton.classList.add('playAgainButton');
+        playAgainButton.innerText = 'Play Again';
 
-        
+        playAgainContainer.appendChild(playAgainButton);
+        gameDisplay.appendChild(playAgainContainer)
     }
 
     function boughtFromMonk() {

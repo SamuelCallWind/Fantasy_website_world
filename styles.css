@@ -75,9 +75,10 @@ body {
     background-size: 900px;
     background-position: left;
     background-repeat: no-repeat;
-    background-color: rgb(171, 115, 75);
+    background-color: black;
     border-radius: 10px;
     border: solid rgb(99, 64, 31) 5px;
+    transition: backgroundImage .5s ease-in-out;
 }
 .textDisplayContainer, .action {
     width: 80%;
@@ -112,8 +113,8 @@ body {
 .playAgainButton {
     width: 50%;
     height: 30%;
-    background-color: blue;
-    align-self: bottom;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .action {
