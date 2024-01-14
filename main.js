@@ -41,17 +41,17 @@ document.addEventListener('DOMContentLoaded', function () {
         anger: 0
     }
 
-    const movement1 = document.querySelector('.movement1');
-    const movement2 = document.querySelector('.movement2');
-    const movement3 = document.querySelector('.movement3');
-    const movement4 = document.querySelector('.movement4');
-
-    movement1.addEventListener('click', function() {
-        goChurch();
-    });
-    movement2.addEventListener('click', function() {
-        goBlackSmith();
-    })
+    function addStartGame() {
+        const startGame = document.createElement('button');
+        startGame.classList.add('startGame');
+        startGame.innerText = 'Start Game'
+        startGame.addEventListener('click', () => {
+            goCity();
+            document.querySelector('.gameDisplay').removeChild(startGame);
+        })
+        document.querySelector('.gameDisplay').appendChild(startGame);
+    }
+    addStartGame();
 
     const locations = [
         {
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (blacksmith.anger === 2) {
             textDisplayed.innerText = 'The blacksmith starts to look at you angrily.';
         } else if (blacksmith.anger > 2) {
-            textDisplayed.innerText = 'The blacksmith is grabbing a spear! It\'s becoming serious. You better buy something to calm him a bit.';
+            textDisplayed.innerText = 'The blacksmith is grabbing a spear! It\'s becoming serious.\n You better buy something to calm him a bit.';
         }
     }
     function buyWeaponBlacksmith() {
@@ -210,9 +210,13 @@ document.addEventListener('DOMContentLoaded', function () {
         playAgainContainer.innerText = 'You died';
         playAgainButton.classList.add('playAgainButton');
         playAgainButton.innerText = 'Play Again';
+        playAgainButton.addEventListener('click', restartGame);
 
         playAgainContainer.appendChild(playAgainButton);
         gameDisplay.appendChild(playAgainContainer)
+    }
+    function restartGame() {
+
     }
 
     function boughtFromMonk() {

@@ -49,14 +49,31 @@ table {
     display: none;
 }
 
-/* * {
-    border: solid red 2px !important;
-} */
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
 
 body {
     width: 98vw;
     height: 98vh;
     background-color: rgb(20, 20, 20);
+}
+.startGame {
+    position: absolute;
+    width: 50%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    font-size: 4rem;
+    font-weight: 700;
+    text-decoration: underline;
+    border-radius: 50px;
+    background-size: cover;
+}
+.startGame:hover {
+    color: white;
 }
 .gameWindow {
     display: flex;
