@@ -1,6 +1,6 @@
 const Hammers = [
     {
-        name: "Basic Hammer",
+        name: "Wooden Hammer",
         price: 50,
         damage: 10
     },

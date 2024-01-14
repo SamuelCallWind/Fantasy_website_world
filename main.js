@@ -4,6 +4,7 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spear.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
+import displayWeaponPrices from "./weapons/displayWeaponPrices.js";
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -55,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const locations = [
         {
             name: "Town Square",
-            "movement names": ["Church", "Blacksmith", "Fountain", "Exit City"],
-            "movement functions": [goChurch, goBlackSmith, goFountain, exitCity],
+            "movement names": ["Church", "Blacksmith", "Statue", "Exit City"],
+            "movement functions": [goChurch, goBlackSmith, goStatue, exitCity],
             text: "You are in the town square of the city, you look around and see some buildings"
         },
         {
@@ -185,14 +186,26 @@ document.addEventListener('DOMContentLoaded', function () {
     function buyArmor() {
         changeActions(4);
     }
-    function goFountain() {
+    function goStatue() {
 
     }
 
     function exitCity() {
 
     }
+    function checkHealth() {
+        if (health <= 0) {
+            looseGame();
+        }
+    }
+    function looseGame() {
+        const playAgainContainer = document.createElement('div');
+        const playAgainButton = document.createElement('button');
+        playAgainContainer.classList.add('playAgain');
+        playAgainButton.classList.add('playAgainButton');
 
+        
+    }
 
     function boughtFromMonk() {
         monk.happiness += 1;
@@ -205,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
             textDisplayed.innerText = 'The monks push you out of the church and you miss one step.\n You sprained your ankle and lost 5 health points'
             health -= 5;
             healthText.innerText = health;
+            checkHealth()
         }
     }
     function boughtFromBlacksmith() {
@@ -218,10 +232,12 @@ document.addEventListener('DOMContentLoaded', function () {
             textDisplayed.innerText = 'The blacksmith throws his hammer to your shoulder and hurt you.\nYou run outside to not get another hit.'
             health -= 5;
             healthText.innerText = health;
+            checkHealth()
         } else if (blacksmith.anger > 3) {
             textDisplayed.innerText = 'The blacksmith throws the spear at your leg and you now have a big cut.\nYou ran off as you could.'
             health -= 40;
             healthText.innerText = health;
+            checkHealth()
         }
 
     }

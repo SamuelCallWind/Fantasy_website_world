@@ -1,6 +1,6 @@
 const Spears = [
     {
-        name: "Basic Spear",
+        name: "Wooden Spear",
         price: 50,
         damage: 10
     },
@@ -10,7 +10,7 @@ const Spears = [
         damage: 30
     },
     {
-        name: "Strong Spear",
+        name: "Crystal Spear",
         price: 750,
         damage: 50
     },
