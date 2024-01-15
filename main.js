@@ -4,48 +4,48 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
-import displayWeaponPrices from "./weapons/displayWeaponPrices.js";
 
 
 let health = 100;
-    let healthText = document.getElementById('healthText');
-    let gold = 60;
-    let goldText = document.getElementById('goldText');
-    let xp = 0;
-    let xpText = document.getElementById('xpText');
-    let currentLocation = document.querySelector('.currentLocation');
-    let weapons = {
-        sword: 0, hammer: 0, claws: 0, spear: 0, sickle: 0
-    };
-    let armor = {
-        armor1: 0,
-        armor2: 0,
-        armor3: 0,
-        armor4: 0
-    };
-    let poisonResistance = false;
-    const monk = {
-        bought: 0,
-        happiness: 0,
-        anger: 0
-    }
-    const blacksmith = {
-        bought: 0,
-        happiness: 0,
-        anger: 0
-    }
-    let textDisplayed = document.querySelector('.textDisplayed');
+let healthText = document.getElementById('healthText');
+let gold = 60;
+let goldText = document.getElementById('goldText');
+let xp = 0;
+let xpText = document.getElementById('xpText');
+let currentLocation = document.querySelector('.currentLocation');
+let weapons = {
+    sword: 0, hammer: 0, claws: 0, spear: 0, sickle: 0
+};
+let armor = {
+    armor1: 0,
+    armor2: 0,
+    armor3: 0,
+    armor4: 0
+};
+let poisonResistance = false;
+const monk = {
+    bought: 0,
+    happiness: 0,
+    anger: 0
+}
+const blacksmith = {
+    bought: 0,
+    happiness: 0,
+    anger: 0
+}
+let textDisplayed = document.querySelector('.textDisplayed');
 
-    function updateGold(amount, sign) {
-        if (sign === '+') {
-            gold += amount;
-        } else if (sign === '-') {
-            gold -= amount;
-        }
+function updateGold(amount, sign) {
+    if (sign === '+') {
+        gold += amount;
+    } else if (sign === '-') {
+        gold -= amount;
     }
-    function updateWeapons(weaponName) {
-        weapons[weaponName] += 1;
-    }
+}
+function updateWeapons(weaponName) {
+    weapons[weaponName] += 1;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
     let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));

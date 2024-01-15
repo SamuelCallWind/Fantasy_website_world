@@ -149,7 +149,6 @@ body {
     margin: 2% 2%;
 }
 .status {
-    display: none;
     z-index: 1;
     position: absolute;
     top: -10%;
@@ -162,16 +161,19 @@ body {
     border-radius: 10px;
     padding: 5px;
 }
-.weaponContainer, .armorContainer {
+.weaponContainerInventory, .armorContainerInventory {
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
     gap: 2px;
     margin: 2px;
-
+}
+.weaponsInventory {
+    height: 50%;
 }
 .squareArmor, .squareWeapon {
-    height: 20px;
-    max-width: 20px;
+    height: 100%;
+    width: 90%;
     background-color: beige;
     border: solid black 2px;
     border-radius: 3px;
