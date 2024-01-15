@@ -1,3 +1,4 @@
+import displayWeaponPrices from "./displayWeaponPrices.js";
 
 
 function displayWeaponImagesInForge(...args) {
@@ -13,9 +14,14 @@ const weapons = [
 
     for (let i = 0; i < args.length; i++) {
         const sourcePicture = document.createElement('img');
-        sourcePicture.classList.add('weaponDisplayedBlacksmith')
+        const priceTag = document.createElement('div');
+        priceTag.classList.add('priceTag');
+        priceTag.innerText = displayWeaponPrices(i, args[i]);
+        
+        sourcePicture.classList.add('weaponDisplayedBlacksmith');
         sourcePicture.src = weapons[i][args[i]];
         listBoxes[i].appendChild(sourcePicture);
+        listBoxes[i].appendChild(priceTag);
     }
 }
 

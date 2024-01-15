@@ -1,7 +1,7 @@
 import Claws from "./weapons/claws.js";
 import displayWeaponImagesInForge from "./weapons/displayWeaponImages.js";
 import Hammers from "./weapons/hammer.js";
-import Spears from "./weapons/spear.js";
+import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
 import displayWeaponPrices from "./weapons/displayWeaponPrices.js";
