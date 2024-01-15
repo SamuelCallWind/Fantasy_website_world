@@ -46,9 +46,8 @@ function updateWeapons(weaponName) {
     weapons[weaponName] += 1;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
-    let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
+let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
+let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
 
 
     function addStartGame() {
@@ -312,29 +311,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function buyWeapon(weaponType, weaponLevel) {
-        const price = 0;
-
-        if (weaponType === 'sword') {
-            const price = Swords[weaponLevel].price;
-        } else if (weaponType === 'hammer') {
-            const price = Hammers[weaponLevel].price;
-        } else if (weaponType === 'claws') {
-            const price = Claws[weaponLevel].price;
-        } else if (weaponType === 'spear') {
-            const price = Spears[weaponLevel].price;
-        }
-
-        if (price > gold) {
-            console.log(price)
-            textDisplayed.innerText = 'You don\'t have enough money to buy this weapon';
-        }
-
-    }
-
-
-
-
     function restartGame(restartContainer) {
         health = 100;
         healthText.innerText = 100
@@ -374,6 +350,4 @@ document.addEventListener('DOMContentLoaded', function () {
         goCity();
     }
 
-});
-
-export { gold, goldText, updateGold, weapons, updateWeapons, textDisplayed };
+export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed };

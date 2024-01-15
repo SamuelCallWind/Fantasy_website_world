@@ -2,12 +2,11 @@ import Swords from "./swords.js";
 import Hammers from "./hammer.js";
 import Claws from "./claws.js";
 import Spears from "./spears.js";
-import { gold, goldText, textDisplayed, updateGold, updateWeapons, weapons } from "../main.js";
+import { gold, goldText, showWeaponBlacksmith, textDisplayed, updateGold, updateWeapons, weapons } from "../main.js";
 import { Weapons } from "./displayWeaponImages.js";
 
 function buySword (weaponLevel) {
     const priceOfWeapon = Swords[weaponLevel].price;
-    const listWeaponBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
 
     if (priceOfWeapon > gold) {
         textDisplayed.innerText = 'You don\'t have enough gold to buy this weapon';
@@ -15,19 +14,10 @@ function buySword (weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
-        textDisplayed.innerText = `You bought the ${Swords[weaponLevel].name}`;
         updateWeapons('sword');
-
-        const swordBoxInventory = listWeaponBoxes[0];
-        const newImage = document.createElement('img');
-        const sourceImageWeapon = Weapons[0][weaponLevel];
-        newImage.src = sourceImageWeapon;
-        newImage.classList.add('swordInventoryBox');
-        if (swordBoxInventory.children.length > 0) {
-            Array.from(swordBoxInventory.children).forEach(element => element.remove());
-        }
-        swordBoxInventory.innerText = `${Swords[weaponLevel].name}`;
-        swordBoxInventory.appendChild(newImage);
+        updateWeaponsDisplayed();
+        addWeaponToInventory('sword', weaponLevel);
+        textDisplayed.innerText = `You bought the ${Swords[weaponLevel].name}`;
     }
     
 }
@@ -40,8 +30,10 @@ function buyHammer(weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
-        textDisplayed.innerText = `You bought the ${Hammers[weaponLevel].name}`;
         updateWeapons('hammer');
+        updateWeaponsDisplayed();
+        addWeaponToInventory('hammer', weaponLevel);
+        textDisplayed.innerText = `You bought the ${Hammers[weaponLevel].name}`;
     }
 }
 function buyClaws(weaponLevel) {
@@ -53,8 +45,10 @@ function buyClaws(weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
-        textDisplayed.innerText = `You bought the ${Claws[weaponLevel].name}`;
         updateWeapons('claws');
+        updateWeaponsDisplayed();
+        addWeaponToInventory('claws', weaponLevel);
+        textDisplayed.innerText = `You bought the ${Claws[weaponLevel].name}`;
     }
 }
 function buySpear(weaponLevel) {
@@ -66,9 +60,43 @@ function buySpear(weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
-        textDisplayed.innerText = `You bought the ${Spears[weaponLevel].name}`;
         updateWeapons('spear');
+        updateWeaponsDisplayed();
+        addWeaponToInventory('spear', weaponLevel);
+        textDisplayed.innerText = `You bought the ${Spears[weaponLevel].name}`;
     }
+}
+
+function updateWeaponsDisplayed() {
+    Array.from(document.querySelector('.movementContainer').children).forEach(element => {
+        element.remove();
+    })
+    showWeaponBlacksmith();
+}
+
+function addWeaponToInventory(weaponType, weaponLevel) {
+    const listWeaponBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
+    let weaponToUpdate = -1;
+
+    if (weaponType === 'sword') {
+        weaponToUpdate = 0;
+    } else if (weaponType === 'hammer') {
+        weaponToUpdate = 1;
+    } else if (weaponType === 'claws') {
+        weaponToUpdate = 2;
+    } else if (weaponType === 'spear') {
+        weaponToUpdate = 3;
+    }
+
+    const newImage = document.createElement('img');
+    const sourceImageWeapon = Weapons[weaponToUpdate][weaponLevel];
+    newImage.src = sourceImageWeapon;
+    newImage.classList.add('swordInventoryBox');
+    if (listWeaponBoxes[weaponToUpdate].children.length > 0) {
+        Array.from(swordBoxInventory.children).forEach(element => element.remove());
+    }
+    listWeaponBoxes[weaponToUpdate].innerText = `${Swords[weaponLevel].name}`;
+    listWeaponBoxes[weaponToUpdate].appendChild(newImage);
 }
 
 export { buySword, buyHammer, buyClaws, buySpear };
