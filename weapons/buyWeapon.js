@@ -13,6 +13,7 @@ function buySword (weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
+        textDisplayed.innerText = `You bought the ${Swords[weaponLevel].name}`;
     }
     
 }
@@ -25,6 +26,7 @@ function buyHammer(weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
+        textDisplayed.innerText = `You bought the ${Hammers[weaponLevel].name}`;
     }
 }
 function buyClaws(weaponLevel) {
@@ -36,6 +38,7 @@ function buyClaws(weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
+        textDisplayed.innerText = `You bought the ${Claws[weaponLevel].name}`;
     }
 }
 function buySpear(weaponLevel) {
@@ -47,6 +50,7 @@ function buySpear(weaponLevel) {
     } else {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
+        textDisplayed.innerText = `You bought the ${Spears[weaponLevel].name}`;
     }
 }
 
