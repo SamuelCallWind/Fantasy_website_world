@@ -2,7 +2,7 @@ import Swords from "./swords.js";
 import Hammers from "./hammer.js";
 import Claws from "./claws.js";
 import Spears from "./spears.js";
-import { gold, goldText, textDisplayed, updateGold } from "../main.js";
+import { gold, goldText, textDisplayed, updateGold, updateWeapons, weapons } from "../main.js";
 
 function buySword (weaponLevel) {
     const priceOfWeapon = Swords[weaponLevel].price;
@@ -14,6 +14,7 @@ function buySword (weaponLevel) {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
         textDisplayed.innerText = `You bought the ${Swords[weaponLevel].name}`;
+        updateWeapons('sword');
     }
     
 }
@@ -27,6 +28,7 @@ function buyHammer(weaponLevel) {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
         textDisplayed.innerText = `You bought the ${Hammers[weaponLevel].name}`;
+        updateWeapons('hammer');
     }
 }
 function buyClaws(weaponLevel) {
@@ -39,6 +41,7 @@ function buyClaws(weaponLevel) {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
         textDisplayed.innerText = `You bought the ${Claws[weaponLevel].name}`;
+        updateWeapons('claws');
     }
 }
 function buySpear(weaponLevel) {
@@ -51,6 +54,7 @@ function buySpear(weaponLevel) {
         updateGold(priceOfWeapon, '-');
         goldText.innerText = gold;
         textDisplayed.innerText = `You bought the ${Spears[weaponLevel].name}`;
+        updateWeapons('spear');
     }
 }
 

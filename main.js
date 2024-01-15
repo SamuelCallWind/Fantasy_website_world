@@ -43,6 +43,9 @@ let health = 100;
             gold -= amount;
         }
     }
+    function updateWeapons(weaponName) {
+        weapons[weaponName] += 1;
+    }
 document.addEventListener('DOMContentLoaded', function () {
     let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
     let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
@@ -373,4 +376,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-export { gold, goldText, updateGold, weapons, textDisplayed };
+export { gold, goldText, updateGold, weapons, updateWeapons, textDisplayed };
