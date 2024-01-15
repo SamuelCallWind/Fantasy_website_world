@@ -71,9 +71,10 @@ body {
     text-decoration: underline;
     border-radius: 50px;
     background-size: cover;
+    transition: color .2s ease-in-out;
 }
 .startGame:hover {
-    color: white;
+    color: gray;
 }
 .gameWindow {
     display: flex;
@@ -259,20 +260,25 @@ body {
     left: 60%;
 }
 .weaponBox {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px;
-    width: 150px;
-    background-color: white;
+    margin-left: 80px;
+    height: 120px;
+    width: 120px;
+    background: linear-gradient(rgb(98, 97, 97), rgb(148, 120, 120) 50%);
     color: transparent;
     font-size: 0;
-    border: rgb(168, 108, 55) solid 2px;
+    border: rgb(51, 51, 51) solid 5px;
     border-radius: 10px;
-    background-image: url('./images/weapons/background/paint_background.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    align-self: center;
+    justify-self: center;
+    z-index: 1;
+    transition: filter .2s ease-in-out;
+}
+.weaponBox:hover {
+    filter: grayscale(50%);
 }
 .weaponDisplayedBlacksmith {
     width: 100%;

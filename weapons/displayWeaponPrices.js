@@ -3,7 +3,7 @@ import Claws from "./claws.js";
 import Hammers from "./hammer.js";
 import Spears from "./spear.js";
 
-function displayWeaponPrices(...args) {
+function displayWeaponPrices(weapon, levelWeapon) {
     
 }
 
