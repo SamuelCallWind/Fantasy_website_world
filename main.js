@@ -203,9 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function looseGame() {
         const movements = Array.from(document.querySelector('.movementContainer').children);
         movements.forEach(element => {
-            console.log(element)
             element.remove();
-            
         }); 
 
         const gameDisplay = document.querySelector('.gameDisplay');
@@ -216,10 +214,13 @@ document.addEventListener('DOMContentLoaded', function () {
         playAgainContainer.innerText = 'You died';
         playAgainButton.classList.add('playAgainButton');
         playAgainButton.innerText = 'Play Again';
-        playAgainButton.addEventListener('click', restartGame);
+        playAgainButton.addEventListener('click', function () {
+            restartGame(playAgainContainer);
+        });
 
         playAgainContainer.appendChild(playAgainButton);
         gameDisplay.appendChild(playAgainContainer)
+        
     }
 
     function boughtFromMonk() {
@@ -313,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    function restartGame() {
+    function restartGame(restartContainer) {
         health = 100;
         healthText.innerText = 100
         gold = 75;
@@ -347,6 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 box.removeChild(box.firstChild)
             }
         });
+        restartContainer.remove();
         document.querySelector('.gameDisplay').style.backgroundImage = 'url(./images/landscapes/town_square.png)'
         goCity();
     }
