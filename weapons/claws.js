@@ -1,22 +1,22 @@
 const Claws = [
     {
         name: "Basic Claws",
-        price: 50,
+        price: 60,
         damage: 10
     },
     {
         name: "Enhanced Claws",
-        price: 300,
+        price: 350,
         damage: 30
     },
     {
         name: "Golden Claws",
-        price: 750,
+        price: 1000,
         damage: 50
     },
     {
         name: "Pair Dragon Claws",
-        price: 2000,
+        price: 2500,
         damage: 100
     }
 ];

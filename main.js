@@ -7,29 +7,23 @@ import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
 import displayWeaponPrices from "./weapons/displayWeaponPrices.js";
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    let health = 100;
+let health = 100;
     let healthText = document.getElementById('healthText');
-    let gold = 75;
+    let gold = 60;
     let goldText = document.getElementById('goldText');
     let xp = 0;
     let xpText = document.getElementById('xpText');
     let currentLocation = document.querySelector('.currentLocation');
     let weapons = {
-        sword: 0, hammer: 0, claws: 0, spear: 0,
+        sword: 0, hammer: 0, claws: 0, spear: 0, sickle: 0
     };
-    let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
     let armor = {
         armor1: 0,
         armor2: 0,
         armor3: 0,
         armor4: 0
     };
-    let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
     let poisonResistance = false;
-    let textDisplayed = document.querySelector('.textDisplayed');
-
-
     const monk = {
         bought: 0,
         happiness: 0,
@@ -40,6 +34,19 @@ document.addEventListener('DOMContentLoaded', function () {
         happiness: 0,
         anger: 0
     }
+    let textDisplayed = document.querySelector('.textDisplayed');
+
+    function updateGold(amount, sign) {
+        if (sign === '+') {
+            gold += amount;
+        } else if (sign === '-') {
+            gold -= amount;
+        }
+    }
+document.addEventListener('DOMContentLoaded', function () {
+    let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
+    let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
+
 
     function addStartGame() {
         const startGame = document.createElement('button');
@@ -69,13 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             name: "Blacksmith",
             "movement names": ["Buy Weapon", "Buy Armor", "Exit"],
-            "movement functions": [buyWeaponBlacksmith, buyArmor, goCity],
+            "movement functions": [showWeaponBlacksmith, buyArmor, goCity],
             text: "You enter the forge where the blacksmith is working. He looks at you and says: \n \"Do you need something?\""
         },
         {
             name: "Buy Weapon",
             "movement names": ["sword", "hammer", "claws", "spear", "Exit"],
-            "movement functions": [buySword, buyHammer, buyClaws, buySpear, goBlackSmith],
+            "movement functions": [function () { buySword(weapons.sword)}, function () { buyHammer(weapons.hammer)}, function () { buyClaws(weapons.claws)}, function () { buySpear(weapons.spear)}, goBlackSmith],
             text: "The blacksmith turns and show you all his current weapon stock\n\"Choose what you need\" he said."
         },
         {
@@ -103,25 +110,31 @@ document.addEventListener('DOMContentLoaded', function () {
             const newDiv = document.createElement('div');
             const containerMovement = document.querySelector('.movementContainer');
 
+            //--------------------------START Case for Blacksmith's show weapons --------------
             if (locationNumber === 3) {
                 if (i === newMovement.length - 1) {
                     newDiv.classList.add('exit', 'movement');
                 } else {
                     newDiv.classList.add('weaponBox');
                 }
-                newDiv.addEventListener('click', (event) => {
-                    let selectedWeapon = event.target.innerText;
-                    buyWeapon(selectedWeapon, weapons[selectedWeapon])
-                })
+                newDiv.addEventListener('click', movementFunctions[i])
                 containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
                 // adding the pictures once if the last box was added:
                 if ( i === newMovement.length - 1) {
                     displayWeaponImagesInForge(weapons.sword, weapons.hammer, weapons.claws, weapons.spear);
                 }
 
+
+            //--------------------------END Case for Blacksmith's show weapons --------------
+            
+
+
+            //--------------------------START Case for Blacksmith's show armor --------------
             } else if (locationNumber === 4) {
                 newDiv.classList.add('armorBox');
                 containerMovement.classList.add('gridAutoCol50', 'flexColumn', 'spaceEvenly');
+            //--------------------------END Case for Blacksmith's show armor --------------
+
             } else {
                 newDiv.classList.add('movement');
             }
@@ -180,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
             textDisplayed.innerText = 'The blacksmith is grabbing a spear! It\'s becoming serious.\n You better buy something to calm him a bit.';
         }
     }
-    function buyWeaponBlacksmith() {
+    function showWeaponBlacksmith() {
         changeActions(3);
     }
     function buyArmor() {
@@ -309,6 +322,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const price = Spears[weaponLevel].price;
         }
 
+        if (price > gold) {
+            console.log(price)
+            textDisplayed.innerText = 'You don\'t have enough money to buy this weapon';
+        }
+
     }
 
 
@@ -317,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function restartGame(restartContainer) {
         health = 100;
         healthText.innerText = 100
-        gold = 75;
+        gold = 60;
         goldText.innerText = 75
         xp = 0;
         xpText.innerText = 0
@@ -353,4 +371,6 @@ document.addEventListener('DOMContentLoaded', function () {
         goCity();
     }
 
-})
+});
+
+export { gold, goldText, updateGold, weapons, textDisplayed };
