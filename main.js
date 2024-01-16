@@ -170,6 +170,7 @@ function goCity() {
         if (blacksmith.bought === 0) {
             nothingBoughtFromBlacksmith();
         }
+        document.querySelector('.movementContainer').classList.remove('gridAutoCol50', 'flexColumn', 'spaceEvenly');
     } else {
         changeActions(0);
     }
@@ -206,6 +207,7 @@ function goStatue() {
 }
 function exitCity() {
     changeActions(6);
+
 }
 function checkHealth() {
     if (health <= 0) {
