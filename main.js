@@ -4,6 +4,7 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
+import { goForward, goLeft, goRight } from "./world_functions/directions.js";
 
 
 let health = 100;
@@ -97,6 +98,13 @@ const locations = [
         "movement names": ["Exit"],
         "movement functions": [goCity],
         text: "You look at the beautiful statue of the king. \nHis name was Kong the II.\n"
+    }, 
+    {
+        name: "First Crossroad",
+        "movement names": ["Go left", "Go right", "Go forward"],
+        "movement functions": [goLeft, goRight, goForward],
+        text: "You've walked a few hundred meters out of the city following the road and you are now standing at a crossroad.\nWhich direction do you want to go?"
+
     }
 ];
 function changeActions(locationNumber) {
@@ -197,6 +205,7 @@ function goStatue() {
     changeActions(5);
 }
 function exitCity() {
+    changeActions(6);
 }
 function checkHealth() {
     if (health <= 0) {
