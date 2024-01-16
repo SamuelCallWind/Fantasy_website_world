@@ -249,6 +249,11 @@ body {
     bottom: 0;
     left: 0;
 }
+.exit.city {
+    position: absolute;
+    bottom: 0;
+    left: 200px;
+}
 .buy.weapon, .buy.armor {
     display: flex;
     align-items: center;
