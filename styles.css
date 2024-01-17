@@ -309,3 +309,6 @@ body {
     width: 100%;
     height: auto;
 }
+.go.left, .go.right, .go.forward, .go.backward {
+    position: absolute;
+}

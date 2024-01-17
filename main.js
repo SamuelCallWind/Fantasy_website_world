@@ -4,7 +4,7 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
-import { changeBackground, goForward, goLeft, goRight } from "./world_functions/directions.js";
+import { changeBackground, currentLocationAxisY, goBackward, goForward, goLeft, goRight, updatedCoordinateXY } from "./world_functions/directions.js";
 
 
 let health = 100;
@@ -101,8 +101,8 @@ const locations = [
     }, 
     {
         name: "First Crossroad",
-        "movement names": ["Go left", "Go right", "Go forward"],
-        "movement functions": [goLeft, goRight, goForward],
+        "movement names": ["Go left", "Go right", "Go forward", "Go Backward"],
+        "movement functions": [goLeft, goRight, goForward, goBackward],
         text: "You've walked a few hundred meters out of the city following the road and you are now standing at a crossroad.\nWhich direction do you want to go?"
 
     }
@@ -207,6 +207,7 @@ function goStatue() {
 }
 function exitCity() {
     changeActions(6);
+    updatedCoordinateXY('y', '+');
     changeBackground('first_crossroads');
 }
 function checkHealth() {
@@ -342,4 +343,4 @@ function restartGame(restartContainer) {
     goCity();
 }
 
-export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed };
+export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity };
