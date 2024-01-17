@@ -4,7 +4,7 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
-import { goForward, goLeft, goRight } from "./world_functions/directions.js";
+import { changeBackground, goForward, goLeft, goRight } from "./world_functions/directions.js";
 
 
 let health = 100;
@@ -207,7 +207,7 @@ function goStatue() {
 }
 function exitCity() {
     changeActions(6);
-
+    changeBackground('first_crossroads');
 }
 function checkHealth() {
     if (health <= 0) {
