@@ -4,7 +4,7 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
-import { changeBackground, currentLocationAxisY, goBackward, goForward, goLeft, goRight, updatedCoordinateXY } from "./world_functions/directions.js";
+import { changeBackground, goForward, goHills, goRight } from "./world_functions/directions.js";
 
 
 let health = 100;
@@ -66,7 +66,7 @@ const locations = [
     {
         name: "Town Square",
         "movement names": ["Church", "Blacksmith", "Statue", "Exit City"],
-        "movement functions": [goChurch, goBlackSmith, goStatue, exitCity],
+        "movement functions": [goChurch, goBlackSmith, goStatue, goCrossroad],
         text: "You are in the town square of the city, you look around and see some buildings"
     },
     {
@@ -102,9 +102,14 @@ const locations = [
     {
         name: "First Crossroad",
         "movement names": ["Go left", "Go right", "Go forward", "Go Backward"],
-        "movement functions": [goLeft, goRight, goForward, goBackward],
+        "movement functions": [goHills, goRight, goForward, goCity],
         text: "You've walked a few hundred meters out of the city following the road and you are now standing at a crossroad.\nWhich direction do you want to go?"
-
+    },
+    {
+        name: "Hills", 
+        "movement names": ["Go Backward"],
+        "movement functions": [goCrossroad],
+        text: "This is the end of the road.\nThere is a beautiful view and a calm breeze.\nWhat do you want to do?"
     }
 ];
 function changeActions(locationNumber) {
@@ -173,6 +178,7 @@ function goCity() {
         document.querySelector('.movementContainer').classList.remove('gridAutoCol50', 'flexColumn', 'spaceEvenly');
     } else {
         changeActions(0);
+        changeBackground('city');
     }
 }
 function goChurch() {
@@ -205,9 +211,8 @@ function buyArmor() {
 function goStatue() {
     changeActions(5);
 }
-function exitCity() {
+function goCrossroad() {
     changeActions(6);
-    updatedCoordinateXY('y', '+');
     changeBackground('first_crossroads');
 }
 function checkHealth() {
@@ -343,4 +348,4 @@ function restartGame(restartContainer) {
     goCity();
 }
 
-export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity };
+export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions };

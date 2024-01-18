@@ -1,43 +1,14 @@
-import { goCity } from "../main.js";
+import { changeActions } from "../main.js";
 
-let currentLocationAxisY = 0;
-let currentLocationAxisX = 0;
-
-function updatedCoordinateXY(Axis, operator) {
-    if (Axis === 'y') {
-        if (operator === "-") {
-            currentLocationAxisY -= 1;
-        } else {
-            currentLocationAxisY += 1;
-        }
-    } else {
-        if (operator === '-') {
-            currentLocationAxisX -= 1;
-        } else {
-            currentLocationAxisX += 1;
-        }
-    }
-}
-
-function goLeft() {
-    currentLocationAxisX -= 1;
+function goHills() {
+    changeActions(7);
+    changeBackground('hills');
 }
 function goRight() {
-    currentLocationAxisX += 1;
+    
 }
 function goForward() {
-    currentLocationAxisY += 1;
-}
-function goBackward() {
-    currentLocationAxisY -= 1;
-    checkPositionCoordinate();
-}
-
-function checkPositionCoordinate() {
-    if (currentLocationAxisX === 0 && currentLocationAxisY === 0) {
-        goCity();
-        changeBackground('city');
-    }
+    
 }
 
 
@@ -54,6 +25,9 @@ function changeBackground(nameBackground) {
             } else {
                 gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square.png)'
             }
+        case 'hills':
+           // gameDisplay.style.backgroundImage = 'url(../images/landscapes/grass_hills.png)'
+
     }
 }
 
@@ -88,4 +62,4 @@ function positionTheDirections(location, isLeft, isRight, isForward, isBackward)
 
 }
 
-export { goLeft, goRight, goForward, goBackward, currentLocationAxisX, currentLocationAxisY, updatedCoordinateXY, changeBackground };
+export { goHills, goRight, goForward, changeBackground };
