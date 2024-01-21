@@ -2,7 +2,7 @@ import Swords from "./swords.js";
 import Hammers from "./hammer.js";
 import Claws from "./claws.js";
 import Spears from "./spears.js";
-import { gold, goldText, showWeaponBlacksmith, textDisplayed, updateGold, updateWeapons, weapons } from "../main.js";
+import { boughtFromBlacksmith, gold, goldText, showWeaponBlacksmith, textDisplayed, updateGold, updateWeapons, weapons } from "../main.js";
 import { Weapons } from "./displayWeaponImages.js";
 
 function buySword (weaponLevel) {
@@ -18,6 +18,7 @@ function buySword (weaponLevel) {
         updateWeaponsDisplayed();
         addWeaponToInventory('sword', weaponLevel);
         textDisplayed.innerText = `You bought the ${Swords[weaponLevel].name}`;
+        boughtFromBlacksmith();
     }
     
 }
@@ -34,6 +35,7 @@ function buyHammer(weaponLevel) {
         updateWeaponsDisplayed();
         addWeaponToInventory('hammer', weaponLevel);
         textDisplayed.innerText = `You bought the ${Hammers[weaponLevel].name}`;
+        boughtFromBlacksmith();
     }
 }
 function buyClaws(weaponLevel) {
@@ -49,6 +51,7 @@ function buyClaws(weaponLevel) {
         updateWeaponsDisplayed();
         addWeaponToInventory('claws', weaponLevel);
         textDisplayed.innerText = `You bought the ${Claws[weaponLevel].name}`;
+        boughtFromBlacksmith();
     }
 }
 function buySpear(weaponLevel) {
@@ -64,6 +67,7 @@ function buySpear(weaponLevel) {
         updateWeaponsDisplayed();
         addWeaponToInventory('spear', weaponLevel);
         textDisplayed.innerText = `You bought the ${Spears[weaponLevel].name}`;
+        boughtFromBlacksmith();
     }
 }
 

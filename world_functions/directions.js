@@ -1,3 +1,4 @@
+import { startBattle } from "../battle_functions/startBattle.js";
 import { changeActions } from "../main.js";
 
 function goHills() {
@@ -21,9 +22,14 @@ function changeBackground(nameBackground) {
         return;
     } else if (nameBackground === 'city') {
         if (Math.floor(Math.random() * 101 > 95)) {
-            gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square_chicken.png)'
+            gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square_chicken.png)';
+            const chickenInCity = document.createElement('div');
+            chickenInCity.classList.add('chickenInCity');
+            chickenInCity.addEventListener('click', startBattle)
+            document.querySelector('.movementContainer').appendChild(chickenInCity);
         } else {
-            gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square.png)'
+            gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square.png)';
+            
         }
     } else if (nameBackground === 'hills') {
         gameDisplay.style.backgroundImage = 'url(../images/landscapes/grass_hills.png)'

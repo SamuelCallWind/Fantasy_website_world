@@ -96,7 +96,29 @@ body {
     background-color: black;
     border-radius: 10px;
     border: solid rgb(99, 64, 31) 5px;
-    transition: backgroundImage .5s ease-in-out;
+    transition: background-image .5s ease-in-out;
+}
+.characterChoice {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    border-radius: 5px;
+    transition: display .3s ease-in-out;
+}
+.choiceCharacterOne, .choiceCharacterTwo {
+    height: 70%;
+    width: 20%;
+    background-color: white;
+    border: solid black 5px;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .textDisplayContainer, .action {
     width: 80%;
@@ -149,7 +171,7 @@ body {
     margin: 2% 2%;
 }
 .status {
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     top: -10%;
     left: -10%;
@@ -311,4 +333,14 @@ body {
 }
 .go.left, .go.right, .go.forward, .go.backward {
     position: absolute;
+}
+
+.chickenInCity {
+    position: absolute;
+    top: 140px;
+    right: 375px;
+    height: 20px;
+    width: 25px;
+    background-color: transparent;
+    cursor: pointer;
 }

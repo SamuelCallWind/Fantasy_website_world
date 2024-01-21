@@ -5,8 +5,9 @@ import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
 import { changeBackground, goForward, goHills, goRight, positionTheDirections } from "./world_functions/directions.js";
+import { displayCharacters } from "./world_functions/displayCharacters.js";
 
-
+let character;
 let health = 100;
 let healthText = document.getElementById('healthText');
 let gold = 60;
@@ -36,6 +37,15 @@ const blacksmith = {
 }
 let textDisplayed = document.querySelector('.textDisplayed');
 
+function updateCharacter(characterNumber) {
+    if (characterNumber === 1) {
+        character = 1;
+    } else {
+        character = 2;
+    }
+    console.log(character);
+}
+
 function updateGold(amount, sign) {
     if (sign === '+') {
         gold += amount;
@@ -56,7 +66,7 @@ function addStartGame() {
     startGame.classList.add('startGame');
     startGame.innerText = 'Start Game'
     startGame.addEventListener('click', () => {
-        goCity();
+        displayCharacters();
         document.querySelector('.gameDisplay').removeChild(startGame);
     })
     document.querySelector('.gameDisplay').appendChild(startGame);
@@ -186,6 +196,7 @@ function goChurch() {
     if (monk.anger >= 2) {
         textDisplayed.innerText = 'The monks are looking at you strangely.\n It seems like they don\'t want to see you wandering around in their place.\n Especially when you don\'t buy anything.'
     }
+    document.querySelector('.movementContainer')
 }
 function goBlackSmith() {
     const weaponDisplayed = Array.from(document.querySelectorAll('.weaponBox'));
@@ -349,4 +360,4 @@ function restartGame(restartContainer) {
     goCity();
 }
 
-export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions };
+export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter };
