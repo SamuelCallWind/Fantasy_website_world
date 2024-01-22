@@ -43,7 +43,6 @@ function updateCharacter(characterNumber) {
     } else {
         character = 2;
     }
-    console.log(character);
 }
 
 function updateGold(amount, sign) {

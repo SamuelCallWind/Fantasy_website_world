@@ -183,6 +183,20 @@ body {
     border-radius: 10px;
     padding: 5px;
 }
+.characterStatus {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    height: 40%;
+    width: 30%;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 65%;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+
+}
 .weaponContainerInventory, .armorContainerInventory {
     height: 100%;
     display: grid;
