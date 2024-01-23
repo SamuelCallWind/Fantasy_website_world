@@ -55,6 +55,12 @@ function updateGold(amount, sign) {
 function updateWeapons(weaponName) {
     weapons[weaponName] += 1;
 }
+function removeMovements() {
+    const movementContainer = document.querySelector('.movementContainer');
+    while (movementContainer.firstChild) {
+        movementContainer.removeChild(movementContainer.firstChild);
+    }
+}
 
 let armorBoxes = Array.from(document.querySelectorAll('.squareArmor'))
 let weaponsBoxes = Array.from(document.querySelectorAll('.squareWeapon'));
@@ -358,5 +364,6 @@ function restartGame(restartContainer) {
     document.querySelector('.gameDisplay').style.backgroundImage = 'url(./images/landscapes/town_square.png)'
     goCity();
 }
+
 
 export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter };

@@ -21,11 +21,13 @@ function changeBackground(nameBackground) {
         positionTheDirections(nameBackground, true, true, true, true);
         return;
     } else if (nameBackground === 'city') {
-        if (Math.floor(Math.random() * 101 > 95)) {
+        if (Math.floor(Math.random() * 101 > 5)) {
             gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square_chicken.png)';
             const chickenInCity = document.createElement('div');
             chickenInCity.classList.add('chickenInCity');
-            chickenInCity.addEventListener('click', startBattle)
+            chickenInCity.addEventListener('click', function() {
+                startBattle('Chicken');
+            })
             document.querySelector('.movementContainer').appendChild(chickenInCity);
         } else {
             gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square.png)';

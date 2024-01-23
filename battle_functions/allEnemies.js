@@ -1,7 +1,9 @@
-const allEnemenies = [
+const allEnemies = [
     {
         name: "Chicken",
         "health points": 10,
-        damage: 2
+        strength: 2
     }
 ]
+
+export { allEnemies };
