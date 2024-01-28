@@ -1,3 +1,4 @@
+import { returnCharacter } from "../main.js";
 import { allEnemies } from "./allEnemies.js";
 
 function startBattle(enemyName) {
@@ -33,6 +34,7 @@ function startBattle(enemyName) {
 
         const playerCharacter = document.createElement('img');
         playerCharacter.classList.add('characterBackBattle');
+        const character = returnCharacter();
         if (character === 1) {
             playerCharacter.src = '../images/characters/character_back_battle_1.png';
         } else {

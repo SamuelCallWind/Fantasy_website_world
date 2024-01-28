@@ -13,7 +13,7 @@ function displayCharacters() {
     choiceCharacterOne.style.backgroundImage = 'url(../images/characters/protagonist_1.png)';
     choiceCharacterTwo.style.backgroundImage = 'url(../images/characters/protagonist_2.png)';
 
-    function updateCharacter(number) {
+    function updateCharacterInStatus(number) {
         goCity();
         if (number === 1) {
             characterStatusContainer.style.backgroundImage = 'url(../images/characters/protagonist_1.png)';
@@ -26,10 +26,11 @@ function displayCharacters() {
 
     const characterStatusContainer = document.querySelector('.characterStatus');
     choiceCharacterOne.addEventListener('click', function() {
+        updateCharacterInStatus(1)
         updateCharacter(1)
     });
     choiceCharacterTwo.addEventListener('click', function() {
-        updateCharacter()
+        updateCharacterInStatus()
     });
 
     characterChoice.appendChild(choiceCharacterOne);

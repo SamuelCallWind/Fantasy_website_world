@@ -7,7 +7,7 @@ import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
 import { changeBackground, goForward, goHills, goRight, positionTheDirections } from "./world_functions/directions.js";
 import { displayCharacters } from "./world_functions/displayCharacters.js";
 
-let character;
+let character = 0;
 let health = 100;
 let healthText = document.getElementById('healthText');
 let gold = 60;
@@ -43,6 +43,12 @@ function updateCharacter(characterNumber) {
     } else {
         character = 2;
     }
+}
+
+function returnCharacter() {
+    console.log(character);
+    const characterChecked = character;
+    return characterChecked;
 }
 
 function updateGold(amount, sign) {
@@ -366,4 +372,4 @@ function restartGame(restartContainer) {
 }
 
 
-export { character, gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter };
+export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter };
