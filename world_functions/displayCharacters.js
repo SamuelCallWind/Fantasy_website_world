@@ -13,20 +13,23 @@ function displayCharacters() {
     choiceCharacterOne.style.backgroundImage = 'url(../images/characters/protagonist_1.png)';
     choiceCharacterTwo.style.backgroundImage = 'url(../images/characters/protagonist_2.png)';
 
+    function updateCharacter(number) {
+        goCity();
+        if (number === 1) {
+            characterStatusContainer.style.backgroundImage = 'url(../images/characters/protagonist_1.png)';
+        } else {
+            characterStatusContainer.style.backgroundImage = 'url(../images/characters/protagonist_2.png)';
+        }
+        characterStatusContainer.style.opacity = '1';
+        document.querySelector('.gameDisplay').removeChild(characterChoice);
+    }
+
     const characterStatusContainer = document.querySelector('.characterStatus');
     choiceCharacterOne.addEventListener('click', function() {
-        goCity();
         updateCharacter(1)
-        characterStatusContainer.style.backgroundImage = 'url(../images/characters/protagonist_1.png)';
-        characterStatusContainer.style.opacity = '1';
-        document.querySelector('.gameDisplay').removeChild(characterChoice);
     });
     choiceCharacterTwo.addEventListener('click', function() {
-        goCity();
-        updateCharacter();
-        characterStatusContainer.style.backgroundImage = 'url(../images/characters/protagonist_2.png)';
-        characterStatusContainer.style.opacity = '1';
-        document.querySelector('.gameDisplay').removeChild(characterChoice);
+        updateCharacter()
     });
 
     characterChoice.appendChild(choiceCharacterOne);
