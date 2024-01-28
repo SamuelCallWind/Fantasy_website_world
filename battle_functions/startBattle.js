@@ -5,8 +5,8 @@ function startBattle(enemyName) {
     if (!enemy) {
         throw new Error('Enemy');
     } else {
-
-        document.querySelector('.gameDisplay').style.backgroundImage = '../images/seaView.png';
+        const gameDisplay = document.querySelector('.gameDisplay');
+        gameDisplay.style.backgroundImage = 'url(../images/loading_screens/fight_chicken.png)';
         const movementContainer = document.querySelector('.movementContainer');
         movementContainer.classList.add('battle');
 
@@ -14,28 +14,31 @@ function startBattle(enemyName) {
         while (movementContainer.firstChild) {
             movementContainer.removeChild(movementContainer.firstChild);
         }
+        setTimeout(() => {
+            gameDisplay.style.backgroundImage = 'url("../images/loading_screens/white_background.png")';
+            movementContainer.append(nameText, HPText);
+            movementContainer.appendChild(playerCharacter);
+        }, 2000);
 
-        const enemyStrength = enemy.strength;
         const enemyHP = enemy["health points"];
-
         const enemyName = enemy.name;
 
         const nameText = document.createElement('div');
-        nameContainer.innerText = enemyName;
+        nameText.innerText = enemyName;
         nameText.classList.add('nameText');
 
-        const strengthText = document.createElement('div');
-        nameContainer.innerText = enemyStrength;
-        strengthText.classList.add('strengthText');
-
         const HPText = document.createElement('div');
-        nameContainer.innerText = enemyHP;
+        HPText.innerText = enemyHP;
         HPText.classList.add('HPText');
 
-        movementContainer.append(nameText, strengthText, HPText);
+        const playerCharacter = document.createElement('img');
+        playerCharacter.classList.add('characterBackBattle');
+        if (character === 1) {
+            playerCharacter.src = '../images/characters/character_back_battle_1.png';
+        } else {
+            playerCharacter.src = '../images/characters/character_back_battle_2.png';
+        }
         
-
-
     }
 }
 

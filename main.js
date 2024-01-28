@@ -366,4 +366,4 @@ function restartGame(restartContainer) {
 }
 
 
-export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter };
+export { character, gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter };

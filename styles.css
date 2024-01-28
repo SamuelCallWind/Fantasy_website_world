@@ -361,3 +361,25 @@ body {
 .battle {
     transition: opacity 1s ease-in-out, filter 1s ease-in-out;
 }
+.nameText, .HPText {
+    position: absolute;
+    left: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 100px;
+    background-color: antiquewhite;
+    border: solid black 3px;
+    border-radius: 50px;
+}
+.nameText {
+    top: 2%;
+}
+.HPText {
+    top: 60%;
+}
+.characterBackBattle {
+    position: absolute;
+    bottom: 0;
+}
