@@ -50,7 +50,7 @@ table {
 }
 
 * {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Josefin Sans', sans-serif !important;
 }
 
 body {
@@ -249,6 +249,7 @@ body {
 .movementContainer {
     position: relative;
     height: 100%;
+    width: 100%;
 }
 .movementContainer > .movement {
     text-align: center;
@@ -377,9 +378,20 @@ body {
     top: 2%;
 }
 .HPText {
-    top: 60%;
+    width: 200px;
+    height: 10px;
+    top: 20%;
+    left: 70%;
 }
 .characterBackBattle {
     position: absolute;
     bottom: 0;
+}
+.enemySprite {
+    position: absolute;
+    top: 10%;
+}
+.smallEnemy {
+    max-width: 150px;
+    left: 45%;
 }
