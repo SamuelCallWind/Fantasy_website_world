@@ -10,7 +10,7 @@ import { displayCharacters } from "./world_functions/displayCharacters.js";
 let character = 0;
 let health = 100;
 let healthText = document.getElementById('healthText');
-let gold = 75;
+let gold = 100000;
 let goldText = document.getElementById('goldText');
 let xp = 0;
 let xpText = document.getElementById('xpText');
@@ -198,6 +198,7 @@ function goCity() {
         if (blacksmith.bought === 0) {
             nothingBoughtFromBlacksmith();
         }
+        
         document.querySelector('.movementContainer').classList.remove('gridAutoCol50', 'flexColumn', 'spaceEvenly');
     } else {
         changeActions(0);
@@ -374,4 +375,4 @@ function restartGame(restartContainer) {
 }
 
 
-export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter };
+export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements };

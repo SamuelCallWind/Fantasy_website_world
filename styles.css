@@ -402,3 +402,22 @@ body {
     max-width: 150px;
     left: 45%;
 }
+
+.weaponChoiceContainerBeforeFight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100px;
+    gap: 5px;
+
+}
+.weaponChoiceBoxBeforeFight {
+    background-color: blue;
+    width: 150px;
+    height: 150px;
+}
+.weaponChoiceBoxBeforeFight > img {
+    width: 100%;
+    height: auto;
+}

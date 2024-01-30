@@ -24,7 +24,6 @@ function startBattle(enemyName) {
             continueBattle(enemy)
         }, 2000);
 
-        const enemyHP = enemy.HP;
         const enemyName = enemy.name;
         const enemySprite = document.createElement('img');
 

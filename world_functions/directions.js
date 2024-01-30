@@ -1,3 +1,4 @@
+import { chooseWeaponBeforeFight } from "../battle_functions/chooseWeapon.js";
 import { startBattle } from "../battle_functions/startBattle.js";
 import { changeActions } from "../main.js";
 
@@ -26,7 +27,7 @@ function changeBackground(nameBackground) {
             const chickenInCity = document.createElement('div');
             chickenInCity.classList.add('chickenInCity');
             chickenInCity.addEventListener('click', function() {
-                startBattle('Chicken');
+                chooseWeaponBeforeFight('Chicken');
             });
             document.querySelector('.movementContainer').appendChild(chickenInCity);
         } else {
