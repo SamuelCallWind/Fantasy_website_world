@@ -10,7 +10,7 @@ import { displayCharacters } from "./world_functions/displayCharacters.js";
 let character = 0;
 let health = 100;
 let healthText = document.getElementById('healthText');
-let gold = 600000;
+let gold = 75;
 let goldText = document.getElementById('goldText');
 let xp = 0;
 let xpText = document.getElementById('xpText');
@@ -214,10 +214,10 @@ function goChurch() {
 function goBlackSmith() {
     const weaponDisplayed = Array.from(document.querySelectorAll('.weaponBox'));
     const armorDisplayed = Array.from(document.querySelectorAll('.armorBoxes'));
-if (weaponDisplayed.length > 1) {
-    weaponDisplayed.map(element => document.querySelector('.movementContainer').removeChild(element));
-    document.querySelector('.movementContainer').removeChild(document.querySelector('.exit'))
-}
+    if (weaponDisplayed.length > 1) {
+        weaponDisplayed.map(element => document.querySelector('.movementContainer').removeChild(element));
+        document.querySelector('.movementContainer').removeChild(document.querySelector('.exit'))
+    }
     changeActions(2);
     if (blacksmith.anger === 2) {
         textDisplayed.innerText = 'The blacksmith starts to look at you angrily.';
