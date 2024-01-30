@@ -99,7 +99,7 @@ function addWeaponToInventory(weaponType, weaponLevel) {
     newImage.src = sourceImageWeapon;
     newImage.classList.add('swordInventoryBox');
     if (listWeaponBoxes[weaponToUpdate].children.length > 0) {
-        Array.from(swordBoxInventory.children).forEach(element => element.remove());
+        Array.from(listWeaponBoxes[weaponToUpdate].children).forEach(element => element.remove());
     }
     listWeaponBoxes[weaponToUpdate].innerText = `${Swords[weaponLevel].name}`;
     listWeaponBoxes[weaponToUpdate].appendChild(newImage);
