@@ -73,7 +73,9 @@ function buySpear(weaponLevel) {
 
 function updateWeaponsDisplayed() {
     Array.from(document.querySelector('.movementContainer').children).forEach(element => {
-        element.remove();
+        if (!element.classList.contains('chickenInCity')) {
+            element.remove();
+        }
     })
     showWeaponBlacksmith();
 }

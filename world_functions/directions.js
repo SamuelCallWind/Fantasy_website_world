@@ -27,7 +27,7 @@ function changeBackground(nameBackground) {
             chickenInCity.classList.add('chickenInCity');
             chickenInCity.addEventListener('click', function() {
                 startBattle('Chicken');
-            })
+            });
             document.querySelector('.movementContainer').appendChild(chickenInCity);
         } else {
             gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square.png)';

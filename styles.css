@@ -159,6 +159,8 @@ body {
 
 .action {
     display: none;
+    justify-content: space-between;
+    align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
     height: 5%;
     gap: 2%;
@@ -169,6 +171,7 @@ body {
 }
 .action > button {
     margin: 2% 2%;
+    width: 100%;
 }
 .status {
     z-index: 2;
@@ -362,7 +365,7 @@ body {
 .battle {
     transition: opacity 1s ease-in-out, filter 1s ease-in-out;
 }
-.nameText, .HPText {
+.enemyNameText, .enemyHPText {
     position: absolute;
     left: 45%;
     display: flex;
@@ -374,10 +377,11 @@ body {
     border: solid black 3px;
     border-radius: 50px;
 }
-.nameText {
+.enemyNameText {
     top: 2%;
+    height: 20px;
 }
-.HPText {
+.enemyHPText {
     width: 200px;
     height: 10px;
     top: 20%;

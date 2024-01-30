@@ -10,7 +10,7 @@ import { displayCharacters } from "./world_functions/displayCharacters.js";
 let character = 0;
 let health = 100;
 let healthText = document.getElementById('healthText');
-let gold = 60;
+let gold = 600000;
 let goldText = document.getElementById('goldText');
 let xp = 0;
 let xpText = document.getElementById('xpText');
@@ -46,7 +46,6 @@ function updateCharacter(characterNumber) {
 }
 
 function returnCharacter() {
-    console.log(character);
     const characterChecked = character;
     return characterChecked;
 }
