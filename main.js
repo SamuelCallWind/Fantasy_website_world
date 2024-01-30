@@ -10,7 +10,7 @@ import { displayCharacters } from "./world_functions/displayCharacters.js";
 let character = 0;
 let health = 100;
 let healthText = document.getElementById('healthText');
-let gold = 75;
+let gold = 600000;
 let goldText = document.getElementById('goldText');
 let xp = 0;
 let xpText = document.getElementById('xpText');
@@ -58,7 +58,10 @@ function updateGold(amount, sign) {
     }
 }
 function updateWeapons(weaponName) {
-    weapons[weaponName] += 1;
+    if (weapons[weaponName] < 3) {
+        weapons[weaponName] += 1;
+    }
+    
 }
 function removeMovements() {
     const movementContainer = document.querySelector('.movementContainer');

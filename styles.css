@@ -333,6 +333,9 @@ body {
 .priceTag {
     position: absolute;
     bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 0;
     background-color: rgb(229, 143, 73);
