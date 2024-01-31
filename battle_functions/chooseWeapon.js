@@ -4,8 +4,13 @@ import Swords from "../weapons/swords.js";
 function chooseWeaponBeforeFight(nameOfMonsterToFight) {
     const weaponChoiceContainer = document.createElement('div');
     const allWeapons = Array.from(document.querySelectorAll('.squareWeapon > img'));
+    const movementContainer = document.querySelector('.movementContainer');
+    const title = document.createElement('h2');
 
     weaponChoiceContainer.classList.add('weaponChoiceContainerBeforeFight');
+    title.classList.add('titleChooseWeapon');
+    title.innerText = 'Choose your weapon for the fight';
+    weaponChoiceContainer.appendChild(title);
     removeMovements();
 
     for (let i = 0; i < allWeapons.length; i++) {
@@ -20,13 +25,12 @@ function chooseWeaponBeforeFight(nameOfMonsterToFight) {
         weaponContainer.appendChild(weaponImage);
         weaponChoiceContainer.appendChild(weaponContainer);
 
-        document.querySelector('.movementContainer').classList.add('flex')
+        document.querySelector('.movementContainer').classList.add('flex', 'center')
     }
 
-    if (document.querySelector('.gridAutoCol50')) {
-        document.querySelector('.gameDisplay').classList.remove('gridAutoCol50');
-    }
-    document.querySelector('.movementContainer').appendChild(weaponChoiceContainer);
+    movementContainer.className = 'movementContainer';
+    movementContainer.style.cssText = 'display: flex; justify-content: center; align-items: center;'
+    movementContainer.appendChild(weaponChoiceContainer);
 
     function checkWhichWeaponChosen() {
         switch (weaponParentClass) {

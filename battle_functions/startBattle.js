@@ -2,7 +2,7 @@ import { returnCharacter } from '../main.js';
 import { allEnemies } from './allEnemies.js';
 import { continueBattle } from './continueBattle.js';
 
-function startBattle(enemyName) {
+function startBattle(enemyName, chosenWeapon) {
     const enemy = allEnemies.find(element => element.name === enemyName);
     if (!enemy) {
         throw new Error('Enemy');
