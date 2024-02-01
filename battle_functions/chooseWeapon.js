@@ -23,7 +23,6 @@ function chooseWeaponBeforeFight(nameOfMonsterToFight) {
     for (let i = 0; i < allWeapons.length; i++) {
         const weaponContainer = document.createElement('div')
         const weaponImage = document.createElement('img');
-        const weaponParentClass = allWeapons[i].parentElement.classList[1];
         const weaponParentInnerText = allWeapons[i].parentElement.innerText;
 
         weaponImage.src = allWeapons[i].src; 
@@ -41,13 +40,6 @@ function chooseWeaponBeforeFight(nameOfMonsterToFight) {
     movementContainer.style.cssText = 'display: flex; justify-content: center; align-items: center;'
     movementContainer.appendChild(weaponChoiceContainer);
 
-    function checkWhichWeaponChosen() {
-        switch (weaponParentClass) {
-            case 'squareWeapon1': 
-            const weaponChosen = Swords.find(sword => sword.name === weaponParentInnerText);
-        }
-    }
-
     const boxesWeapon = Array.from(document.querySelectorAll('.weaponChoiceBoxBeforeFight'))
     boxesWeapon.forEach(element => {
         element.addEventListener('click', function () {
@@ -57,9 +49,6 @@ function chooseWeaponBeforeFight(nameOfMonsterToFight) {
         })
     })
 
-
-
-    // startBattle(nameOfMonsterToFight);
 }
 
 export { chooseWeaponBeforeFight };

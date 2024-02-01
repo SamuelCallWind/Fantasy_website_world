@@ -421,13 +421,23 @@ body {
     border-radius: 10px;
     font-size: 0;
 }
-.buttonOK {
+.buttonOK, .buttonExitFight {
     width: 30%;
     height: 30%;
     margin-top: 20px;
 }
 .fade {
     opacity: 0;
+}
+.rewardEarned {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    height: 30%;
+    background-color: aliceblue;
+    width: 30%;
+    transform: translate(-50%, 0);
+    border: dashed black 5px;
 }
 /* ----------------FIGHT----------------------- */
 

@@ -64,10 +64,26 @@ function enemyAttack() {
     console.log('The Enemy attacked');
 }
 
-function defeatEnemy() {
+function defeatEnemy(enemy) {
+    document.querySelector('.action').remove();
     document.querySelector('.enemySprite').classList.add('fade');
     document.querySelector('.enemyNameText').classList.add('fade');
     document.querySelector('.enemyHPBar').classList.add('fade');
+
+    setTimeout(() => {
+        const rewardEarned = document.createElement('div');
+        rewardEarned.classList.add('rewardEarned');
+        rewardEarned.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center;';
+        rewardEarned.innerText = `${enemy.xp} XP earned\n`;
+
+        const buttonQuitFight = document.createElement('button');
+        buttonQuitFight.classList.add('buttonExitFight');
+        buttonQuitFight.innerText = 'Exit fight';
+        rewardEarned.appendChild(buttonQuitFight);
+
+        document.querySelector('.movementContainer').appendChild(rewardEarned);
+
+    }, 1000);
 }
 
 export { continueBattle };
