@@ -365,6 +365,9 @@ body {
     background-color: transparent;
     cursor: pointer;
 }
+
+
+/* ----------------FIGHT----------------------- */
 .battle {
     transition: opacity 1s ease-in-out, filter 1s ease-in-out;
 }
@@ -384,15 +387,19 @@ body {
     top: 2%;
     height: 20px;
 }
-.enemyHPText {
+.enemyHPBar {
+    position: absolute;
     width: 200px;
     height: 10px;
     top: 20%;
     left: 70%;
+    border: solid black 3px;
+    border-radius: 10px;
 }
 .characterBackBattle {
     position: absolute;
     bottom: 0;
+    left: 50px;
 }
 .enemySprite {
     position: absolute;
@@ -402,7 +409,18 @@ body {
     max-width: 150px;
     left: 45%;
 }
+.enemyGreenHealthBar {
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    border-radius: 10px;
 
+}
+/* ----------------FIGHT----------------------- */
+
+
+
+/* ----------------WEAPON CHOICE----------------------- */
 .weaponChoiceContainerBeforeFight {
     position: relative;
     display: flex;
@@ -419,9 +437,10 @@ body {
 .weaponChoiceBoxBeforeFight {
     width: 110px;
     height: 110px;
+    font-size: 0;
     background-color: #fdba74;
     border-radius: 15px;
-    border: #f97316 solid 5px;
+    border: black solid 5px;
     transition: width .3s ease-in-out, height .3s ease-in-out;
 }
 .weaponChoiceBoxBeforeFight:hover {

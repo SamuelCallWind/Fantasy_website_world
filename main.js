@@ -15,6 +15,7 @@ let goldText = document.getElementById('goldText');
 let xp = 0;
 let xpText = document.getElementById('xpText');
 let currentLocation = document.querySelector('.currentLocation');
+let statsPlayer = { strength: 0, defense: 0, vitality:0, magic: 0 };
 let weapons = {
     sword: 0, hammer: 0, claws: 0, spear: 0, sickle: 0
 };
@@ -374,5 +375,15 @@ function restartGame(restartContainer) {
     goCity();
 }
 
+document.querySelector('.addOneOfEverything').addEventListener('click', function() {
+    addOneOfEverything();
+})
 
-export { gold, goldText, updateGold, weapons, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements };
+function addOneOfEverything() {
+    statsPlayer.strength += 1;
+    statsPlayer.defense += 1;
+    statsPlayer.magic += 1;
+    statsPlayer.vitality += 1;
+}
+
+export { gold, goldText, updateGold, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements };

@@ -18,10 +18,10 @@ function startBattle(enemyName, chosenWeapon) {
         }
         setTimeout(() => {
             gameDisplay.style.backgroundImage = 'url("../images/loading_screens/white_background.png")';
-            movementContainer.append(enemyNameText, enemyHPText, playerCharacter, enemySprite);
+            movementContainer.append(enemyNameText, enemyHPBar, playerCharacter, enemySprite);
             document.querySelector('.action').style.display = 'flex';
             document.querySelector('.textDisplayed').innerText = enemy.text;
-            continueBattle(enemy)
+            continueBattle(enemy, chosenWeapon ? chosenWeapon : null);
         }, 2000);
 
         const enemyName = enemy.name;
@@ -31,8 +31,8 @@ function startBattle(enemyName, chosenWeapon) {
         enemyNameText.innerText = enemyName;
         enemyNameText.classList.add('enemyNameText');
 
-        const enemyHPText = document.createElement('div');
-        enemyHPText.classList.add('enemyHPText');
+        const enemyHPBar = document.createElement('div');
+        enemyHPBar.classList.add('enemyHPBar');
 
         const playerCharacter = document.createElement('img');
         playerCharacter.classList.add('characterBackBattle');

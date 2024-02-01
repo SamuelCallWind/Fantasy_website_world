@@ -1,16 +1,23 @@
 import { removeMovements } from "../main.js";
 import Swords from "../weapons/swords.js";
+import { startBattle } from "./startBattle.js";
 
 function chooseWeaponBeforeFight(nameOfMonsterToFight) {
+    const allWeapons = document.querySelectorAll('.squareWeapon > img');
+    if (allWeapons.length === 0) {
+        startBattle(nameOfMonsterToFight);
+        return
+    }
     const weaponChoiceContainer = document.createElement('div');
-    const allWeapons = Array.from(document.querySelectorAll('.squareWeapon > img'));
     const movementContainer = document.querySelector('.movementContainer');
     const title = document.createElement('h2');
+    const cancelButton = document.createElement('button');
 
     weaponChoiceContainer.classList.add('weaponChoiceContainerBeforeFight');
     title.classList.add('titleChooseWeapon');
     title.innerText = 'Choose your weapon for the fight';
-    weaponChoiceContainer.appendChild(title);
+    cancelButton.innerText = 'Cancel';
+    weaponChoiceContainer.appendChild(title, cancelButton);
     removeMovements();
 
     for (let i = 0; i < allWeapons.length; i++) {
@@ -21,12 +28,14 @@ function chooseWeaponBeforeFight(nameOfMonsterToFight) {
 
         weaponImage.src = allWeapons[i].src; 
         weaponContainer.classList.add('weaponChoiceBoxBeforeFight')
+        weaponContainer.innerText = weaponParentInnerText;
 
         weaponContainer.appendChild(weaponImage);
         weaponChoiceContainer.appendChild(weaponContainer);
-
-        document.querySelector('.movementContainer').classList.add('flex', 'center')
+        
     }
+
+    
 
     movementContainer.className = 'movementContainer';
     movementContainer.style.cssText = 'display: flex; justify-content: center; align-items: center;'
@@ -39,7 +48,14 @@ function chooseWeaponBeforeFight(nameOfMonsterToFight) {
         }
     }
 
-
+    const boxesWeapon = Array.from(document.querySelectorAll('.weaponChoiceBoxBeforeFight'))
+    boxesWeapon.forEach(element => {
+        element.addEventListener('click', function () {
+            const nameWeapon = element.innerText;
+            document.querySelector('.weaponChoiceContainerBeforeFight').remove();
+            startBattle(nameOfMonsterToFight, nameWeapon);
+        })
+    })
 
 
 
