@@ -1,4 +1,4 @@
-import { returnCharacter } from '../main.js';
+import { returnCharacter, textDisplayed } from '../main.js';
 import { allEnemies } from './allEnemies.js';
 import { continueBattle } from './continueBattle.js';
 
@@ -22,6 +22,7 @@ function startBattle(enemyName, chosenWeapon) {
             document.querySelector('.action').style.display = 'flex';
             document.querySelector('.textDisplayed').innerText = enemy.text;
             continueBattle(enemy, chosenWeapon ? chosenWeapon : null);
+            textDisplayed.innerText = `The ${enemyName} wants to fight. What do you want to do?`
         }, 2000);
 
         const enemyName = enemy.name;

@@ -375,9 +375,9 @@ function restartGame(restartContainer) {
     goCity();
 }
 
-document.querySelector('.addOneOfEverything').addEventListener('click', function() {
-    addOneOfEverything();
-})
+// document.querySelector('.addOneOfEverything').addEventListener('click', function() {
+//     addOneOfEverything();
+// })
 
 function addOneOfEverything() {
     statsPlayer.strength += 1;

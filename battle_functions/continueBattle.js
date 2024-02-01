@@ -1,4 +1,5 @@
-import { statsPlayer } from "../main.js";
+import { statsPlayer, textDisplayed } from "../main.js";
+import { redirectWeapon } from "../weapons/redirectWeapon.js";
 
 function continueBattle(enemy, chosenWeapon) {
     const enemyHealthInPoint = enemy.HP;
@@ -15,13 +16,37 @@ function continueBattle(enemy, chosenWeapon) {
 }
 
 function handleAttack(enemy, chosenWeapon) {
-    let rawDamage = 2;
+    console.log(chosenWeapon);
+    let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
+    const action = document.querySelector('.action');
+    if (returnRandomNumber(100) < 1) {
+        const buttonOK = document.createElement('button');
+        buttonOK.classList.add('buttonOK')
+        buttonOK.innerText = 'OK';
+        textDisplayed.innerText = 'You slipped on the ground and missed your attack\n';
+        textDisplayed.parentElement.appendChild(buttonOK);
+        action.style.display = 'none';
 
-    console.log(enemy.name, 'this is your current strength: ' + statsPlayer.strength);
+        buttonOK.addEventListener('click', function () {
+            action.style.display = 'flex';
+            enemyAttack(enemy);
+        })
+    } else {
+        let rawDamage = 2;
+        const weaponAttributes = redirectWeapon(chosenWeapon);
+        console.log(weaponAttributes);
 
-    if (chosenWeapon === null) {
-        console.log('null')
+        if (chosenWeapon === null) {
+            rawDamage = rawDamage + statsPlayer.strength;
+        } else {
+            rawDamage = (rawDamage * statsPlayer.strength);
+        }
     }
+    
+}
+
+function enemyAttack() {
+    console.log('The Enemy attacked');
 }
 
 export { continueBattle };
