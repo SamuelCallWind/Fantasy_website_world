@@ -384,6 +384,7 @@ body {
     background-color: antiquewhite;
     border: solid black 3px;
     border-radius: 50px;
+    transition: display .3s ease-in-out;
 }
 .enemyNameText {
     top: 2%;
@@ -402,11 +403,12 @@ body {
     position: absolute;
     bottom: 0;
     left: 50px;
-    transition: left .3s ease-in-out;
+    transition: left .3s ease-in-out, display .3s ease-in-out;
 }
 .enemySprite {
     position: absolute;
     top: 10%;
+    transition: display .3s ease-in-out, opacity 1s ease-in-out;
 }
 .smallEnemy {
     max-width: 150px;
@@ -417,12 +419,15 @@ body {
     width: 100%;
     background-color: green;
     border-radius: 10px;
-
+    font-size: 0;
 }
 .buttonOK {
     width: 30%;
     height: 30%;
     margin-top: 20px;
+}
+.fade {
+    opacity: 0;
 }
 /* ----------------FIGHT----------------------- */
 
