@@ -21,7 +21,7 @@ function continueBattle(enemy, chosenWeapon) {
 }
 
 function handleAttack(enemy, chosenWeapon) {
-    
+
     const action = document.querySelector('.action');
     if (returnRandomNumber(100) < 10) {
         const buttonOK = document.createElement('button');
@@ -40,31 +40,40 @@ function handleAttack(enemy, chosenWeapon) {
         })
     } else {
         let rawDamage = 2;
+        let totalDamage = rawDamage;
         const weaponAttributes = redirectWeapon(chosenWeapon);
         const enemyHP = document.querySelector('.enemyGreenHealthBar');
 
         const maxHealthOfEnemy = enemyHP.innerText.split('/')[1];
         let currentHealthOfEnemyWithSlash = enemyHP.innerText.split('/')[0];
         let currentEnemyHealthInPercent = `${currentHealthOfEnemyWithSlash * 100 / maxHealthOfEnemy}`;
-        let currentEnemyHealthAlone = currentHealthOfEnemyWithSlash.split('/')[0];
+        
         animateAttack(chosenWeapon);
 
 
         if (chosenWeapon === null) {
-            rawDamage = rawDamage + statsPlayer.strength;
+            totalDamage = rawDamage + statsPlayer.strength;
         } else {
-            rawDamage = (rawDamage * statsPlayer.strength) + weaponAttributes.damage;     
+            totalDamage = (rawDamage * statsPlayer.strength) + weaponAttributes.damage;     
         }
 
         currentHealthOfEnemyWithSlash = `${parseInt(enemyHP.innerText) - parseInt(rawDamage)}/${maxHealthOfEnemy}`;
+        let currentEnemyHealthAlone = currentHealthOfEnemyWithSlash.split('/')[0];
         currentEnemyHealthInPercent = currentEnemyHealthAlone * 100 / maxHealthOfEnemy;
+    
+        
         enemyHP.innerText = currentHealthOfEnemyWithSlash;   
-
-
-        if (parseInt(currentHealthOfEnemyWithSlash.split('/')[0]) <= 0) {
-            defeatEnemy(enemy);
-            textDisplayed.innerText = `You defeated the ${enemy.name}`;
-        }
+        enemyHP.style.width = `${currentEnemyHealthInPercent}%`;
+        
+        setTimeout(() => {
+            if (parseInt(currentHealthOfEnemyWithSlash.split('/')[0]) <= 0) {
+                defeatEnemy(enemy);
+                textDisplayed.innerText = `You defeated the ${enemy.name}`;
+            }
+        }, 500);
+        
+        
+        
 
     }
     

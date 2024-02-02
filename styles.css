@@ -420,6 +420,7 @@ body {
     background-color: green;
     border-radius: 10px;
     font-size: 0;
+    transition: width .5s ease-in-out;
 }
 .buttonOK, .buttonExitFight {
     width: 30%;
