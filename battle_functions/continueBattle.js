@@ -1,5 +1,5 @@
 import { statsPlayer, textDisplayed } from "../main.js";
-import { redirectWeapon } from "../weapons/redirectWeapon.js";
+import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
@@ -69,18 +69,17 @@ function handleAttack(enemy, chosenWeapon) {
             if (parseInt(currentHealthOfEnemyWithSlash.split('/')[0]) <= 0) {
                 defeatEnemy(enemy);
                 textDisplayed.innerText = `You defeated the ${enemy.name}`;
+            } else {
+                enemyAttack(enemy);
             }
         }, 500);
-        
-        
-        
 
     }
     
 }
 
-function enemyAttack() {
-    console.log('The Enemy attacked');
+function enemyAttack(enemy) {
+    const enemyImg = document.querySelector('.enemySprite');
 }
 
 function animateAttack(chosenWeapon) {
@@ -95,7 +94,20 @@ function animateAttack(chosenWeapon) {
 
 
     const spriteAttack = document.createElement('div');
-    spriteAttack.classList.add('slashAttack');
+    const typeOfWeapon = redirectTypeOfWeapon(chosenWeapon);
+
+    if (typeOfWeapon === 'sword') {
+        spriteAttack.classList.add('swordAttack');
+    } else if (typeOfWeapon === 'hammer') {
+        spriteAttack.classList.add('spriteAttack');
+    } else if (typeOfWeapon === 'claws') {
+        spriteAttack.classList.add('slashAttack');
+    } else if (typeOfWeapon === 'spear') {
+        spriteAttack.classList.add('swordAttack'); // to change for a spear sprite
+    } else {
+        spriteAttack.classList.add('spriteAttack'); // to change if bare hand
+    }
+
     document.querySelector('.gameDisplay').appendChild(spriteAttack);
 
 

@@ -27,3 +27,18 @@ export function redirectWeapon(nameOfWeapon) {
         }
     }
 }
+
+export function redirectTypeOfWeapon(nameOfWeapon) {
+    const weaponTypeOne = ['Basic Sword', 'Enhanced Sword', 'Strong Sword', 'Flame Sword'];
+    const weaponTypeTwo = ['Wooden Hammer', 'Enhanced Hammer', 'Strong Hammer', 'Magic Hammer'];
+    const weaponTypeThree = ['Basic Claws', 'Enhanced Claws', 'Golden Claws', 'Pair Dragon Claws'];
+    const weaponTypeFour = ['Wooden Spear', 'Enhanced Spear', 'Crystal Spear', 'Magic Spear'];
+    const weaponTypesList = [weaponTypeOne, 'sword', weaponTypeTwo, 'hammer', weaponTypeThree, 'claws', weaponTypeFour, 'spear'];
+
+    for (let i = 0; i < weaponTypesList.length; i+=2) {
+        if (weaponTypesList[i].includes(nameOfWeapon)) {
+            return weaponTypesList[i+1];
+        }
+    } 
+    return null;
+}

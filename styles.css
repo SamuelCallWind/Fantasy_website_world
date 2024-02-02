@@ -427,7 +427,7 @@ body {
     height: 30%;
     margin-top: 20px;
 }
-.spriteAttack, .slashAttack {
+.spriteAttack, .slashAttack, .swordAttack {
     position: absolute;
     top: 100px;
     left: 50%;
@@ -439,6 +439,9 @@ body {
 }
 .slashAttack {
     background-image: url('./images/misc/slash_attack_sprite.png');
+}
+.swordAttack {
+    background-image: url('./images/misc/sword_attack_sprite.png');
 }
 .fade {
     opacity: 0;
