@@ -1,5 +1,7 @@
 import { statsPlayer, textDisplayed, updateHealth } from "../main.js";
+import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
+import { removeActions } from "./displayActions.js";
 
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
@@ -13,19 +15,14 @@ function continueBattle(enemy, chosenWeapon) {
     enemyGreenHealthBar.classList.add('enemyGreenHealthBar');
     document.querySelector('.enemyHPBar').appendChild(enemyGreenHealthBar)
 
-    const attack = document.querySelector('.attack');
-    attack.addEventListener('click', function() {
-        handleAttack(enemy, chosenWeapon);
-    });
+    createEventListenerAttack(enemy, chosenWeapon);
 }
 
 function handleAttack(enemy, chosenWeapon) {
 
     const action = document.querySelector('.action');
     if (returnRandomNumber(100) < 10) {
-        const buttonOK = document.createElement('button');
-        buttonOK.classList.add('buttonOK')
-        buttonOK.innerText = 'OK';
+        const buttonOK = createButtonOK();
         textDisplayed.innerText = 'You slipped on the ground and missed your attack\n';
         textDisplayed.parentElement.appendChild(buttonOK);
         action.style.display = 'none';
@@ -49,29 +46,42 @@ function handleAttack(enemy, chosenWeapon) {
         
         animateAttack(chosenWeapon);
 
+        const isCritical = (returnRandomNumber(100) < 10) ? true : false;
 
         if (chosenWeapon === null) {
             totalDamage = rawDamage + statsPlayer.strength;
+            if (isCritical) totalDamage *= 2;
         } else {
-            totalDamage = (rawDamage * statsPlayer.strength) + weaponAttributes.damage;     
+            totalDamage = (rawDamage * statsPlayer.strength) + weaponAttributes.damage - (enemy.defense);     
+            if (isCritical) totalDamage *= 2;
         }
 
-        currentHealthOfEnemyWithSlash = `${parseInt(enemyHP.innerText) - parseInt(rawDamage)}/${maxHealthOfEnemy}`;
+        currentHealthOfEnemyWithSlash = `${parseInt(enemyHP.innerText) - parseInt(totalDamage)}/${maxHealthOfEnemy}`;
         let currentEnemyHealthAlone = currentHealthOfEnemyWithSlash.split('/')[0];
         currentEnemyHealthInPercent = currentEnemyHealthAlone * 100 / maxHealthOfEnemy;
     
         
         enemyHP.innerText = currentHealthOfEnemyWithSlash;   
         enemyHP.style.width = `${currentEnemyHealthInPercent}%`;
-        
-        setTimeout(() => {
+        removeActions();
+
+        if (!isCritical) {
+            textDisplayed.innerText = `You inflicted ${totalDamage} points of damage to the ${enemy.name}`;
+        } else {
+            textDisplayed.innerText = `A nice critical hit ! ${totalDamage} points of damage inflicted to the ${enemy.name}`;
+        }
+
+        const buttonOK = createButtonOK();
+        textDisplayed.appendChild(buttonOK);
+
+        buttonOK.addEventListener('click', () => {
             if (parseInt(currentHealthOfEnemyWithSlash.split('/')[0]) <= 0) {
                 defeatEnemy(enemy);
                 textDisplayed.innerText = `You defeated the ${enemy.name}`;
             } else {
                 enemyAttack(enemy);
             }
-        }, 500);
+        });
 
     }
     
@@ -79,11 +89,16 @@ function handleAttack(enemy, chosenWeapon) {
 
 function enemyAttack(enemy) {
     const enemyImg = document.querySelector('.enemySprite');
-    const enemyAttacks = enemy.attacks;
-    const attackChosen = enemyAttacks[returnRandomNumber(enemyAttacks.length)];
+    const randomNumber = returnRandomNumber(enemy.attacks.length);
+    const attackChosen = enemy.attacks[randomNumber];
+    const spriteAttackChosen = enemy.attacksSprite[randomNumber];
     const powerOfTheAttack = attackChosen.power;
+    const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
+    const adjustmentToLeft = currentEnemyPosition * 0.10; 
+    const buttonOK = createButtonOK();
 
-    console.log(enemyImg.style.left);
+    animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
+    animateEnemyAttack(spriteAttackChosen);
     updateHealth(powerOfTheAttack, '-');
 
 }
@@ -139,10 +154,26 @@ function animateSprite(spriteAttack, frame, totalFrames, animationInterval) {
     }
 }
 
-function animateEnemyAttack(originalPosition, leftChange) {
+function animateEnemyMovement(enemyImg, originalPosition, leftChange){
 
+    enemyImg.style.left = (originalPosition - leftChange) + 'px';
+    setTimeout(() => {
+        enemyImg.style.left = originalPosition + 'px';
+    }, 200);
 }
 
+function animateEnemyAttack(attackSprite) {
+    const spriteForAttack = document.createElement('div');
+    spriteForAttack.classList.add(attackSprite);
+    document.querySelector('.gameDisplay').appendChild(spriteForAttack);
+    let frame = 0;
+    const totalFrames = 10;
+    const frameRate = 30; 
+    const animationInterval = setInterval(() => {
+        animateSprite(spriteForAttack, frame, totalFrames, animationInterval);
+        frame++;
+    }, frameRate);
+}
 
 function defeatEnemy(enemy) {
     document.querySelector('.action').remove();
@@ -165,5 +196,13 @@ function defeatEnemy(enemy) {
 
     }, 1000);
 }
+
+function createEventListenerAttack(enemy, chosenWeapon) {
+    const attack = document.querySelector('.attack');
+    attack.addEventListener('click', function() {
+        handleAttack(enemy, chosenWeapon);
+    });
+}
+
 
 export { continueBattle };

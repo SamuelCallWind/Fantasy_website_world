@@ -6,6 +6,7 @@ const allEnemies = [
         xp: 5,
         size: "small",
         attacks: [ {name: "peck", power: 2}],
+        attacksSprite: ['spriteEnemyAttack'], 
         sprite: "../images/monsters/small/chicken.png",
         text: "The chicken is looking furious. What will you do?"
     }

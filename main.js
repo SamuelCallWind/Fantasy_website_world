@@ -68,28 +68,34 @@ function updateHealth(points, operator) {
     if (operator === '+') {
         if (health < maxHealth) {
             if ((health + points) > maxHealth) {
+                gameDisplay.innerText = `You gained ${maxHealth - health} health points`;
                 health = maxHealth;
                 healthText.innerText = health;
                 return;
             } else {
                 health += points;
                 healthText.innerText = health;
+                gameDisplay.innerText = `You gained ${points} health points`;
                 return;
             }
         } else {
             health += points;
             healthText.innerText = health;
+            gameDisplay.innerText = `You gained ${points} health points`;
             return;
         }
     } else if (operator === '-') {
         health -= points;
         healthText.innerText = health;
+        gameDisplay.innerText = `You've lost ${points} health points`;
         checkHealth();
     } else if (operator === '/') {
+        gameDisplay.innerText = `You've lost ${Math.ceil(health /= points)} health points`;
         health = Math.ceil(health /= points);
         healthText.innerText = health;
         return;
     } else if (operator === '*') {
+        gameDisplay.innerText = `You gained ${health * points} health points`;
         health *= points;
         healthText.innerText = health;
         return;
