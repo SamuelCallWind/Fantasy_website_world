@@ -9,6 +9,7 @@ import { displayCharacters } from "./world_functions/displayCharacters.js";
 
 let character = 0;
 let health = 100;
+let maxHealth = 100;
 let healthText = document.getElementById('healthText');
 let gold = 100000;
 let goldText = document.getElementById('goldText');
@@ -62,8 +63,39 @@ function updateWeapons(weaponName) {
     if (weapons[weaponName] < 3) {
         weapons[weaponName] += 1;
     }
-    
 }
+function updateHealth(points, operator) {
+    if (operator === '+') {
+        if (health < maxHealth) {
+            if ((health + points) > maxHealth) {
+                health = maxHealth;
+                healthText.innerText = health;
+                return;
+            } else {
+                health += points;
+                healthText.innerText = health;
+                return;
+            }
+        } else {
+            health += points;
+            healthText.innerText = health;
+            return;
+        }
+    } else if (operator === '-') {
+        health -= points;
+        healthText.innerText = health;
+        checkHealth();
+    } else if (operator === '/') {
+        health = Math.ceil(health /= points);
+        healthText.innerText = health;
+        return;
+    } else if (operator === '*') {
+        health *= points;
+        healthText.innerText = health;
+        return;
+    }
+}
+
 function removeMovements() {
     const movementContainer = document.querySelector('.movementContainer');
     while (movementContainer.firstChild) {
@@ -386,4 +418,4 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
-export { gold, goldText, updateGold, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
+export { gold, goldText, updateGold, updateHealth, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };

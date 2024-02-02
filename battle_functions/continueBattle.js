@@ -1,4 +1,4 @@
-import { statsPlayer, textDisplayed } from "../main.js";
+import { statsPlayer, textDisplayed, updateHealth } from "../main.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 
 
@@ -12,7 +12,6 @@ function continueBattle(enemy, chosenWeapon) {
     enemyGreenHealthBar.innerText = `${enemyHealthInPoint}/${enemyHealthInPoint}`;
     enemyGreenHealthBar.classList.add('enemyGreenHealthBar');
     document.querySelector('.enemyHPBar').appendChild(enemyGreenHealthBar)
-    console.log(enemy.name, chosenWeapon);
 
     const attack = document.querySelector('.attack');
     attack.addEventListener('click', function() {
@@ -80,6 +79,13 @@ function handleAttack(enemy, chosenWeapon) {
 
 function enemyAttack(enemy) {
     const enemyImg = document.querySelector('.enemySprite');
+    const enemyAttacks = enemy.attacks;
+    const attackChosen = enemyAttacks[returnRandomNumber(enemyAttacks.length)];
+    const powerOfTheAttack = attackChosen.power;
+
+    console.log(enemyImg.style.left);
+    updateHealth(powerOfTheAttack, '-');
+
 }
 
 function animateAttack(chosenWeapon) {
@@ -131,6 +137,10 @@ function animateSprite(spriteAttack, frame, totalFrames, animationInterval) {
         spriteAttack.remove();
         clearInterval(animationInterval);
     }
+}
+
+function animateEnemyAttack(originalPosition, leftChange) {
+
 }
 
 
