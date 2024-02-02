@@ -39,11 +39,9 @@ function handleAttack(enemy, chosenWeapon) {
         let rawDamage = 2;
         const weaponAttributes = redirectWeapon(chosenWeapon);
         const enemyHP = document.querySelector('.enemyGreenHealthBar');
-        const playerCharacter = document.querySelector('.characterBackBattle');
+        animateAttack();
 
-        console.log(`The enemy currently has ${document.querySelector('.enemyGreenHealthBar').innerText} health points`)
         if (chosenWeapon === null) {
-            playerCharacter.style.left = `${playerCharacter.style.left + 50}px`; 
             rawDamage = rawDamage + statsPlayer.strength;
             enemyHP.innerText = parseInt(enemyHP.innerText) - parseInt(rawDamage);
         } else {
@@ -63,6 +61,45 @@ function handleAttack(enemy, chosenWeapon) {
 function enemyAttack() {
     console.log('The Enemy attacked');
 }
+
+function animateAttack() {
+    const playerCharacter = document.querySelector('.characterBackBattle');
+    const currentLeft = parseInt(playerCharacter.style.left || 50);
+    const newLeft = currentLeft + 50;
+    playerCharacter.style.left = `${newLeft}px`; 
+
+    setTimeout(() => {
+        playerCharacter.style.left = `${newLeft - 50}px`;
+    }, 200);
+
+
+    const spriteAttack = document.createElement('div');
+    spriteAttack.classList.add('spriteAttack');
+    document.querySelector('.gameDisplay').appendChild(spriteAttack);
+
+
+
+    let frame = 0;
+    const totalFrames = 10;
+    const frameRate = 50; 
+    const animationInterval = setInterval(() => {
+        animateSprite(spriteAttack, frame, totalFrames, animationInterval);
+        frame++;
+    }, frameRate);
+
+}
+
+function animateSprite(spriteAttack, frame, totalFrames, animationInterval) {
+    
+    if (frame < totalFrames) {
+        const xPosition = -(frame * 64) + 'px';
+        spriteAttack.style.backgroundPosition = `${xPosition} 0px`;
+    } else {
+        spriteAttack.remove();
+        clearInterval(animationInterval);
+    }
+}
+
 
 function defeatEnemy(enemy) {
     document.querySelector('.action').remove();

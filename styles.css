@@ -426,6 +426,16 @@ body {
     height: 30%;
     margin-top: 20px;
 }
+.spriteAttack {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 64px;
+    width: 64px;
+    background-image: url('./images/misc/sprite_attack.png');
+    background-repeat: no-repeat;
+}
 .fade {
     opacity: 0;
 }
