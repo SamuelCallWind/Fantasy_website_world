@@ -426,15 +426,18 @@ body {
     height: 30%;
     margin-top: 20px;
 }
-.spriteAttack {
+.spriteAttack, .slashAttack {
     position: absolute;
-    top: 50px;
+    top: 100px;
     left: 50%;
     transform: translate(-50%, 0);
     height: 64px;
     width: 64px;
     background-image: url('./images/misc/sprite_attack.png');
     background-repeat: no-repeat;
+}
+.slashAttack {
+    background-image: url('./images/misc/slash_attack_sprite.png');
 }
 .fade {
     opacity: 0;

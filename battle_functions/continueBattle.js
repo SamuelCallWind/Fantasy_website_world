@@ -2,11 +2,14 @@ import { statsPlayer, textDisplayed } from "../main.js";
 import { redirectWeapon } from "../weapons/redirectWeapon.js";
 
 
+let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
+
+
 function continueBattle(enemy, chosenWeapon) {
     const enemyHealthInPoint = enemy.HP;
     const enemyGreenHealthBar = document.createElement('div');
 
-    enemyGreenHealthBar.innerText = enemyHealthInPoint;
+    enemyGreenHealthBar.innerText = `${enemyHealthInPoint}/${enemyHealthInPoint}`;
     enemyGreenHealthBar.classList.add('enemyGreenHealthBar');
     document.querySelector('.enemyHPBar').appendChild(enemyGreenHealthBar)
     console.log(enemy.name, chosenWeapon);
@@ -18,9 +21,9 @@ function continueBattle(enemy, chosenWeapon) {
 }
 
 function handleAttack(enemy, chosenWeapon) {
-    let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
+    
     const action = document.querySelector('.action');
-    if (returnRandomNumber(100) < 1) {
+    if (returnRandomNumber(100) < 10) {
         const buttonOK = document.createElement('button');
         buttonOK.classList.add('buttonOK')
         buttonOK.innerText = 'OK';
@@ -39,17 +42,26 @@ function handleAttack(enemy, chosenWeapon) {
         let rawDamage = 2;
         const weaponAttributes = redirectWeapon(chosenWeapon);
         const enemyHP = document.querySelector('.enemyGreenHealthBar');
-        animateAttack();
+
+        const maxHealthOfEnemy = enemyHP.innerText.split('/')[1];
+        let currentHealthOfEnemyWithSlash = enemyHP.innerText.split('/')[0];
+        let currentEnemyHealthInPercent = `${currentHealthOfEnemyWithSlash * 100 / maxHealthOfEnemy}`;
+        let currentEnemyHealthAlone = currentHealthOfEnemyWithSlash.split('/')[0];
+        animateAttack(chosenWeapon);
+
 
         if (chosenWeapon === null) {
             rawDamage = rawDamage + statsPlayer.strength;
-            enemyHP.innerText = parseInt(enemyHP.innerText) - parseInt(rawDamage);
         } else {
-            rawDamage = (rawDamage * statsPlayer.strength) + weaponAttributes.damage;
-            enemyHP.innerText = parseInt(enemyHP.innerText) - parseInt(rawDamage);
+            rawDamage = (rawDamage * statsPlayer.strength) + weaponAttributes.damage;     
         }
 
-        if (enemyHP.innerText <= parseInt(0)) {
+        currentHealthOfEnemyWithSlash = `${parseInt(enemyHP.innerText) - parseInt(rawDamage)}/${maxHealthOfEnemy}`;
+        currentEnemyHealthInPercent = currentEnemyHealthAlone * 100 / maxHealthOfEnemy;
+        enemyHP.innerText = currentHealthOfEnemyWithSlash;   
+
+
+        if (parseInt(currentHealthOfEnemyWithSlash.split('/')[0]) <= 0) {
             defeatEnemy(enemy);
             textDisplayed.innerText = `You defeated the ${enemy.name}`;
         }
@@ -62,7 +74,7 @@ function enemyAttack() {
     console.log('The Enemy attacked');
 }
 
-function animateAttack() {
+function animateAttack(chosenWeapon) {
     const playerCharacter = document.querySelector('.characterBackBattle');
     const currentLeft = parseInt(playerCharacter.style.left || 50);
     const newLeft = currentLeft + 50;
@@ -74,14 +86,14 @@ function animateAttack() {
 
 
     const spriteAttack = document.createElement('div');
-    spriteAttack.classList.add('spriteAttack');
+    spriteAttack.classList.add('slashAttack');
     document.querySelector('.gameDisplay').appendChild(spriteAttack);
 
 
 
     let frame = 0;
     const totalFrames = 10;
-    const frameRate = 50; 
+    const frameRate = 30; 
     const animationInterval = setInterval(() => {
         animateSprite(spriteAttack, frame, totalFrames, animationInterval);
         frame++;
