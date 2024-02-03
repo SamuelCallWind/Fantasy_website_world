@@ -1,4 +1,4 @@
-import { statsPlayer, textDisplayed, updateHealth } from "../main.js";
+import { changeActions, locations, removeMovements, statsPlayer, textDisplayed, updateHealth } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 import { displayActions, removeActions } from "./displayActions.js";
@@ -23,7 +23,7 @@ function continueBattle(enemy, chosenWeapon) {
 function handleAttack(enemy, chosenWeapon) {
 
     const action = document.querySelector('.action');
-    if (returnRandomNumber(100) < 10) {
+    if (returnRandomNumber(100) < 100) {
         const buttonOK = createButtonOK();
         textDisplayed.innerText = 'You slipped on the ground and missed your attack\n';
         textDisplayed.parentElement.appendChild(buttonOK);
@@ -32,9 +32,6 @@ function handleAttack(enemy, chosenWeapon) {
         buttonOK.addEventListener('click', function () {
             buttonOK.remove();
             enemyAttack(enemy);
-            setTimeout(() => {
-                action.style.display = 'flex';
-            }, 300);
         })
     } else {
         let rawDamage = 2;
@@ -203,6 +200,7 @@ function defeatEnemy(enemy) {
         const buttonQuitFight = document.createElement('button');
         buttonQuitFight.classList.add('buttonExitFight');
         buttonQuitFight.innerText = 'Exit fight';
+        buttonQuitFight.addEventListener('click', returnToMap);
         rewardEarned.appendChild(buttonQuitFight);
 
         document.querySelector('.movementContainer').appendChild(rewardEarned);
@@ -210,7 +208,22 @@ function defeatEnemy(enemy) {
     }, 1000);
 }
 
+function returnToMap() {
+    const gameDisplay = document.querySelector('.gameDisplay');
+    const movementContainer = document.querySelector('.movementContainer');
+    gameDisplay.style.cssText = '';
+    removeMovements();
 
+    let currentLocation = document.querySelector('.currentLocation').innerText;
+    if (currentLocation === 'Church' || currentLocation === 'Blacksmith' || currentLocation === 'Buy Armor' || currentLocation === 'Buy Weapon' || currentLocation === 'Statue') {
+        currentLocation = 'Town Square';
+    }
+    for (let i = 0; i < locations.length; i++) {
+        if (locations[i].name === currentLocation) {
+            changeActions(i);
+        }
+    }
+}
 
 
 export { continueBattle };

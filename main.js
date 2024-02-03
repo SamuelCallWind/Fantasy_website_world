@@ -38,6 +38,7 @@ const blacksmith = {
     anger: 0
 }
 let textDisplayed = document.querySelector('.textDisplayed');
+const movementContainer = document.querySelector('.movementContainer');
 
 function updateCharacter(characterNumber) {
     if (characterNumber === 1) {
@@ -103,7 +104,6 @@ function updateHealth(points, operator) {
 }
 
 function removeMovements() {
-    const movementContainer = document.querySelector('.movementContainer');
     while (movementContainer.firstChild) {
         movementContainer.removeChild(movementContainer.firstChild);
     }
@@ -180,13 +180,13 @@ function changeActions(locationNumber) {
     const movementFunctions = locations[locationNumber]["movement functions"];
     const displayedMovement = Array.from(document.querySelectorAll('.movement'));
     const textToDisplay = locations[locationNumber].text;
-    const container = document.querySelector('.movementContainer');
+    const container = movementContainer;
     displayedMovement.forEach(element => {
         container.removeChild(element);
     });
     for (let i = 0; i < newMovement.length; i++) {
         const newDiv = document.createElement('div');
-        const containerMovement = document.querySelector('.movementContainer');
+        const containerMovement = movementContainer;
         //--------------------------START Case for Blacksmith's show weapons --------------
         if (locationNumber === 3) {
             if (i === newMovement.length - 1) {
@@ -238,7 +238,7 @@ function goCity() {
             nothingBoughtFromBlacksmith();
         }
         
-        document.querySelector('.movementContainer').classList.remove('gridAutoCol50', 'flexColumn', 'spaceEvenly');
+        movementContainer.classList.remove('gridAutoCol50', 'flexColumn', 'spaceEvenly');
     } else {
         changeActions(0);
         changeBackground('city');
@@ -249,16 +249,17 @@ function goChurch() {
     if (monk.anger >= 2) {
         textDisplayed.innerText = 'The monks are looking at you strangely.\n It seems like they don\'t want to see you wandering around in their place.\n Especially when you don\'t buy anything.'
     }
-    document.querySelector('.movementContainer')
+    movementContainer
 }
 function goBlackSmith() {
     const weaponDisplayed = Array.from(document.querySelectorAll('.weaponBox'));
     const armorDisplayed = Array.from(document.querySelectorAll('.armorBoxes'));
     if (weaponDisplayed.length > 1) {
-        weaponDisplayed.map(element => document.querySelector('.movementContainer').removeChild(element));
-        document.querySelector('.movementContainer').removeChild(document.querySelector('.exit'))
+        weaponDisplayed.map(element => movementContainer.removeChild(element));
+        movementContainer.removeChild(document.querySelector('.exit'))
     }
     changeActions(2);
+    
     if (blacksmith.anger === 2) {
         textDisplayed.innerText = 'The blacksmith starts to look at you angrily.';
     } else if (blacksmith.anger > 2) {
@@ -291,7 +292,7 @@ function checkHealth() {
     }
 }
 function looseGame() {
-    const movements = Array.from(document.querySelector('.movementContainer').children);
+    const movements = Array.from(movementContainer.children);
     movements.forEach(element => {
         element.remove();
     }); 
@@ -431,4 +432,4 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
-export { gold, goldText, updateGold, updateHealth, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
+export { gold, goldText, updateGold, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
