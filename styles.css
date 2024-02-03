@@ -51,6 +51,7 @@ table {
 
 * {
     font-family: 'Josefin Sans', sans-serif !important;
+    /* border: solid red 3px !important; */
 }
 
 body {

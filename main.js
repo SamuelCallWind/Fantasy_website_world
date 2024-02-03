@@ -87,7 +87,7 @@ function updateHealth(points, operator) {
     } else if (operator === '-') {
         health -= points;
         healthText.innerText = health;
-        gameDisplay.innerText = `You've lost ${points} health points`;
+        textDisplayed.innerText = `You've lost ${points} health points`;
         checkHealth();
     } else if (operator === '/') {
         gameDisplay.innerText = `You've lost ${Math.ceil(health /= points)} health points`;

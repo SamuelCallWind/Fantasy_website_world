@@ -1,7 +1,7 @@
 import { statsPlayer, textDisplayed, updateHealth } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
-import { removeActions } from "./displayActions.js";
+import { displayActions, removeActions } from "./displayActions.js";
 
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
@@ -15,7 +15,9 @@ function continueBattle(enemy, chosenWeapon) {
     enemyGreenHealthBar.classList.add('enemyGreenHealthBar');
     document.querySelector('.enemyHPBar').appendChild(enemyGreenHealthBar)
 
-    createEventListenerAttack(enemy, chosenWeapon);
+    document.querySelector('.attack').addEventListener('click', function () {
+        handleAttack(enemy, chosenWeapon);
+    })
 }
 
 function handleAttack(enemy, chosenWeapon) {
@@ -28,9 +30,9 @@ function handleAttack(enemy, chosenWeapon) {
         action.style.display = 'none';
 
         buttonOK.addEventListener('click', function () {
+            buttonOK.remove();
             enemyAttack(enemy);
             setTimeout(() => {
-                buttonOK.remove();
                 action.style.display = 'flex';
             }, 300);
         })
@@ -63,7 +65,7 @@ function handleAttack(enemy, chosenWeapon) {
         
         enemyHP.innerText = currentHealthOfEnemyWithSlash;   
         enemyHP.style.width = `${currentEnemyHealthInPercent}%`;
-        removeActions();
+        document.querySelector('.action').style.display = 'none';
 
         if (!isCritical) {
             textDisplayed.innerText = `You inflicted ${totalDamage} points of damage to the ${enemy.name}`;
@@ -95,11 +97,18 @@ function enemyAttack(enemy) {
     const powerOfTheAttack = attackChosen.power;
     const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
     const adjustmentToLeft = currentEnemyPosition * 0.10; 
-    const buttonOK = createButtonOK();
 
     animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
     animateEnemyAttack(spriteAttackChosen);
     updateHealth(powerOfTheAttack, '-');
+
+    const buttonOK = createButtonOK();
+    textDisplayed.appendChild(buttonOK);
+    buttonOK.addEventListener('click', () => {
+        buttonOK.remove();
+        document.querySelector('.action').style.display = 'flex';
+        textDisplayed.innerText = 'What will you do now?';
+    });
 
 }
 
@@ -198,10 +207,6 @@ function defeatEnemy(enemy) {
 }
 
 function createEventListenerAttack(enemy, chosenWeapon) {
-    const attack = document.querySelector('.attack');
-    attack.addEventListener('click', function() {
-        handleAttack(enemy, chosenWeapon);
-    });
 }
 
 
