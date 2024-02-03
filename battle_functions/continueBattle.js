@@ -44,7 +44,8 @@ function handleAttack(enemy, chosenWeapon) {
 
         const maxHealthOfEnemy = enemyHP.innerText.split('/')[1];
         let currentHealthOfEnemyWithSlash = enemyHP.innerText.split('/')[0];
-        let currentEnemyHealthInPercent = `${currentHealthOfEnemyWithSlash * 100 / maxHealthOfEnemy}`;
+        const enemyHealthInPercent = currentHealthOfEnemyWithSlash * 100 / maxHealthOfEnemy;
+        let currentEnemyHealthInPercent = enemyHealthInPercent < 0 ? 0: enemyHealthInPercent;
         
         animateAttack(chosenWeapon);
 
@@ -94,21 +95,23 @@ function enemyAttack(enemy) {
     const randomNumber = returnRandomNumber(enemy.attacks.length);
     const attackChosen = enemy.attacks[randomNumber];
     const spriteAttackChosen = enemy.attacksSprite[randomNumber];
-    const powerOfTheAttack = attackChosen.power;
+    const powerOfTheAttack = attackChosen.power + 100;
     const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
     const adjustmentToLeft = currentEnemyPosition * 0.10; 
 
     animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
     animateEnemyAttack(spriteAttackChosen);
-    updateHealth(powerOfTheAttack, '-');
+    const isPlayerAlive = updateHealth(powerOfTheAttack, '-');
 
-    const buttonOK = createButtonOK();
-    textDisplayed.appendChild(buttonOK);
-    buttonOK.addEventListener('click', () => {
+    if (isPlayerAlive === 'alive') {
+        const buttonOK = createButtonOK();
+        textDisplayed.appendChild(buttonOK);
+        buttonOK.addEventListener('click', () => {
         buttonOK.remove();
-        document.querySelector('.action').style.display = 'flex';
-        textDisplayed.innerText = 'What will you do now?';
-    });
+            document.querySelector('.action').style.display = 'flex';
+            textDisplayed.innerText = 'What will you do now?';
+        });
+    }
 
 }
 
@@ -206,8 +209,7 @@ function defeatEnemy(enemy) {
     }, 1000);
 }
 
-function createEventListenerAttack(enemy, chosenWeapon) {
-}
+
 
 
 export { continueBattle };

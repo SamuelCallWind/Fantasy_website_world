@@ -88,7 +88,7 @@ function updateHealth(points, operator) {
         health -= points;
         healthText.innerText = health;
         textDisplayed.innerText = `You've lost ${points} health points`;
-        checkHealth();
+        return checkHealth();
     } else if (operator === '/') {
         gameDisplay.innerText = `You've lost ${Math.ceil(health /= points)} health points`;
         health = Math.ceil(health /= points);
@@ -285,6 +285,9 @@ function checkHealth() {
         looseGame();
         health = 0;
         healthText.innerText = 0;
+        return 'dead';
+    } else {
+        return 'alive';
     }
 }
 function looseGame() {
@@ -292,6 +295,10 @@ function looseGame() {
     movements.forEach(element => {
         element.remove();
     }); 
+    if (document.querySelector('buttonOK')) {
+        document.querySelector('buttonOK').remove();
+    } 
+    document.querySelector('.action').displayCharacters= 'none';
     const gameDisplay = document.querySelector('.gameDisplay');
     gameDisplay.style.backgroundImage = 'none';
     const playAgainContainer = document.createElement('div');
@@ -380,7 +387,7 @@ function restartGame(restartContainer) {
     health = 100;
     healthText.innerText = 100
     gold = 60;
-    goldText.innerText = 75
+    goldText.innerText = 60;
     xp = 0;
     xpText.innerText = 0
     weapons.sword = 0;
