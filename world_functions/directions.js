@@ -2,11 +2,7 @@ import { chooseWeaponBeforeFight } from "../battle_functions/chooseWeapon.js";
 import { startBattle } from "../battle_functions/startBattle.js";
 import { changeActions } from "../main.js";
 
-function goHills() {
-    changeActions(7);
-    changeBackground('hills');
-    positionTheDirections('hills', false, false, false, true)
-}
+
 function goRight() {
     
 }
@@ -74,4 +70,4 @@ function positionTheDirections(location, isLeft, isRight, isForward, isBackward)
 
 }
 
-export { goHills, goRight, goForward, changeBackground, positionTheDirections };
+export { goRight, goForward, changeBackground, positionTheDirections };

@@ -266,16 +266,43 @@ body {
     padding: 5px;
     margin: 5px;
     max-width: 100px;
+    cursor: pointer;
 }
 
 .building {
     cursor: pointer;
 }
 
+
+/* ----------------CITY BUILDINGS------------------ */
 .church {
     position: absolute;
     top: 40%;
     right: 15%;
+}
+.get.poison.resistance, .buy.potion, .enchant.weapon {
+     position: relative;
+}
+.priceBuyPotion, .pricePoisonResistance, .priceEnchantWeapon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    opacity: 0;
+    bottom: 0;
+    left: 0;
+    width: 99%;
+    height: 60%;
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: rgb(229, 143, 73);
+    transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+}
+.get.poison.resistance:hover > .pricePoisonResistance,
+.buy.potion:hover > .priceBuyPotion,
+.enchant.weapon:hover > .priceEnchantWeapon {
+    opacity: 1;
+    transform: translateY(100%);
 }
 .blacksmith {
     position: absolute;
@@ -287,6 +314,10 @@ body {
     bottom: 20%;
     right: 11%;
 }
+/* ----------------CITY BUILDINGS------------------ */
+
+
+
 .exit {
     position: absolute;
     bottom: 0;

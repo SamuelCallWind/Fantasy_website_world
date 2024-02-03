@@ -4,7 +4,7 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
-import { changeBackground, goForward, goHills, goRight, positionTheDirections } from "./world_functions/directions.js";
+import { changeBackground, goForward, goRight, positionTheDirections } from "./world_functions/directions.js";
 import { displayCharacters } from "./world_functions/displayCharacters.js";
 
 let character = 0;
@@ -246,10 +246,29 @@ function goCity() {
 }
 function goChurch() {
     changeActions(1);
+    movementContainer.style.cssText = 'display: flex; align-items: center; justify-content: space-evenly;';
     if (monk.anger >= 2) {
         textDisplayed.innerText = 'The monks are looking at you strangely.\n It seems like they don\'t want to see you wandering around in their place.\n Especially when you don\'t buy anything.'
     }
-    movementContainer
+    const buyPotionDiv = document.querySelector('.buy.potion');
+    const poisonResistanceDiv = document.querySelector('.poison.resistance');
+    const enchantWeaponDiv = document.querySelector('.enchant.weapon');
+
+    const priceBuyPotion = document.createElement('div');
+    const pricePoisonResistance = document.createElement('div');
+    const priceEnchantWeapon = document.createElement('div');
+
+    priceBuyPotion.textContent = 'Price: \n10 gold';
+    priceBuyPotion.classList.add('priceBuyPotion');
+    pricePoisonResistance.textContent = 'Price: \n30 gold';
+    pricePoisonResistance.classList.add('pricePoisonResistance')
+    priceEnchantWeapon.textContent = 'Price: \n10 gold';
+    priceEnchantWeapon.classList.add('priceEnchantWeapon');
+
+    buyPotionDiv.appendChild(priceBuyPotion);
+    poisonResistanceDiv.appendChild(pricePoisonResistance);
+    enchantWeaponDiv.appendChild(priceEnchantWeapon);
+    
 }
 function goBlackSmith() {
     const weaponDisplayed = Array.from(document.querySelectorAll('.weaponBox'));
@@ -280,6 +299,11 @@ function goCrossroad() {
     changeActions(6);
     changeBackground('firstCrossroad');
     positionTheDirections('firstCrossroad', true, true, true, true)
+}
+function goHills() {
+    changeActions(7);
+    changeBackground('hills');
+    positionTheDirections('hills', false, false, false, true)
 }
 function checkHealth() {
     if (health <= 0) {
