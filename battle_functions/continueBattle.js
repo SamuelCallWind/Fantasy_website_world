@@ -61,7 +61,8 @@ function handleAttack(enemy, chosenWeapon) {
 
         currentHealthOfEnemyWithSlash = `${parseInt(enemyHP.innerText) - parseInt(totalDamage)}/${maxHealthOfEnemy}`;
         let currentEnemyHealthAlone = currentHealthOfEnemyWithSlash.split('/')[0];
-        currentEnemyHealthInPercent = currentEnemyHealthAlone * 100 / maxHealthOfEnemy;
+        const currentEnemyHealthUnchecked = currentEnemyHealthAlone * 100 / maxHealthOfEnemy;
+        currentEnemyHealthInPercent = currentEnemyHealthUnchecked < 0 ? 0 : currentEnemyHealthUnchecked;
     
         
         enemyHP.innerText = currentHealthOfEnemyWithSlash;   
@@ -95,7 +96,7 @@ function enemyAttack(enemy) {
     const randomNumber = returnRandomNumber(enemy.attacks.length);
     const attackChosen = enemy.attacks[randomNumber];
     const spriteAttackChosen = enemy.attacksSprite[randomNumber];
-    const powerOfTheAttack = attackChosen.power + 100;
+    const powerOfTheAttack = attackChosen.power;
     const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
     const adjustmentToLeft = currentEnemyPosition * 0.10; 
 
