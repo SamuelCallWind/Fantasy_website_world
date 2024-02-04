@@ -9,7 +9,7 @@ export function changeBackground(nameBackground) {
         positionTheDirections(nameBackground, true, true, true, true);
         return;
     } else if (nameBackground === 'city') {
-        if (returnRandomNumber(101) < 100) {
+        if (returnRandomNumber(101) < 5) {
             gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square_chicken.png)';
             const chickenInCity = document.createElement('div');
             chickenInCity.classList.add('chickenInCity');

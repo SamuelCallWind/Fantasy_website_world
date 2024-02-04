@@ -1,4 +1,4 @@
-import { changeActions, locations, removeMovements, statsPlayer, textDisplayed, updateHealth } from "../main.js";
+import { changeActions, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updateXP } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 import { displayActions, removeActions } from "./displayActions.js";
@@ -204,7 +204,7 @@ function defeatEnemy(enemy) {
         rewardEarned.appendChild(buttonQuitFight);
 
         document.querySelector('.movementContainer').appendChild(rewardEarned);
-
+        updateXP(enemy.xp, '+');
     }, 1000);
 }
 

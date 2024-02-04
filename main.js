@@ -103,6 +103,15 @@ function updateHealth(points, operator) {
         return;
     }
 }
+function updateXP(number, operator) {
+    if (operator === '+') {
+        xp += number;
+        xpText.innerText = xp;
+    } else if (operator === '-') {
+        xp -= number;
+        xpText.innerText = xp;
+    }
+}
 
 function removeMovements() {
     while (movementContainer.firstChild) {
@@ -391,18 +400,23 @@ function getPoisonResistance() {
     if (gold >= 30) {
         gold -= 30;
         goldText.innerText = gold;
-        textDisplayed.innerText = "The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou now are protected against poisons";
         boughtFromMonk();
         if (poisonResistance !== false) {
             poisonResistance.rounds = poisonResistance.rounds += 10;
+            textDisplayed.innerText = `The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou still have ${poisonResistance.rounds} rounds with the protection`;
         } else {
             poisonResistance = { rounds: 10 };
+            textDisplayed.innerText = "The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou now are protected against poisons";
         }
     } else {
         textDisplayed.innerText = "You don't have enough gold to buy more health"
     }
 }
 function enchantWeapon() {
+    if (weapons.sword === 0 && weapons.claws === 0 && weapons.hammer === 0 && weapons.spear === 0) {
+        textDisplayed.innerText = 'You do not have any weapon to enchant.';
+        return;
+    }
     if (weapons === 0) {
         textDisplayed.innerHTML = "You don't have any weapon, therefore you cannot enchant it"
     } else {
@@ -464,4 +478,4 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
-export { gold, goldText, updateGold, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
+export { gold, updateXP, goldText, updateGold, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
