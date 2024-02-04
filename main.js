@@ -4,8 +4,9 @@ import Hammers from "./weapons/hammer.js";
 import Spears from "./weapons/spears.js";
 import Swords from "./weapons/swords.js";
 import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
-import { changeBackground, goForward, goRight, positionTheDirections } from "./world_functions/directions.js";
+import { goForward, goRight, positionTheDirections } from "./world_functions/directions.js";
 import { displayCharacters } from "./world_functions/displayCharacters.js";
+import { changeBackground } from "./world_functions/changeBackground.js";
 
 let character = 0;
 let health = 100;
@@ -262,7 +263,7 @@ function goChurch() {
     priceBuyPotion.classList.add('priceBuyPotion');
     pricePoisonResistance.textContent = 'Price: \n30 gold';
     pricePoisonResistance.classList.add('pricePoisonResistance')
-    priceEnchantWeapon.textContent = 'Price: \n10 gold';
+    priceEnchantWeapon.textContent = 'Price: \n50 gold';
     priceEnchantWeapon.classList.add('priceEnchantWeapon');
 
     buyPotionDiv.appendChild(priceBuyPotion);
@@ -374,11 +375,14 @@ function nothingBoughtFromBlacksmith() {
 }
 function buyPotion() {
     if (gold >= 10) {
-        gold -= 10;
-        goldText.innerText = gold;
-        health += 10;
-        healthText.innerText = health;
-        textDisplayed.innerText = "You drank the potion and feel a bit better. You gained 10 health";
+        if (health < maxHealth) {
+            health = (health + 10 > maxHealth) ? maxHealth : health + 10;
+            healthText.innerText = health;
+            gold -= 10;
+            goldText.innerText = gold;
+        } else {
+            textDisplayed.innerText = 'Your health is currently at it\'s maximum.';
+        }
     } else {
         textDisplayed.innerText = "You don't have enough gold to buy more health"
     }
@@ -388,8 +392,12 @@ function getPoisonResistance() {
         gold -= 30;
         goldText.innerText = gold;
         textDisplayed.innerText = "The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou now are protected against poisons";
-        poisonResistance = true;
         boughtFromMonk();
+        if (poisonResistance !== false) {
+            poisonResistance.rounds = poisonResistance.rounds += 10;
+        } else {
+            poisonResistance = { rounds: 10 };
+        }
     } else {
         textDisplayed.innerText = "You don't have enough gold to buy more health"
     }

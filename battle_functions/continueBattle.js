@@ -23,7 +23,7 @@ function continueBattle(enemy, chosenWeapon) {
 function handleAttack(enemy, chosenWeapon) {
 
     const action = document.querySelector('.action');
-    if (returnRandomNumber(100) < 100) {
+    if (returnRandomNumber(100) < 10) {
         const buttonOK = createButtonOK();
         textDisplayed.innerText = 'You slipped on the ground and missed your attack\n';
         textDisplayed.parentElement.appendChild(buttonOK);
@@ -226,4 +226,4 @@ function returnToMap() {
 }
 
 
-export { continueBattle };
+export { continueBattle, returnRandomNumber };
