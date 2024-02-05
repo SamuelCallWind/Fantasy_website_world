@@ -1,4 +1,4 @@
-import { changeActions, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updateXP } from "../main.js";
+import { changeActions, inventory, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updateXP } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 import { displayActions, removeActions } from "./displayActions.js";
@@ -186,16 +186,31 @@ function animateEnemyAttack(attackSprite) {
 }
 
 function defeatEnemy(enemy) {
-    document.querySelector('.action').remove();
+    document.querySelector('.action').style.display = 'none';
     document.querySelector('.enemySprite').classList.add('fade');
     document.querySelector('.enemyNameText').classList.add('fade');
     document.querySelector('.enemyHPBar').classList.add('fade');
 
     setTimeout(() => {
+        const enemyDrops = enemy.drops;
+        console.log(enemyDrops[0]);
         const rewardEarned = document.createElement('div');
         rewardEarned.classList.add('rewardEarned');
         rewardEarned.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center;';
-        rewardEarned.innerText = `${enemy.xp} XP earned\n`;
+        rewardEarned.innerText = `${enemy.xp} XP earned \n`;
+
+        for (let i = 0; i < enemyDrops.length; i++) {
+            const itemToCheck = enemyDrops[i];
+            const randomNumber = returnRandomNumber(101);
+            
+            if (randomNumber <= itemToCheck.dropChance) {
+                const newDiv = document.createElement('div');
+                newDiv.innerText += itemToCheck.name + ' looted';
+                rewardEarned.appendChild(newDiv);
+                inventory.push(itemToCheck);
+                console.log(inventory);
+            }
+        }
 
         const buttonQuitFight = document.createElement('button');
         buttonQuitFight.classList.add('buttonExitFight');
@@ -210,7 +225,6 @@ function defeatEnemy(enemy) {
 
 function returnToMap() {
     const gameDisplay = document.querySelector('.gameDisplay');
-    const movementContainer = document.querySelector('.movementContainer');
     gameDisplay.style.cssText = '';
     removeMovements();
 

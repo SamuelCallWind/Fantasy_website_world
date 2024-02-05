@@ -21,6 +21,7 @@ let statsPlayer = { strength: 0, defense: 0, vitality:0, magic: 0 };
 let weapons = {
     sword: 0, hammer: 0, claws: 0, spear: 0, sickle: 0
 };
+let inventory = [];
 let armor = {
     armor1: 0,
     armor2: 0,
@@ -478,4 +479,4 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
-export { gold, updateXP, goldText, updateGold, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
+export { gold, updateXP, goldText, inventory, updateGold, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };

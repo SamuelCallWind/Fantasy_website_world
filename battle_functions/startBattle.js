@@ -22,6 +22,7 @@ function startBattle(enemyName, chosenWeapon) {
             document.querySelector('.action').style.display = 'flex';
             document.querySelector('.textDisplayed').innerText = enemy.text;
             continueBattle(enemy, chosenWeapon ? chosenWeapon : null);
+            document.querySelector('.enemyGreenHealthBar');
         }, 2000);
 
         const enemyName = enemy.name;
