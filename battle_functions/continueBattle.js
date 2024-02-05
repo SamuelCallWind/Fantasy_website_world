@@ -18,6 +18,19 @@ function continueBattle(enemy, chosenWeapon) {
     document.querySelector('.attack').addEventListener('click', function () {
         handleAttack(enemy, chosenWeapon);
     })
+    document.querySelector('.run').addEventListener('click', function () {
+        if (returnRandomNumber(10) > 10) {
+            textDisplayed.innerText = `You run away from the ${enemy.name}`;
+            setTimeout(() => {
+                returnToMap();
+            }, 1000);
+        } else {
+            textDisplayed.innerText = 'You were not able to run away.';
+            setTimeout(() => {
+                enemyAttack(enemy);
+            }, 2000);
+        }
+    })
 }
 
 function handleAttack(enemy, chosenWeapon) {
@@ -93,13 +106,15 @@ function enemyAttack(enemy) {
     const randomNumber = returnRandomNumber(enemy.attacks.length);
     const attackChosen = enemy.attacks[randomNumber];
     const spriteAttackChosen = enemy.attacksSprite[randomNumber];
-    const powerOfTheAttack = attackChosen.power;
+    const isCritical =  (returnRandomNumber(101) < 100);
+    const powerOfTheAttack = returnRandomNumber(attackChosen.power) + 1;
     const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
     const adjustmentToLeft = currentEnemyPosition * 0.10; 
 
     animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
     animateEnemyAttack(spriteAttackChosen);
-    const isPlayerAlive = updateHealth(powerOfTheAttack, '-');
+    const isPlayerAlive = updateHealth(powerOfTheAttack, '-', isCritical);
+    
 
     if (isPlayerAlive === 'alive') {
         const buttonOK = createButtonOK();

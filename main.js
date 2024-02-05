@@ -67,7 +67,7 @@ function updateWeapons(weaponName) {
         weapons[weaponName] += 1;
     }
 }
-function updateHealth(points, operator) {
+function updateHealth(points, operator, isCritical) {
     if (operator === '+') {
         if (health < maxHealth) {
             if ((health + points) > maxHealth) {
@@ -88,9 +88,15 @@ function updateHealth(points, operator) {
             return;
         }
     } else if (operator === '-') {
-        health -= points;
-        healthText.innerText = health;
-        textDisplayed.innerText = `You've lost ${points} health points`;
+        if (isCritical) {
+            health -= points * 2;
+            healthText.innerText = health;
+            textDisplayed.innerText = `Ouch, that was a critical hit \nYou've lost ${points * 2} health points`; 
+        } else {
+            health -= points;
+            healthText.innerText = health;
+            textDisplayed.innerText = `You've lost ${points} health points`;
+        }
         return checkHealth();
     } else if (operator === '/') {
         gameDisplay.innerText = `You've lost ${Math.ceil(health /= points)} health points`;
