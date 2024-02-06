@@ -1,4 +1,4 @@
-import { changeActions, inventory, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updateXP } from "../main.js";
+import { changeActions, inventory, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updatePoisonResistance, updateXP } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 import { displayActions, removeActions } from "./displayActions.js";
@@ -19,7 +19,7 @@ function continueBattle(enemy, chosenWeapon) {
         handleAttack(enemy, chosenWeapon);
     })
     document.querySelector('.run').addEventListener('click', function () {
-        if (returnRandomNumber(10) > 10) {
+        if (returnRandomNumber(10) > 1) {
             textDisplayed.innerText = `You run away from the ${enemy.name}`;
             setTimeout(() => {
                 returnToMap();
@@ -102,18 +102,26 @@ function handleAttack(enemy, chosenWeapon) {
 }
 
 function enemyAttack(enemy) {
-    const enemyImg = document.querySelector('.enemySprite');
-    const randomNumber = returnRandomNumber(enemy.attacks.length);
-    const attackChosen = enemy.attacks[randomNumber];
-    const spriteAttackChosen = enemy.attacksSprite[randomNumber];
-    const isCritical =  (returnRandomNumber(101) < 100);
-    const powerOfTheAttack = returnRandomNumber(attackChosen.power) + 1;
-    const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
-    const adjustmentToLeft = currentEnemyPosition * 0.10; 
+    let isPlayerAlive = 'alive';
+    if (returnRandomNumber(101) < 10) {
+        textDisplayed.innerText = `The ${enemy.name} attacked, but missed.`;
+    } else {
+        const enemyImg = document.querySelector('.enemySprite');
+        const randomNumber = returnRandomNumber(enemy.attacks.length);
+        const attackChosen = enemy.attacks[randomNumber];
+        const spriteAttackChosen = enemy.attacksSprite[randomNumber];
+        const isCritical =  (returnRandomNumber(101) < 10);
+        const powerOfTheAttack = returnRandomNumber(attackChosen.power) + 1;
+        const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
+        const adjustmentToLeft = currentEnemyPosition * 0.10; 
+        updatePoisonResistance(1);
 
-    animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
-    animateEnemyAttack(spriteAttackChosen);
-    const isPlayerAlive = updateHealth(powerOfTheAttack, '-', isCritical);
+        animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
+        animateEnemyAttack(spriteAttackChosen);
+        
+        isPlayerAlive = updateHealth(powerOfTheAttack, '-', isCritical);
+    }
+    
     
 
     if (isPlayerAlive === 'alive') {
@@ -208,7 +216,6 @@ function defeatEnemy(enemy) {
 
     setTimeout(() => {
         const enemyDrops = enemy.drops;
-        console.log(enemyDrops[0]);
         const rewardEarned = document.createElement('div');
         rewardEarned.classList.add('rewardEarned');
         rewardEarned.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center;';
@@ -223,7 +230,6 @@ function defeatEnemy(enemy) {
                 newDiv.innerText += itemToCheck.name + ' looted';
                 rewardEarned.appendChild(newDiv);
                 inventory.push(itemToCheck);
-                console.log(inventory);
             }
         }
 

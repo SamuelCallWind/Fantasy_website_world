@@ -176,7 +176,7 @@ const locations = [
         name: "Statue",
         "movement names": ["Exit"],
         "movement functions": [goCity],
-        text: "You look at the beautiful statue of the king. \nHis name was Kong the II.\n"
+        text: "You look at the beautiful statue of the king. \nHis name was Kong the II.\nHe died heroically fighting the Spartan Warlord"
     }, 
     {
         name: "First Crossroad",
@@ -315,7 +315,7 @@ function goStatue() {
 function goCrossroad() {
     changeActions(6);
     changeBackground('firstCrossroad');
-    positionTheDirections('firstCrossroad', true, true, true, true)
+    positionTheDirections('firstCrossroad', true, true, true, true);
 }
 function goHills() {
     changeActions(7);
@@ -408,15 +408,39 @@ function getPoisonResistance() {
         gold -= 30;
         goldText.innerText = gold;
         boughtFromMonk();
-        if (poisonResistance !== false) {
-            poisonResistance.rounds = poisonResistance.rounds += 10;
-            textDisplayed.innerText = `The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou still have ${poisonResistance.rounds} rounds with the protection`;
-        } else {
-            poisonResistance = { rounds: 10 };
-            textDisplayed.innerText = "The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou now are protected against poisons";
-        }
+        updatePoisonResistance();
     } else {
-        textDisplayed.innerText = "You don't have enough gold to buy more health"
+        textDisplayed.innerText = "You don't have enough gold to buy more poison resistance."
+    }
+}
+function updatePoisonResistance(howMuchToRemove) {
+    if (howMuchToRemove) {
+        if (poisonResistance === false) {
+            console.log('no poison resistance found')
+            return;
+        } else {
+            poisonResistance.rounds -= howMuchToRemove;
+            console.log(poisonResistance.rounds + ' left of poison resist');
+            if (poisonResistance.rounds === 0) {
+                poisonResistance = false;
+                document.querySelector('.poisonResistanceLogo').remove();
+                console.log('no more poison resistance');
+            }
+        }
+        return;
+    }
+    if (!document.querySelector('.poisonResistanceLogo')) {
+        const poisonResistanceLogo = document.createElement('img');
+        poisonResistanceLogo.src = './images/misc/poison_resistance_logo.png';
+        poisonResistanceLogo.classList.add('poisonResistanceLogo');
+        document.querySelector('.status').appendChild(poisonResistanceLogo);
+    }
+    if (poisonResistance !== false) {
+        poisonResistance.rounds = poisonResistance.rounds += 10;
+        textDisplayed.innerText = `The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou still have ${poisonResistance.rounds} rounds with the protection`;
+    } else {
+        poisonResistance = { rounds: 10 };
+        textDisplayed.innerText = "The monk took a strange feather and added a mixture on it's tip.\n The moment the feather made contact with your head, you felt a strong energy protecting you.\nYou now are protected against poisons";
     }
 }
 function enchantWeapon() {
@@ -485,4 +509,4 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
-export { gold, updateXP, goldText, inventory, updateGold, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
+export { gold, updateXP, goldText, inventory, updateGold, updatePoisonResistance, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };
