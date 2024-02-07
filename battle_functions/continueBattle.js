@@ -6,6 +6,11 @@ import { displayActions, removeActions } from "./displayActions.js";
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
 
+const eventHandlers = {
+    handleAttackClick: null,
+    handleRunClick: null
+}
+
 
 function continueBattle(enemy, chosenWeapon) {
     const enemyHealthInPoint = enemy.HP;
@@ -15,10 +20,10 @@ function continueBattle(enemy, chosenWeapon) {
     enemyGreenHealthBar.classList.add('enemyGreenHealthBar');
     document.querySelector('.enemyHPBar').appendChild(enemyGreenHealthBar)
 
-    document.querySelector('.attack').addEventListener('click', function () {
+    eventHandlers.handleAttackClick = function () {
         handleAttack(enemy, chosenWeapon);
-    })
-    document.querySelector('.run').addEventListener('click', function () {
+    }
+    eventHandlers.handleRunClick = function () {
         if (returnRandomNumber(10) > 1) {
             textDisplayed.innerText = `You run away from the ${enemy.name}`;
             setTimeout(() => {
@@ -30,7 +35,10 @@ function continueBattle(enemy, chosenWeapon) {
                 enemyAttack(enemy);
             }, 2000);
         }
-    })
+    }
+
+    document.querySelector('.attack').addEventListener('click', eventHandlers.handleAttackClick)
+    document.querySelector('.run').addEventListener('click', eventHandlers.handleRunClick);
 }
 
 function handleAttack(enemy, chosenWeapon) {
@@ -241,6 +249,10 @@ function defeatEnemy(enemy) {
 
         document.querySelector('.movementContainer').appendChild(rewardEarned);
         updateXP(enemy.xp, '+');
+
+        document.querySelector('.attack').removeEventListener('click', eventHandlers.handleAttackClick)
+        document.querySelector('.run').removeEventListener('click', eventHandlers.handleRunClick);
+
     }, 1000);
 }
 
