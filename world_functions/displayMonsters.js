@@ -1,3 +1,4 @@
+import { chooseWeaponBeforeFight } from "../battle_functions/chooseWeapon.js";
 import { returnRandomNumber } from "../battle_functions/continueBattle.js";
 import { redirectMonsterImage } from "./redirectMonsterImage.js";
 
@@ -24,6 +25,10 @@ function displayMonsters(nameOfPlace) {
             newDivMonster.style.top = `${returnRandomNumber(450) + 50}px`;
             newDivMonster.style.left = `${returnRandomNumber(320)+ 30}px`;
             newDivMonster.appendChild(imageMonster);
+
+            newDivMonster.addEventListener('click', function() {
+                chooseWeaponBeforeFight(randomMonster);
+            })
             document.querySelector('.movementContainer').appendChild(newDivMonster);
         }
     }

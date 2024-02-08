@@ -16,20 +16,20 @@ function positionTheDirections(location, isLeft, isRight, isForward, isBackward)
     
     let left, right, forward, backward;
 
-    if (isLeft) {
+    if (document.querySelector('.go.left')) {
         left = document.querySelector('.go.left');
     }
-    if (isRight) {
+    if (document.querySelector('.go.right')) {
         right = document.querySelector('.go.right');
     }
-    if (isForward) {
+    if (document.querySelector('.go.forward')) {
         forward = document.querySelector('.go.forward');
     }
-    if (isBackward) {
+    if (document.querySelector('.go.backward')) {
         backward = document.querySelector('.go.backward');
     }
     
-    if (location === 'firstCrossroad') {
+    if (location === 'firstCrossroad' || location === 'First Crossroad') {
         left.style.top = '70px';
         left.style.left = '100px';
         right.style.bottom = '50px';

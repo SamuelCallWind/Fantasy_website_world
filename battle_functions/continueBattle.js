@@ -1,6 +1,7 @@
 import { changeActions, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updateXP } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
+import { positionTheDirections } from "../world_functions/directions.js";
 import { displayActions, removeActions } from "./displayActions.js";
 
 
@@ -210,7 +211,6 @@ function defeatEnemy(enemy) {
 
 function returnToMap() {
     const gameDisplay = document.querySelector('.gameDisplay');
-    const movementContainer = document.querySelector('.movementContainer');
     gameDisplay.style.cssText = '';
     removeMovements();
 
@@ -223,6 +223,8 @@ function returnToMap() {
             changeActions(i);
         }
     }
+
+    positionTheDirections(currentLocation);
 }
 
 
