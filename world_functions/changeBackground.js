@@ -1,5 +1,6 @@
 import { chooseWeaponBeforeFight } from "../battle_functions/chooseWeapon.js";
 import { returnRandomNumber } from "../battle_functions/continueBattle.js";
+import { displayMonsters } from "./displayMonsters.js";
 import { positionTheDirections } from "./directions.js";
 
 export function changeBackground(nameBackground) {
@@ -7,6 +8,7 @@ export function changeBackground(nameBackground) {
     if (nameBackground === 'firstCrossroad') {
         gameDisplay.style.backgroundImage = 'url(../images/landscapes/first_crossroads.png)';
         positionTheDirections(nameBackground, true, true, true, true);
+        displayMonsters('First Crossroads')
         return;
     } else if (nameBackground === 'city') {
         if (returnRandomNumber(101) < 5) {
@@ -23,6 +25,6 @@ export function changeBackground(nameBackground) {
         }
     } else if (nameBackground === 'hills') {
         gameDisplay.style.backgroundImage = 'url(../images/landscapes/grass_hills.png)'
-
+        displayMonsters('hills');
     }
 }

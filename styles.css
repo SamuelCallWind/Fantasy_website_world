@@ -535,3 +535,20 @@ body {
     font-size: 2rem;
     font-weight: 600;
 }
+
+/* -----------------------------MONSTERS MAP------------------------------------------- */
+
+.monsterMap {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0;
+    filter: blur(2px);
+    width: 50px;
+}
+.monsterMap > img {
+    width: 100%;
+}
+
