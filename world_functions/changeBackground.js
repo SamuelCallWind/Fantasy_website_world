@@ -9,7 +9,7 @@ export function changeBackground(nameBackground) {
         monstersDisplayed.forEach(monster => monster.remove());
     }
     const gameDisplay = document.querySelector('.gameDisplay');
-    if (nameBackground === 'firstCrossroad') {
+    if (nameBackground === 'firstCrossroad' || nameBackground === 'First Crossroad') {
         gameDisplay.style.backgroundImage = 'url(../images/landscapes/first_crossroads.png)';
         positionTheDirections(nameBackground, true, true, true, true);
         displayMonsters('First Crossroads')

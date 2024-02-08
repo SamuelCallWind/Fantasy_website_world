@@ -1,6 +1,7 @@
 import { changeActions, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updateXP } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
+import { changeBackground } from "../world_functions/changeBackground.js";
 import { positionTheDirections } from "../world_functions/directions.js";
 import { displayActions, removeActions } from "./displayActions.js";
 
@@ -187,7 +188,7 @@ function animateEnemyAttack(attackSprite) {
 }
 
 function defeatEnemy(enemy) {
-    document.querySelector('.action').remove();
+    document.querySelector('.action').style.display = 'none';
     document.querySelector('.enemySprite').classList.add('fade');
     document.querySelector('.enemyNameText').classList.add('fade');
     document.querySelector('.enemyHPBar').classList.add('fade');
@@ -217,12 +218,13 @@ function returnToMap() {
     let currentLocation = document.querySelector('.currentLocation').innerText;
     if (currentLocation === 'Church' || currentLocation === 'Blacksmith' || currentLocation === 'Buy Armor' || currentLocation === 'Buy Weapon' || currentLocation === 'Statue') {
         currentLocation = 'Town Square';
-    }
+    } 
     for (let i = 0; i < locations.length; i++) {
         if (locations[i].name === currentLocation) {
             changeActions(i);
         }
     }
+    changeBackground(currentLocation);
 
     positionTheDirections(currentLocation);
 }
