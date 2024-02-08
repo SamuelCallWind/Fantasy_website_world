@@ -4,6 +4,10 @@ import { displayMonsters } from "./displayMonsters.js";
 import { positionTheDirections } from "./directions.js";
 
 export function changeBackground(nameBackground) {
+    const monstersDisplayed = document.querySelectorAll('.monsterMap');
+    if (monstersDisplayed.length > 0) {
+        monstersDisplayed.forEach(monster => monster.remove());
+    }
     const gameDisplay = document.querySelector('.gameDisplay');
     if (nameBackground === 'firstCrossroad') {
         gameDisplay.style.backgroundImage = 'url(../images/landscapes/first_crossroads.png)';
