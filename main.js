@@ -478,4 +478,7 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
+
+
+
 export { gold, updateXP, goldText, updateGold, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };

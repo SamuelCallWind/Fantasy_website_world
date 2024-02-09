@@ -22,8 +22,8 @@ function displayMonsters(nameOfPlace) {
             imageMonster.src = '../images/misc/unknown_enemy_0.png';
             newDivMonster.classList.add('monsterMap');
             newDivMonster.innerText = randomMonster;
-            newDivMonster.style.top = `${returnRandomNumber(450) + 50}px`;
-            newDivMonster.style.left = `${returnRandomNumber(280)+ 30}px`;
+            newDivMonster.style.top = `${returnRandomNumber(350) + 50}px`;
+            newDivMonster.style.left = `${returnRandomNumber(600)+ 50}px`;
             newDivMonster.appendChild(imageMonster);
 
             newDivMonster.addEventListener('click', function() {
