@@ -1,12 +1,18 @@
-import { changeActions, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updateXP } from "../main.js";
+import { changeActions, inventory, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updatePoisonResistance, updateXP } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 import { changeBackground } from "../world_functions/changeBackground.js";
 import { positionTheDirections } from "../world_functions/directions.js";
 import { displayActions, removeActions } from "./displayActions.js";
 
+let eventListenerOnActions = 0;
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
+
+const eventHandlers = {
+    handleAttackClick: null,
+    handleRunClick: null
+}
 
 
 function continueBattle(enemy, chosenWeapon) {
@@ -17,9 +23,29 @@ function continueBattle(enemy, chosenWeapon) {
     enemyGreenHealthBar.classList.add('enemyGreenHealthBar');
     document.querySelector('.enemyHPBar').appendChild(enemyGreenHealthBar)
 
-    document.querySelector('.attack').addEventListener('click', function () {
+    eventHandlers.handleAttackClick = function () {
         handleAttack(enemy, chosenWeapon);
-    })
+    }
+    eventHandlers.handleRunClick = function () {
+        if (returnRandomNumber(10) > 1) {
+            textDisplayed.innerText = `You ran away from the ${enemy.name}`;
+            document.querySelector('.action').style.display = 'none';
+            setTimeout(() => {
+                returnToMap();
+            }, 1000);
+        } else {
+            textDisplayed.innerText = 'You were not able to run away.';
+            setTimeout(() => {
+                enemyAttack(enemy);
+            }, 2000);
+        }
+    }
+
+    if (eventListenerOnActions === 0) {
+        document.querySelector('.attack').addEventListener('click', eventHandlers.handleAttackClick)
+        document.querySelector('.run').addEventListener('click', eventHandlers.handleRunClick);
+        eventListenerOnActions = 1;
+    }
 }
 
 function handleAttack(enemy, chosenWeapon) {
@@ -91,17 +117,27 @@ function handleAttack(enemy, chosenWeapon) {
 }
 
 function enemyAttack(enemy) {
-    const enemyImg = document.querySelector('.enemySprite');
-    const randomNumber = returnRandomNumber(enemy.attacks.length);
-    const attackChosen = enemy.attacks[randomNumber];
-    const spriteAttackChosen = enemy.attacksSprite[randomNumber];
-    const powerOfTheAttack = attackChosen.power;
-    const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
-    const adjustmentToLeft = currentEnemyPosition * 0.10; 
+    let isPlayerAlive = 'alive';
+    if (returnRandomNumber(101) < 10) {
+        textDisplayed.innerText = `The ${enemy.name} attacked, but missed.`;
+    } else {
+        const enemyImg = document.querySelector('.enemySprite');
+        const randomNumber = returnRandomNumber(enemy.attacks.length);
+        const attackChosen = enemy.attacks[randomNumber];
+        const spriteAttackChosen = enemy.attacksSprite[randomNumber];
+        const isCritical =  (returnRandomNumber(101) < 10);
+        const powerOfTheAttack = returnRandomNumber(attackChosen.power) + 1;
+        const currentEnemyPosition = parseInt(window.getComputedStyle(enemyImg).left, 10);
+        const adjustmentToLeft = currentEnemyPosition * 0.10; 
+        updatePoisonResistance(1);
 
-    animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
-    animateEnemyAttack(spriteAttackChosen);
-    const isPlayerAlive = updateHealth(powerOfTheAttack, '-');
+        animateEnemyMovement(enemyImg, currentEnemyPosition, adjustmentToLeft)
+        animateEnemyAttack(spriteAttackChosen);
+        
+        isPlayerAlive = updateHealth(powerOfTheAttack, '-', isCritical);
+    }
+    
+    
 
     if (isPlayerAlive === 'alive') {
         const buttonOK = createButtonOK();
@@ -194,10 +230,23 @@ function defeatEnemy(enemy) {
     document.querySelector('.enemyHPBar').classList.add('fade');
 
     setTimeout(() => {
+        const enemyDrops = enemy.drops;
         const rewardEarned = document.createElement('div');
         rewardEarned.classList.add('rewardEarned');
         rewardEarned.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center;';
-        rewardEarned.innerText = `${enemy.xp} XP earned\n`;
+        rewardEarned.innerText = `${enemy.xp} XP earned \n`;
+
+        for (let i = 0; i < enemyDrops.length; i++) {
+            const itemToCheck = enemyDrops[i];
+            const randomNumber = returnRandomNumber(101);
+            
+            if (randomNumber <= itemToCheck.dropChance) {
+                const newDiv = document.createElement('div');
+                newDiv.innerText += itemToCheck.name + ' looted';
+                rewardEarned.appendChild(newDiv);
+                inventory.push(itemToCheck);
+            }
+        }
 
         const buttonQuitFight = document.createElement('button');
         buttonQuitFight.classList.add('buttonExitFight');
@@ -207,6 +256,10 @@ function defeatEnemy(enemy) {
 
         document.querySelector('.movementContainer').appendChild(rewardEarned);
         updateXP(enemy.xp, '+');
+
+        document.querySelector('.attack').removeEventListener('click', eventHandlers.handleAttackClick)
+        document.querySelector('.run').removeEventListener('click', eventHandlers.handleRunClick);
+
     }, 1000);
 }
 

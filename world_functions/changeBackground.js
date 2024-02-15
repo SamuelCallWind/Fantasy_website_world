@@ -15,7 +15,7 @@ export function changeBackground(nameBackground) {
         displayMonsters('First Crossroads')
         return;
     } else if (nameBackground === 'city') {
-        if (returnRandomNumber(101) < 5) {
+        if (returnRandomNumber(101) < 100) {
             gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square_chicken.png)';
             const chickenInCity = document.createElement('div');
             chickenInCity.classList.add('chickenInCity');
