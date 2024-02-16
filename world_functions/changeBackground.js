@@ -28,7 +28,11 @@ export function changeBackground(nameBackground) {
             
         }
     } else if (nameBackground === 'hills') {
-        gameDisplay.style.backgroundImage = 'url(../images/landscapes/grass_hills.png)'
+        gameDisplay.style.backgroundImage = 'url(../images/landscapes/grass_hills.png)';
         displayMonsters('hills');
+    } else if (nameBackground === 'blacksmith') {
+        gameDisplay.style.backgroundImage = 'url("../images/insides/inside_forge.png")';
+    } else if (nameBackground === 'church') {
+        gameDisplay.style.backgroundImage = 'url("../images/insides/inside_church.png")';
     }
 }

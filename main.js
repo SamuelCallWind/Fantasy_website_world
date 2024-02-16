@@ -263,6 +263,7 @@ function goCity() {
 }
 function goChurch() {
     changeActions(1);
+    changeBackground('church');
     movementContainer.style.cssText = 'display: flex; align-items: center; justify-content: space-evenly;';
     if (monk.anger >= 2) {
         textDisplayed.innerText = 'The monks are looking at you strangely.\n It seems like they don\'t want to see you wandering around in their place.\n Especially when you don\'t buy anything.'
@@ -295,6 +296,7 @@ function goBlackSmith() {
         movementContainer.removeChild(document.querySelector('.exit'))
     }
     changeActions(2);
+    changeBackground('blacksmith');
     
     if (blacksmith.anger === 2) {
         textDisplayed.innerText = 'The blacksmith starts to look at you angrily.';

@@ -288,7 +288,8 @@ body {
     right: 15%;
 }
 .get.poison.resistance, .buy.potion, .enchant.weapon {
-     position: relative;
+    position: relative;
+    min-width: 100px;
 }
 .priceBuyPotion, .pricePoisonResistance, .priceEnchantWeapon {
     display: flex;
@@ -364,6 +365,7 @@ body {
     justify-self: center;
     z-index: 1;
     transition: filter .2s ease-in-out;
+    cursor: pointer;
 }
 .weaponBox:hover {
     filter: grayscale(40%);
