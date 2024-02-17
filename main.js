@@ -246,11 +246,13 @@ function addClassOfMovement(movementNumber, newDivToAssignClasses, locationNumbe
 function goCity() {
     if (currentLocation.innerText === 'Church') {
         changeActions(0);
+        changeBackground('city');
         if (monk.bought === 0) {
             nothingBoughtFromMonk();
         }
     } else if (currentLocation.innerText === 'Blacksmith'){
         changeActions(0);
+        changeBackground('city');
         if (blacksmith.bought === 0) {
             nothingBoughtFromBlacksmith();
         }
