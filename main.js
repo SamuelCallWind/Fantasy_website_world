@@ -513,4 +513,8 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
+document.querySelector('.gameDisplay').addEventListener('click', function(event) {
+    console.log(`mouse X: ${event.offsetX}, Mouse Y: ${event.offsetY}`);
+});
+
 export { gold, updateXP, goldText, inventory, updateGold, updatePoisonResistance, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth };

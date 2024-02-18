@@ -4,18 +4,23 @@ import { redirectMonsterImage } from "./redirectMonsterImage.js";
 
 const monsterHills = ['fox', 'bird', 'lizard', 'goblin'];
 
+function checkIfMonsterIsInBadPlace(location) {
+    if (location === 'First Crossroads') {
+        
+    }
+}
 
 function displayMonsters(nameOfPlace) {
     let monstersToDisplay;
-    const numberofMonsters = returnRandomNumber(4);
+    const numberOfMonsters = returnRandomNumber(4);
 
-    if (numberofMonsters === 0) {
+    if (numberOfMonsters === 0) {
         return;
     }
 
     if (nameOfPlace === 'First Crossroads' || nameOfPlace === 'hills') {
         monstersToDisplay = monsterHills;
-        for (let i = 0; i < numberofMonsters; i++) {
+        for (let i = 0; i < numberOfMonsters; i++) {
             const randomMonster = monsterHills[returnRandomNumber(monstersToDisplay.length)];
             const newDivMonster = document.createElement('div');
             const imageMonster = document.createElement('img');
