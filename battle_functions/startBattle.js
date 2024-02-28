@@ -1,4 +1,4 @@
-import { returnCharacter, textDisplayed } from '../main.js';
+import { getCurrentLocation, returnCharacter, textDisplayed } from '../main.js';
 import { allEnemies } from './allEnemies.js';
 import { continueBattle } from './continueBattle.js';
 
@@ -17,7 +17,12 @@ function startBattle(enemyName, chosenWeapon) {
             movementContainer.removeChild(movementContainer.firstChild);
         }
         setTimeout(() => {
-            gameDisplay.style.backgroundImage = 'url("../images/loading_screens/white_background.png")';
+            const currentLocation = getCurrentLocation();
+            console.log(currentLocation === 'Town Square');
+            if (currentLocation === 'Town Square') {
+                gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_village.png')"
+                gameDisplay.style.backgroundPosition = '-50px';
+            }            
             movementContainer.append(enemyNameText, enemyHPBar, playerCharacter, enemySprite);
             document.querySelector('.action').style.display = 'flex';
             document.querySelector('.textDisplayed').innerText = enemy.text;
@@ -52,7 +57,9 @@ function startBattle(enemyName, chosenWeapon) {
         } else if (enemy.size === 'boss') {
             enemySprite.classList.add('bossEnemy');
         }
+        
     }
+    
 }
 
 

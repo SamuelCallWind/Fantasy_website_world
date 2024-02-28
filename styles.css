@@ -452,9 +452,11 @@ body {
     transition: display .3s ease-in-out, opacity 1s ease-in-out, left .2s ease-in-out;
 }
 .smallEnemy {
-    max-width: 150px;
+    max-width: 100px;
     left: 45%;
+    top: 20%;
 }
+
 .enemyGreenHealthBar {
     height: 100%;
     width: 100%;
