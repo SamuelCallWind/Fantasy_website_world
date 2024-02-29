@@ -28,7 +28,8 @@ const allDrops = [
         index: 4,
         value: 2,
         dropChance: 60
-    }, 
+    },
+    
     
 ];
 

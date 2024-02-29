@@ -428,7 +428,7 @@ body {
     transition: display .3s ease-in-out;
 }
 .enemyNameText {
-    top: 2%;
+    top: 5%;
     height: 20px;
 }
 .enemyHPBar {
@@ -457,9 +457,9 @@ body {
     top: 20%;
 }
 .mediumEnemy {
-    max-width: 150px;
-    left: 45%;
-    top: 20%;
+    max-width: 120px;
+    left: 44%;
+    top: 35%;
 }
 
 .enemyGreenHealthBar {

@@ -1,4 +1,5 @@
 import { getCurrentLocation, returnCharacter, textDisplayed } from '../main.js';
+import { capitalizeFirstLetter } from '../texts_to_display/fight_texts/allTexts.js';
 import { allEnemies } from './allEnemies.js';
 import { continueBattle } from './continueBattle.js';
 
@@ -21,7 +22,10 @@ function startBattle(enemyName, chosenWeapon) {
             if (currentLocation === 'Town Square') {
                 gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_village.png')"
                 gameDisplay.style.backgroundPosition = '-50px';
-            }            
+            } else if (currentLocation === 'First Crossroad') {
+                gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_grassland.png')"
+                gameDisplay.style.backgroundPosition = '-50px';
+            }         
             movementContainer.append(enemyNameText, enemyHPBar, playerCharacter, enemySprite);
             document.querySelector('.action').style.display = 'flex';
             document.querySelector('.textDisplayed').innerText = enemy.text;
@@ -33,7 +37,7 @@ function startBattle(enemyName, chosenWeapon) {
         const enemySprite = document.createElement('img');
 
         const enemyNameText = document.createElement('div');
-        enemyNameText.innerText = enemyName;
+        enemyNameText.innerText = capitalizeFirstLetter(enemyName);
         enemyNameText.classList.add('enemyNameText');
 
         const enemyHPBar = document.createElement('div');
