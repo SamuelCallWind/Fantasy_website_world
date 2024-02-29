@@ -7,6 +7,7 @@ import { buySword, buyHammer, buyClaws, buySpear } from './weapons/buyWeapon.js'
 import { goForward, goRight, positionTheDirections } from "./world_functions/directions.js";
 import { displayCharacters } from "./world_functions/displayCharacters.js";
 import { changeBackground } from "./world_functions/changeBackground.js";
+import { capitalizeFirstLetter } from "./texts_to_display/fight_texts/allTexts.js";
 
 let character = 0;
 let health = 100;
@@ -517,8 +518,22 @@ function addOneOfEverything() {
     statsPlayer.vitality += 1;
 }
 
+function removeAndCreateActionButtons() {
+    const actionContainer = document.querySelector('.action');
+    while (actionContainer.firstChild) {
+        actionContainer.firstChild.remove()
+    }
+    const actions = ["attack", "special", "dodge", "inventory", "run"];
+    for (let i = 0; i < actions.length; i++) {
+        let newAction = document.createElement('button');
+        newAction.innerText = capitalizeFirstLetter(actions[i]);
+        newAction.classList.add(actions[i]);
+        actionContainer.appendChild(newAction);
+    }
+}
+
 document.querySelector('.gameDisplay').addEventListener('click', function(event) {
     console.log(`mouse X: ${event.offsetX}, Mouse Y: ${event.offsetY}`);
 });
 
-export { gold, updateXP, goldText, inventory, updateGold, updatePoisonResistance, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth , getCurrentLocation};
+export { gold, updateXP, goldText, inventory, updateGold, updatePoisonResistance, updateHealth, locations, weapons, statsPlayer, updateWeapons, showWeaponBlacksmith, textDisplayed, goCity, changeActions, boughtFromBlacksmith, updateCharacter, returnCharacter, removeMovements, checkHealth , getCurrentLocation, removeAndCreateActionButtons};

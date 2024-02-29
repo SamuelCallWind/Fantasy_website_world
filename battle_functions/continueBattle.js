@@ -1,4 +1,4 @@
-import { changeActions, inventory, locations, removeMovements, statsPlayer, textDisplayed, updateHealth, updatePoisonResistance, updateXP } from "../main.js";
+import { changeActions, inventory, locations, removeAndCreateActionButtons, removeMovements, statsPlayer, textDisplayed, updateHealth, updatePoisonResistance, updateXP } from "../main.js";
 import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js";
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 import { changeBackground } from "../world_functions/changeBackground.js";
@@ -23,10 +23,10 @@ function continueBattle(enemy, chosenWeapon) {
     enemyGreenHealthBar.classList.add('enemyGreenHealthBar');
     document.querySelector('.enemyHPBar').appendChild(enemyGreenHealthBar)
 
-    eventHandlers.handleAttackClick = function () {
+    document.querySelector('.attack').addEventListener('click', function () {
         handleAttack(enemy, chosenWeapon);
-    }
-    eventHandlers.handleRunClick = function () {
+    })
+    document.querySelector('.run').addEventListener('click',function () {
         if (returnRandomNumber(10) > 1) {
             textDisplayed.innerText = `You ran away from the ${enemy.name}`;
             document.querySelector('.action').style.display = 'none';
@@ -39,13 +39,8 @@ function continueBattle(enemy, chosenWeapon) {
                 enemyAttack(enemy);
             }, 2000);
         }
-    }
+    })
 
-    if (eventListenerOnActions === 0) {
-        document.querySelector('.attack').addEventListener('click', eventHandlers.handleAttackClick)
-        document.querySelector('.run').addEventListener('click', eventHandlers.handleRunClick);
-        eventListenerOnActions = 1;
-    }
 }
 
 function handleAttack(enemy, chosenWeapon) {
@@ -224,7 +219,8 @@ function animateEnemyAttack(attackSprite) {
 }
 
 function defeatEnemy(enemy) {
-    document.querySelector('.action').style.display = 'none';
+    removeAndCreateActionButtons();
+    // document.querySelector('.action').style.display = 'none';
     document.querySelector('.enemySprite').classList.add('fade');
     document.querySelector('.enemyNameText').classList.add('fade');
     document.querySelector('.enemyHPBar').classList.add('fade');
@@ -256,9 +252,6 @@ function defeatEnemy(enemy) {
 
         document.querySelector('.movementContainer').appendChild(rewardEarned);
         updateXP(enemy.xp, '+');
-
-        document.querySelector('.attack').removeEventListener('click', eventHandlers.handleAttackClick)
-        document.querySelector('.run').removeEventListener('click', eventHandlers.handleRunClick);
 
     }, 1000);
 }

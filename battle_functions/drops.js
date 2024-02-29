@@ -11,6 +11,12 @@ const allDrops = [
         value: 1,
         dropChance: 70
     },
+    {
+        name: "Fox fur",
+        index: 2,
+        value: 5,
+        dropChance: 15
+    }
 ];
 
 export { allDrops };

@@ -456,6 +456,11 @@ body {
     left: 45%;
     top: 20%;
 }
+.mediumEnemy {
+    max-width: 150px;
+    left: 45%;
+    top: 20%;
+}
 
 .enemyGreenHealthBar {
     height: 100%;

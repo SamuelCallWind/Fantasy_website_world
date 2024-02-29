@@ -18,7 +18,6 @@ function startBattle(enemyName, chosenWeapon) {
         }
         setTimeout(() => {
             const currentLocation = getCurrentLocation();
-            console.log(currentLocation === 'Town Square');
             if (currentLocation === 'Town Square') {
                 gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_village.png')"
                 gameDisplay.style.backgroundPosition = '-50px';
@@ -52,6 +51,8 @@ function startBattle(enemyName, chosenWeapon) {
         enemySprite.classList.add('enemySprite');
         if (enemy.size === 'small') {
             enemySprite.classList.add('smallEnemy');
+        } else if (enemy.size === 'medium') {
+            enemySprite.classList.add('mediumEnemy');
         } else if (enemy.size === 'big') {
             enemySprite.classList.add('bigEnemy');
         } else if (enemy.size === 'boss') {
