@@ -232,17 +232,20 @@ function defeatEnemy(enemy) {
         rewardEarned.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center;';
         rewardEarned.innerText = `${enemy.xp} XP earned \n`;
 
-        for (let i = 0; i < enemyDrops.length; i++) {
-            const itemToCheck = enemyDrops[i];
-            const randomNumber = returnRandomNumber(101);
-            
-            if (randomNumber <= itemToCheck.dropChance) {
-                const newDiv = document.createElement('div');
-                newDiv.innerText += itemToCheck.name + ' looted';
-                rewardEarned.appendChild(newDiv);
-                inventory.push(itemToCheck);
+        if (enemyDrops) {
+            for (let i = 0; i < enemyDrops.length; i++) {
+                const itemToCheck = enemyDrops[i];
+                const randomNumber = returnRandomNumber(101);
+                
+                if (randomNumber <= itemToCheck.dropChance) {
+                    const newDiv = document.createElement('div');
+                    newDiv.innerText += itemToCheck.name + ' looted';
+                    rewardEarned.appendChild(newDiv);
+                    inventory.push(itemToCheck);
+                }
             }
         }
+        
 
         const buttonQuitFight = document.createElement('button');
         buttonQuitFight.classList.add('buttonExitFight');

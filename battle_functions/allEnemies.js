@@ -18,6 +18,7 @@ const allEnemies = [
         HP: 25,
         defense: 1,
         xp: 10,
+        drops: [allDrops[2]],
         size: "medium",
         attacks: [ {name: "scratch", power: 4}, {name: "bite", power: 6}],
         attacksSprite: ['claws'], 
