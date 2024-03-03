@@ -97,7 +97,7 @@ body {
     background-color: black;
     border-radius: 10px;
     border: solid rgb(99, 64, 31) 5px;
-    transition: background-image .5s ease-in-out;
+    transition: background-image .5s ease-in-out, background-position .5s ease-in-out;
 }
 .characterChoice {
     display: flex;
@@ -461,7 +461,9 @@ body {
     left: 44%;
     top: 35%;
 }
-
+.enemyHPBar {
+    background-color: rgb(210, 210, 210);
+}
 .enemyGreenHealthBar {
     height: 100%;
     width: 100%;

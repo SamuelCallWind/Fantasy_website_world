@@ -9,11 +9,6 @@ let eventListenerOnActions = 0;
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
 
-const eventHandlers = {
-    handleAttackClick: null,
-    handleRunClick: null
-}
-
 
 function continueBattle(enemy, chosenWeapon) {
     const enemyHealthInPoint = enemy.HP;
@@ -261,6 +256,7 @@ function defeatEnemy(enemy) {
 
 function returnToMap() {
     const gameDisplay = document.querySelector('.gameDisplay');
+    gameDisplay.style.backgroundPosition = 'left';
     gameDisplay.style.cssText = '';
     removeMovements();
 

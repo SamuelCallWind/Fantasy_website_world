@@ -1,5 +1,6 @@
 import { getCurrentLocation, returnCharacter, textDisplayed } from '../main.js';
 import { capitalizeFirstLetter } from '../texts_to_display/fight_texts/allTexts.js';
+import { changeBattleBackground } from '../world_functions/changeBackground.js';
 import { allEnemies } from './allEnemies.js';
 import { continueBattle } from './continueBattle.js';
 
@@ -18,14 +19,7 @@ function startBattle(enemyName, chosenWeapon) {
             movementContainer.removeChild(movementContainer.firstChild);
         }
         setTimeout(() => {
-            const currentLocation = getCurrentLocation();
-            if (currentLocation === 'Town Square') {
-                gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_village.png')"
-                gameDisplay.style.backgroundPosition = '-50px';
-            } else if (currentLocation === 'First Crossroad') {
-                gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_grassland.png')"
-                gameDisplay.style.backgroundPosition = '-50px';
-            }         
+            changeBattleBackground();
             movementContainer.append(enemyNameText, enemyHPBar, playerCharacter, enemySprite);
             document.querySelector('.action').style.display = 'flex';
             document.querySelector('.textDisplayed').innerText = enemy.text;
@@ -66,6 +60,7 @@ function startBattle(enemyName, chosenWeapon) {
     }
     
 }
+
 
 
 export { startBattle };

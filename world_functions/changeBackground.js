@@ -2,6 +2,7 @@ import { chooseWeaponBeforeFight } from "../battle_functions/chooseWeapon.js";
 import { returnRandomNumber } from "../battle_functions/continueBattle.js";
 import { displayMonsters } from "./displayMonsters.js";
 import { positionTheDirections } from "./directions.js";
+import { getCurrentLocation } from "../main.js";
 
 export function changeBackground(nameBackground) {
     const monstersDisplayed = document.querySelectorAll('.monsterMap');
@@ -36,3 +37,17 @@ export function changeBackground(nameBackground) {
         gameDisplay.style.backgroundImage = 'url("../images/insides/inside_church.png")';
     }
 }
+
+function changeBattleBackground() {
+    const currentLocation = getCurrentLocation();
+    const gameDisplay = document.querySelector('.gameDisplay');
+    if (currentLocation === 'Town Square') {
+        gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_village.png')"
+        gameDisplay.style.backgroundPosition = '-50px';            
+    } else if (currentLocation === 'First Crossroad') {
+        gameDisplay.style.backgroundImage = "url('../images/battle/battle_arena_grassland.png')"
+        gameDisplay.style.backgroundPosition = '-50px';
+    }
+}
+
+export { changeBattleBackground };
