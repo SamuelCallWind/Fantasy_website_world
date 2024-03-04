@@ -493,6 +493,9 @@ body {
 .swordAttack {
     background-image: url('./images/misc/sword_attack_sprite.png');
 }
+.claws {
+    background-image: url('./images/misc/slash_attack_sprite.png');
+}
 .spriteEnemyAttack {
     top: 70%;
     left: 15%;

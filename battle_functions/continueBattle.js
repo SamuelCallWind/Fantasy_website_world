@@ -3,9 +3,6 @@ import { createButtonOK } from "../texts_to_display/fight_texts/createButtons.js
 import { redirectTypeOfWeapon, redirectWeapon } from "../weapons/redirectWeapon.js";
 import { changeBackground } from "../world_functions/changeBackground.js";
 import { positionTheDirections } from "../world_functions/directions.js";
-import { displayActions, removeActions } from "./displayActions.js";
-
-let eventListenerOnActions = 0;
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
 
@@ -202,7 +199,7 @@ function animateEnemyMovement(enemyImg, originalPosition, leftChange){
 
 function animateEnemyAttack(attackSprite) {
     const spriteForAttack = document.createElement('div');
-    spriteForAttack.classList.add(attackSprite);
+    spriteForAttack.classList.add("spriteEnemyAttack", attackSprite);
     document.querySelector('.gameDisplay').appendChild(spriteForAttack);
     let frame = 0;
     const totalFrames = 10;
