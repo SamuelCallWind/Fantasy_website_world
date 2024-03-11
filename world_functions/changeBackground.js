@@ -2,7 +2,7 @@ import { chooseWeaponBeforeFight } from "../battle_functions/chooseWeapon.js";
 import { returnRandomNumber } from "../battle_functions/continueBattle.js";
 import { displayMonsters } from "./displayMonsters.js";
 import { positionTheDirections } from "./directions.js";
-import { getCurrentLocation } from "../main.js";
+import { changeActions, getCurrentLocation } from "../main.js";
 
 export function changeBackground(nameBackground) {
     const monstersDisplayed = document.querySelectorAll('.monsterMap');
@@ -28,9 +28,11 @@ export function changeBackground(nameBackground) {
             gameDisplay.style.backgroundImage = 'url(../images/landscapes/town_square.png)';
             
         }
-    } else if (nameBackground === 'hills') {
+    } else if (nameBackground === 'hills' || nameBackground === 'Hills') {
         gameDisplay.style.backgroundImage = 'url(../images/landscapes/grass_hills.png)';
         displayMonsters('hills');
+        changeActions(7);
+        positionTheDirections('hills', false, false, false, true)
     } else if (nameBackground === 'blacksmith') {
         gameDisplay.style.backgroundImage = 'url("../images/insides/inside_forge.png")';
     } else if (nameBackground === 'church') {

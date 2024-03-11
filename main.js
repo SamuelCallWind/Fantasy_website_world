@@ -231,6 +231,7 @@ function changeActions(locationNumber) {
         //--------------------------END Case for Blacksmith's show armor --------------
         } else {
             newDiv.classList.add('movement');
+            containerMovement.classList.remove('gridAutoCol50', 'flexColumn', 'spaceEvenly');
         }
         addClassOfMovement(i, newDiv, locationNumber);
         newDiv.addEventListener('click', movementFunctions[i]);

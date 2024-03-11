@@ -19,6 +19,7 @@ function continueBattle(enemy, chosenWeapon) {
         handleAttack(enemy, chosenWeapon);
     })
     document.querySelector('.run').addEventListener('click',function () {
+        document.querySelector('.action').style.display = 'none';
         if (returnRandomNumber(10) > 1) {
             textDisplayed.innerText = `You ran away from the ${enemy.name}`;
             document.querySelector('.action').style.display = 'none';

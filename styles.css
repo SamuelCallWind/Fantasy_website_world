@@ -367,6 +367,9 @@ body {
     transition: filter .2s ease-in-out;
     cursor: pointer;
 }
+.weaponBox > :nth-child(3) {
+    background-color: blue;
+}
 .weaponBox:hover {
     filter: grayscale(40%);
 }
