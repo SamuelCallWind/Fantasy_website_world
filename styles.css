@@ -496,7 +496,7 @@ body {
 .swordAttack {
     background-image: url('./images/misc/sword_attack_sprite.png');
 }
-.claws {
+.monsterClaws {
     background-image: url('./images/misc/slash_attack_sprite.png');
 }
 .spriteEnemyAttack {

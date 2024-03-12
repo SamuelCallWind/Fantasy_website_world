@@ -9,7 +9,7 @@ const allEnemies = [
         drops: [allDrops[0], allDrops[1]],
         size: "small",
         attacks: [ {name: "peck", power: 2}],
-        attacksSprite: ['claws'], 
+        attacksSprite: ['monsterClaws'], 
         sprite: "../images/monsters/small/chicken.png",
         text: "The chicken is looking furious. What will you do?"
     },
@@ -21,7 +21,7 @@ const allEnemies = [
         drops: [allDrops[2], allDrops[3]],
         size: "medium",
         attacks: [ {name: "scratch", power: 4}, {name: "bite", power: 6}],
-        attacksSprite: ['claws'], 
+        attacksSprite: ['monsterClaws'], 
         sprite: "../images/monsters/small/fox.png",
         text: "A fox is starring at you. What will you do?"
     },
@@ -33,7 +33,7 @@ const allEnemies = [
         
         size: "small",
         attacks: [ {name: "scratch", power: 4}, {name: "peck", power: 2}],
-        attacksSprite: ['claws'], 
+        attacksSprite: ['monsterClaws'], 
         sprite: "../images/monsters/small/bird.png",
         text: "This bird wants to fight with you, one to one. What will you do?"
     },
@@ -44,7 +44,7 @@ const allEnemies = [
         xp: 12,
         size: "small",
         attacks: [ {name: "quick bite", power: 5} ],
-        attacksSprite: ['claws'], 
+        attacksSprite: ['monsterClaws'], 
         sprite: "../images/monsters/small/small_lizard.png",
         text: "This brave and small lizard is looking real' serious. What will you do?"
     },
