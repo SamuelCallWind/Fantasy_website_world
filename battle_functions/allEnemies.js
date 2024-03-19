@@ -31,7 +31,7 @@ const allEnemies = [
         defense: 0,
         xp: 10,
         
-        size: "small",
+        size: "medium",
         attacks: [ {name: "scratch", power: 4}, {name: "peck", power: 2}],
         attacksSprite: ['monsterClaws'], 
         sprite: "../images/monsters/small/bird.png",

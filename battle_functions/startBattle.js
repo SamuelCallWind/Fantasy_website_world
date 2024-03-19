@@ -20,7 +20,7 @@ function startBattle(enemyName, chosenWeapon) {
         }
         setTimeout(() => {
             changeBattleBackground();
-            movementContainer.append(enemyNameText, enemyHPBar, playerCharacter, enemySprite);
+            movementContainer.append(enemyNameText, enemyHPBar, playerCharacter, containerEnemySprite);
             document.querySelector('.action').style.display = 'flex';
             document.querySelector('.textDisplayed').innerText = enemy.text;
             continueBattle(enemy, chosenWeapon ? chosenWeapon : null);
@@ -28,6 +28,7 @@ function startBattle(enemyName, chosenWeapon) {
         }, 2000);
 
         const enemyName = enemy.name;
+        const containerEnemySprite = document.createElement('div');
         const enemySprite = document.createElement('img');
 
         const enemyNameText = document.createElement('div');
@@ -56,7 +57,9 @@ function startBattle(enemyName, chosenWeapon) {
         } else if (enemy.size === 'boss') {
             enemySprite.classList.add('bossEnemy');
         }
-        
+
+        containerEnemySprite.appendChild(enemySprite);
+        containerEnemySprite.classList.add('containerEnemySprite');
     }
     
 }
