@@ -482,7 +482,6 @@ body {
 }
 .spriteAttack, .slashAttack, .swordAttack, .spriteEnemyAttack {
     position: absolute;
-    top: 100px;
     left: 50%;
     transform: translate(-50%, 0);
     height: 64px;

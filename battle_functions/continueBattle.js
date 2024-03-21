@@ -5,7 +5,7 @@ import { changeBackground } from "../world_functions/changeBackground.js";
 import { positionTheDirections } from "../world_functions/directions.js";
 
 let returnRandomNumber = (maxNumber) => Math.floor(Math.random() * maxNumber);
-
+let enemyHeight = 0;
 
 function continueBattle(enemy, chosenWeapon) {
     const enemyHealthInPoint = enemy.HP;
@@ -34,6 +34,13 @@ function continueBattle(enemy, chosenWeapon) {
         }
     })
 
+    if (enemy.size === 'small') {
+        enemyHeight = '100px';
+    } else if (enemy.size === 'medium') {
+        enemyHeight = '200px';
+    } else if (enemy.size === 'big') {
+        enemyHeight = '50px';
+    }
 }
 
 function handleAttack(enemy, chosenWeapon) {
@@ -100,9 +107,9 @@ function handleAttack(enemy, chosenWeapon) {
             }
         });
 
-    }
-    
+    }   
 }
+
 
 function enemyAttack(enemy) {
     let isPlayerAlive = 'alive';
@@ -165,6 +172,7 @@ function animateAttack(chosenWeapon) {
         spriteAttack.classList.add('spriteAttack'); // to change if bare hand
     }
 
+    spriteAttack.style.top = enemyHeight;
     document.querySelector('.gameDisplay').appendChild(spriteAttack);
 
 
@@ -268,8 +276,8 @@ function returnToMap() {
         }
     }
     changeBackground(currentLocation);
-
     positionTheDirections(currentLocation);
+    document.querySelector('.movementContainer').style.cssText = '';
 }
 
 
