@@ -186,7 +186,7 @@ const locations = [
     {
         name: "First Crossroad",
         "movement names": ["Go left", "Go right", "Go forward", "Go Backward"],
-        "movement functions": [goHills, goRight, goForward, goCity],
+        "movement functions": [goHills, goRight, goGrassRockySingleRoad, goCity],
         text: "You've walked a few hundred meters out of the city following the road and you are now standing at a crossroad.\nWhich direction do you want to go?"
     },
     {
@@ -194,6 +194,12 @@ const locations = [
         "movement names": ["Go Backward"],
         "movement functions": [goCrossroad],
         text: "This is the end of the road.\nThere is a beautiful view and a calm breeze.\nWhat do you want to do?"
+    },
+    {
+        name: "Grass Rocky Single Road",
+        "movement names": ["Go forward", "Go backward"],
+        "movement functions": [goBeginningOfForrest, goCrossroad],
+        text: "You walked for about 15 minutes and start to see some trees on the side. What do you want to do?"
     }
 ];
 function changeActions(locationNumber) {
@@ -331,6 +337,16 @@ function goHills() {
     changeActions(7);
     changeBackground('hills');
     positionTheDirections('hills', false, false, false, true)
+}
+function goGrassRockySingleRoad() {
+    changeActions(8);
+    changeBackground('grassRockySingleRoad');
+    positionTheDirections('grassRockySingleRoad', true, false, false, true);
+}
+function goBeginningOfForrest() {
+    changeActions(8);
+    changeBackground('grassRockySingleRoad');
+    positionTheDirections('grassRockySingleRoad', true, false, false, true);
 }
 function checkHealth() {
     if (health <= 0) {

@@ -37,6 +37,8 @@ export function changeBackground(nameBackground) {
         gameDisplay.style.backgroundImage = 'url("../images/insides/inside_forge.png")';
     } else if (nameBackground === 'church') {
         gameDisplay.style.backgroundImage = 'url("../images/insides/inside_church.png")';
+    } else if (nameBackground === 'grassRockySingleRoad') {
+        gameDisplay.style.backgroundImage = 'url("../images/landscapes/grass_rock_single_road.png")';
     }
 }
 

@@ -7,7 +7,7 @@ const allEnemies = [
         defense: 0,
         xp: 5,
         drops: [allDrops[0], allDrops[1]],
-        size: "small",
+        size: "chicken",
         attacks: [ {name: "peck", power: 2}],
         attacksSprite: ['monsterClaws'], 
         sprite: "../images/monsters/small/chicken.png",

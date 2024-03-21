@@ -41,6 +41,11 @@ function positionTheDirections(location, isLeft, isRight, isForward, isBackward)
     } else if ( location === 'hills') {
         backward.style.left = '40%';
         backward.style.bottom = '0';
+    } else if (location === 'grassRockySingleRoad') {
+        forward.style.top = '0';
+        forward.style.right = '20%';
+        backward.style.left = '10%';
+        backward.style.bottom = '0';
     }
             
 

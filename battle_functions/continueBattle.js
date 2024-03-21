@@ -26,20 +26,19 @@ function continueBattle(enemy, chosenWeapon) {
             setTimeout(() => {
                 returnToMap();
             }, 1000);
+            removeAndCreateActionButtons();
         } else {
-            textDisplayed.innerText = 'You were not able to run away.';
+            textDisplayed.innerText = 'You were not able to run away.';    
             setTimeout(() => {
                 enemyAttack(enemy);
             }, 2000);
         }
     })
 
-    if (enemy.size === 'small') {
-        enemyHeight = '100px';
-    } else if (enemy.size === 'medium') {
+    if (enemy.size === 'small' || enemy.size === 'medium') {
         enemyHeight = '200px';
     } else if (enemy.size === 'big') {
-        enemyHeight = '50px';
+        enemyHeight = '100px';
     }
 }
 
@@ -117,6 +116,7 @@ function enemyAttack(enemy) {
         textDisplayed.innerText = `The ${enemy.name} attacked, but missed.`;
     } else {
         const enemyImg = document.querySelector('.enemySprite');
+        console.log(enemyImg);
         const randomNumber = returnRandomNumber(enemy.attacks.length);
         const attackChosen = enemy.attacks[randomNumber];
         const spriteAttackChosen = enemy.attacksSprite[randomNumber];
