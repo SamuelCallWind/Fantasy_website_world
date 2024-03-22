@@ -31,12 +31,16 @@ export function changeBackground(nameBackground) {
     } else if (nameBackground === 'hills' || nameBackground === 'Hills') {
         gameDisplay.style.backgroundImage = 'url(../images/landscapes/grass_hills.png)';
         displayMonsters('hills');
+        changeActions(7);
+        positionTheDirections('hills', false, false, false, true)
     } else if (nameBackground === 'blacksmith') {
         gameDisplay.style.backgroundImage = 'url("../images/insides/inside_forge.png")';
     } else if (nameBackground === 'church') {
         gameDisplay.style.backgroundImage = 'url("../images/insides/inside_church.png")';
     } else if (nameBackground === 'grassRockySingleRoad') {
         gameDisplay.style.backgroundImage = 'url("../images/landscapes/grass_rock_single_road.png")';
+    } else if (nameBackground === 'beginningForrest') {
+        gameDisplay.style.backgroundImage = 'url("../images/landscapes/beginning_forrest.png")';
     }
 }
 

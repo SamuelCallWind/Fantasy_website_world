@@ -200,6 +200,12 @@ const locations = [
         "movement names": ["Go forward", "Go backward"],
         "movement functions": [goBeginningOfForrest, goCrossroad],
         text: "You walked for about 15 minutes and start to see some trees on the side. What do you want to do?"
+    },
+    {
+        name: "Beginning of forrest",
+        "movement names": ["Go forward", "Go backward"],
+        "movement functions": [goForrest, goGrassRockySingleRoad],
+        text: "You are at the beginning of a forrest, what do you want to do?"
     }
 ];
 function changeActions(locationNumber) {
@@ -343,10 +349,16 @@ function goGrassRockySingleRoad() {
     positionTheDirections('grassRockySingleRoad', true, false, false, true);
 }
 function goBeginningOfForrest() {
-    changeActions(8);
-    changeBackground('grassRockySingleRoad');
-    positionTheDirections('grassRockySingleRoad', true, false, false, true);
+    changeActions(9);
+    changeBackground('beginningForrest');
+    positionTheDirections('beginningForrest', true, false, false, true);
 }
+function goForrest() {
+    changeActions(10);
+    changeBackground('beginningForrest');
+    positionTheDirections('beginningForrest');
+}
+
 function checkHealth() {
     if (health <= 0) {
         looseGame();
