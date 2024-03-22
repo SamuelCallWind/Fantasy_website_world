@@ -56,6 +56,8 @@ function startBattle(enemyName, chosenWeapon) {
             enemySprite.classList.add('bigEnemy');
         } else if (enemy.size === 'boss') {
             enemySprite.classList.add('bossEnemy');
+        } else if (enemy.size === 'chicken') {
+            enemySprite.classList.add('chicken');
         }
 
         containerEnemySprite.appendChild(enemySprite);

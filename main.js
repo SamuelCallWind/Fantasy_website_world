@@ -331,7 +331,6 @@ function goStatue() {
 function goCrossroad() {
     changeActions(6);
     changeBackground('firstCrossroad');
-    positionTheDirections('firstCrossroad', true, true, true, true);
 }
 function goHills() {
     changeActions(7);
