@@ -176,6 +176,10 @@ body {
     margin: 2% 2%;
     width: 100%;
 }
+
+/* ---------------------------------
+BEGINNING OF THE STATUS 
+------------------------------------ */
 .status {
     z-index: 2;
     position: absolute;
@@ -228,6 +232,19 @@ body {
     height: 25px;
     width: 25px;
 }
+.objectivesLogo {
+    position: absolute;
+    top: 35%;
+    left: -7%;
+}
+.objectivesLogo > img {
+    max-width: 40px;
+    cursor: pointer;
+}
+/* ---------------------------------
+END OF THE STATUS 
+------------------------------------ */
+
 .flexColumn {
     display: flex;
     flex-direction: column;
