@@ -176,6 +176,16 @@ body {
     margin: 2% 2%;
     width: 100%;
 }
+.etiquette {
+    position: absolute;
+    left: -20px;
+    padding: 3px;
+    background-color: white;
+    border: gray 1px solid;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
 
 /* ---------------------------------
 BEGINNING OF THE STATUS 
@@ -235,11 +245,14 @@ BEGINNING OF THE STATUS
 .objectivesLogo {
     position: absolute;
     top: 35%;
-    left: -7%;
+    left: -8%;
 }
 .objectivesLogo > img {
     max-width: 40px;
     cursor: pointer;
+}
+.objectivesLogo > img:hover + .objectivesEtiquette {
+    opacity: 1;
 }
 /* ---------------------------------
 END OF THE STATUS 
