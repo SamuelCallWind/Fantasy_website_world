@@ -254,6 +254,22 @@ BEGINNING OF THE STATUS
 .objectivesLogo > img:hover + .objectivesEtiquette {
     opacity: 1;
 }
+.listOfObjectives {
+    position: absolute;
+    top: 0;
+    left: 75px;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border-radius: 5px;
+    opacity: 1;
+}
+.objectives {
+    height: 25px;
+    width: 100%;
+    background-color: blue;
+    border-radius: 5px;
+}
 /* ---------------------------------
 END OF THE STATUS 
 ------------------------------------ */
